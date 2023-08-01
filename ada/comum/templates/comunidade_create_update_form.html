@@ -1,0 +1,221 @@
+{% extends 'base-interno.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block css %}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="row">
+            <div class="col-lg-12 mb-4 order-0">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between mb-2">
+                        <h5 class="card-title d-sm-inline-block">INCLUIR COMUNIDADE</h5>
+                    </div>
+                    <form method="post" id="comunidade_form">{% csrf_token %}
+                        {{ form.media.js }}
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-sm-4 mb-6">
+                                    <div class="br-input">
+                                        <label for="comunidade">Nome da Comunidade</label>
+                                        {% render_field form.comunidade type="text" %}
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 mb-6">
+                                    <label for="estado">Estado</label>
+                                    <div class="br-input">
+                                        {% render_field form.estado class="campo-select" style="width:100%" %}
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 mb-6">
+                                    <div class="br-input">
+                                        <label for="municipio">Municipio</label>
+                                        {% render_field form.municipio type="text" class="campo-select" style="width:100%" %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-4 mb-6">
+                                    <div class="br-select">
+                                        <div class="br-input">
+                                            <label for="id_qualificacao">Qualificação</label>
+                                            <input id="id_qualificacao" type="text"
+                                                   placeholder="Selecione o item"/>
+                                            <button class="br-button" type="button" aria-label="Exibir lista"
+                                                    tabindex="-1" data-trigger="data-trigger"><i
+                                                    class="fas fa-angle-down" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                        <div class="br-list" tabindex="0">
+                                            {% for q in qualificacao %}
+                                                <div class="br-item" tabindex="-1">
+                                                    <div class="br-radio">
+                                                        {% if request.resolver_match.url_name == "comunidades_update" %}
+                                                            {% if object.qualificacao.id == q.id %}
+                                                                <input id="rb{{ q.id }}" type="radio"
+                                                                       name="qualificacao" value="{{ q.id }}" checked/>
+                                                                <label for="rb{{ q.id }}">{{ object.qualificacao }}</label>
+                                                            {% else %}
+                                                                <input id="rb{{ q.id }}" type="radio"
+                                                                       name="qualificacao" value="{{ q.id }}"/>
+                                                                <label for="rb{{ q.id }}">{{ q.descricao }}</label>
+                                                            {% endif %}
+                                                        {% else %}
+                                                            <input id="rb{{ q.id }}" type="radio"
+                                                                   name="qualificacao" value="{{ q.id }}"/>
+                                                            <label for="rb{{ q.id }}">{{ q.descricao }}</label>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 mb-6">
+                                    <div class="br-input">
+                                        <label for="qtd_de_familias">Quantidade de Famílias</label>
+                                        {% render_field form.qtd_de_familias type="number" %}
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 mb-6">
+                                    <div class="br-select" multiple="multiple">
+                                        <div class="br-input">
+                                            <label for="select-multtiple">Principais Atividades Econômicas</label>
+                                            <input id="select-multtiple" type="text"
+                                                   placeholder="Selecione os itens"/>
+                                            <button class="br-button" type="button" aria-label="Exibir lista"
+                                                    tabindex="-1" data-trigger="data-trigger"><i
+                                                    class="fas fa-angle-down" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                        <div class="br-list" tabindex="0">
+                                            <div class="br-item highlighted" data-all="data-all" tabindex="-1">
+                                                <div class="br-checkbox">
+                                                    <input id="cb" name="cb" type="checkbox"/>
+                                                    <label for="cb">Selecionar todos</label>
+                                                </div>
+                                            </div>
+                                            {% for atividade in principais_atividades_economicas %}
+                                                <div class="br-item" tabindex="-1">
+                                                    <div class="br-checkbox">
+                                                        {% if request.resolver_match.url_name == "comunidades_update" %}
+                                                            <input id="cbs{{ atividade.id }}" type="checkbox"
+                                                                   name="principais_atividades_economicas"
+                                                                   value="{{ atividade.id }}"
+                                                                    {% for item in object.principais_atividades_economicas.all %}
+                                                                        {% if atividade.id == item.id %}
+                                                                   checked
+                                                                        {% endif %}
+                                                                    {% endfor %}/>
+                                                            <label for="cbs{{ atividade.id }}">{{ atividade }}</label>
+
+                                                        {% else %}
+                                                            <input id="cbs{{ atividade.id }}" type="checkbox"
+                                                                   name="principais_atividades_economicas"
+                                                                   value="{{ atividade.id }}"/>
+                                                            <label for="cbs{{ atividade.id }}">{{ atividade.descricao }}</label>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-6">
+                                    <div class="br-input">
+                                        <label for="fonte_de_renda">Fonte de Renda</label>
+                                        {% render_field form.fonte_de_renda type="text" %}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-6">
+                                    <div class="br-input">
+                                        <label for="Associacao_organizacao">Associação e/ou organização</label>
+                                        {% render_field form.associacao_organizacao type="text" %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3">
+                                    <div class="br-checkbox">
+                                        {% render_field form.cisternas_consumo type="checkbox" %}
+                                        <label for="id_cisternas_consumo">Possui a tecnologia das cisternas de
+                                            consumo?</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3">
+                                    <div class="br-checkbox">
+                                        {% render_field form.agua_producao_alimentos type="checkbox" %}
+                                        <label for="id_agua_producao_alimentos">Possui a tecnologia de acesso à água
+                                            para a
+                                            produção de alimentos?</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3">
+                                    <div class="br-checkbox">
+                                        {% render_field form.ativo type="checkbox" %}
+                                        <label for="id_ativo">Ativo</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- /.card-body -->
+                        <div class="card-footer mt-3">
+                            <div class="card-footer mt-3">
+                                <div class="card-footer mt-3">
+                                    {% if form.errors %}
+                                        {% for field in form %}
+                                            {% for error in field.errors %}
+
+                                                <div class="br-message danger" role="alert">
+                                                    <div class="icon"><i class="fas fa-times-circle fa-lg"
+                                                                         aria-hidden="true"></i>
+                                                    </div>
+                                                    <div class="content"><span
+                                                            class="message-title">Erro no campo {{ field.label }}.</span><span
+                                                            class="message-body"> {{ error }}</span>
+                                                    </div>
+                                                    <div class="close">
+                                                        <button class="br-button circle small" type="button"
+                                                                aria-label="content"><i
+                                                                class="fas fa-times" aria-hidden="true"></i></button>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    {% endif %}
+                                    <button type="submit" class="br-button primary mr-3"><i class="fas fa-save"
+                                                                                            style="padding-right: 20px;"></i>
+                                        Salvar
+                                    </button>
+                                    <a href="{% url 'comunidades' %}" class="br-button">Cancelar</a>
+                                </div>
+                                <!-- /.card-footer -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+
+    <script src="{% static '@govbr-ds/core/dist/core.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{% static 'js/gerenciamento_select2.js' %}"></script>
+    <script>
+        $("input[type=text]").keyup(function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+    </script>
+{% endblock %}

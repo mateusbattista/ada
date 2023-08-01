@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Programa Cisternas</title>
+    <!-- Fonte Rawline-->
+    <link rel="stylesheet"
+          href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css"/>
+    <!-- Fonte Raleway-->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900&amp;display=swap"/>
+    <!-- Design System de Governo-->
+    <link rel="stylesheet" href="{% static '@govbr-ds/core/dist/core.css' %}"/>
+    <!-- Fontawesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"/>
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+<div class="template-base">
+    <header class="br-header mb-4" id="header" data-sticky="data-sticky">
+        <div class="container-lg">
+            <div class="header-top">
+                <div class="header-logo"><img
+                        src="{% static 'img/gov-br-logo.png' %}"
+                        alt="logo"/><span class="br-divider vertical"></span>
+                    <div class="header-sign m-2">Ministério do Desenvolvimento e Assistência Social, Família e Combate à
+                        Fome
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <div class="header-login">
+                        <div class="header-sign-in">
+                            <a class="br-button secondary mr-3" type="button" href=""><i
+                                    class="fas fa-user"
+                                    aria-hidden="true"></i><span
+                                    class="d-sm-inline">Entrar</span>
+                            </a>
+                        </div>
+                        <div class="header-avatar"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom">
+                <div class="header-menu">
+                    <div class="header-menu-trigger" id="header-navigation">
+                        <button class="br-button small circle" type="button" aria-label="Menu" data-toggle="menu"
+                                data-target="#main-navigation" id="navigation"><i class="fas fa-bars"
+                                                                                  aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="header-info">
+                        <div class="header-title">Programa Cisternas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="d-flex flex-fill mb-5" id="main">
+        <div class="container-lg d-flex">
+            <div class="row col-lg-12">
+                <div class="col mb-5">
+                    <div class="main-content pl-sm-3 mt-4" id="main-content">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="br-footer pt-3" id="footer">
+        <div class="container-lg">
+            <div class="info">
+                <div class="text-down-01 text-medium pb-3">Texto destinado a exibição de informações relacionadas à&nbsp;<strong><a
+                        href="">licença de uso</a>.</strong></div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="{% static '/@govbr-ds/core/dist/core-init.js' %}"></script>
+<script src="{% static '/@govbr-ds/core/dist/core.min.js' %}"></script>
+{% block script %}
+{% endblock %}
+</body>
+</html>

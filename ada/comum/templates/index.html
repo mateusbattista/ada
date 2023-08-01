@@ -1,0 +1,266 @@
+{% extends 'base-externo.html' %}
+{% load static %}
+{% block content %}
+    <div class="row" style="padding-top: 2.5em">
+        <div class="col-sm-12 col-md-12">
+            <div class="br-carousel" data-stage="in" data-mobile-nav="">
+                <div class="carousel-button">
+                    <button class="br-button carousel-btn-prev terciary circle" type="button"
+                            aria-label="Anterior"><i class="fas fa-chevron-left"
+                                                     aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="carousel-stage">
+                    <div class="carousel-page" active="active">
+                        <div class="carousel-content bg-blue-10">
+                            <div class="h3 carousel-title">Página 1</div>
+                        </div>
+                    </div>
+                    <div class="carousel-page">
+                        <div class="carousel-content bg-violet-warm-10">
+                            <div class="h3 carousel-title">Página 2</div>
+                        </div>
+                    </div>
+                    <div class="carousel-page">
+                        <div class="carousel-content bg-yellow-5">
+                            <div class="h3 carousel-title">Página 3</div>
+                        </div>
+                    </div>
+                    <div class="carousel-page">
+                        <div class="carousel-content bg-green-cool-10">
+                            <div class="h3 carousel-title">Página 4</div>
+                        </div>
+                    </div>
+                    <div class="carousel-page">
+                        <div class="carousel-content bg-orange-vivid-10">
+                            <div class="h3 carousel-title">Página 5</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-button">
+                    <button class="br-button carousel-btn-next terciary circle" type="button"
+                            aria-label="Próximo"><i class="fas fa-chevron-right"
+                                                    aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="carousel-step">
+                    <div class="br-step" data-initial="1" data-type="simple">
+                        <div class="step-progress">
+                            <button class="step-progress-btn" type="button"><span
+                                    class="step-info">Exemplo de Rótulo 1</span>
+                            </button>
+                            <button class="step-progress-btn" type="button"><span
+                                    class="step-info">Exemplo de Rótulo 2</span>
+                            </button>
+                            <button class="step-progress-btn" type="button"><span
+                                    class="step-info">Exemplo de Rótulo 3</span>
+                            </button>
+                            <button class="step-progress-btn" type="button"><span
+                                    class="step-info">Exemplo de Rótulo 4</span>
+                            </button>
+                            <button class="step-progress-btn" type="button"><span
+                                    class="step-info">Exemplo de Rótulo 5</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 2.5em">
+        <div class="col-sm-12 col-md-12">
+            <div class="d-flex">
+                <div class="col-sm-8 col-md-8">
+                    <h1>Sobre o programa</h1>
+                    <p>O Programa Nacional de Apoio à Captação de Água de Chuva e outras Tecnologias
+                        Sociais (Programa Cisternas), financiado pelo antigo MDS desde 2003 (acesse
+                        e
+                        conheça a legislação [CGR1] instituído pela Lei Nº 12.873/2013 e
+                        regulamentado
+                        pelo Decreto N° 8.038/2013), tem como objetivo a promoção do acesso à água
+                        para
+                        o consumo humano e para a produção de alimentos por meio da implementação de
+                        tecnologias sociais simples e de baixo custo.</p>
+
+                    <p>O público do programa são famílias rurais de baixa renda atingidas pela seca
+                        ou
+                        falta regular de água, com prioridade para povos e comunidades tradicionais.
+                        Para participarem, as famílias devem necessariamente estar inscritas no
+                        Cadastro
+                        Único para Programas Sociais do Governo Federal.</p>
+
+                    <p>O semiárido brasileiro é a região prioritária do programa. Para essa região,
+                        o
+                        programa está voltado à estruturação das famílias para promover a
+                        convivência
+                        com a escassez de chuva, característica do clima na região, utilizando
+                        principalmente a tecnologia de cisternas de placas, reservatórios que
+                        armazenam
+                        água de chuva para utilização nos oito meses de período mais crítico de
+                        estiagem
+                        na região.</p>
+                </div>
+                <span class="br-divider vertical mx-3"></span>
+                <div class="scrimutilexemplo">
+                    <div class="br-card">
+                        <div class="card-content"><img src="{% static 'img/cisternas_1.jpg' %}"
+                                                       alt="Imagem de exemplo"/></div>
+                    </div>
+                    <button class="br-button primary" type="button">Saiba Mais
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="br-scrim-util foco " id="scrimutilexample" data-scrim="true">
+        <div class="br-modal auto">
+            <div class="br-modal-body">
+                <p>As cisternas podem ser:
+                <ul>
+                    <li>Cisterna familiar de água para consumo, instalada ao lado das casas e com
+                        capacidade de armazenar 16
+                        mil litros de água potável.
+                    </li>
+                    <li>Cisterna familiar de água para consumo, instalada ao lado das casas e com
+                        capacidade de armazenar 16
+                        mil litros de água potável.
+                    </li>
+                    <li>Cisterna familiar de água para consumo, instalada ao lado das casas e com
+                        capacidade de armazenar 16
+                        mil litros de água potável.
+                    </li>
+                </ul>
+                </p>
+                <p>
+                    A metodologia de implementação empregada pelo programa é o de tecnologia social,
+                    ou seja, é implementado
+                    em
+                    interação direta com a população diretamente beneficiada, envolvendo técnicas e
+                    metodologias
+                    apropriadas.
+                    Para isso a implementação prevê as seguintes etapas:
+                </p>
+
+                <p>
+                    <strong>1) Mobilização social</strong> - é o processo de escolha das comunidades
+                    envolvidas e
+                    mobilização
+                    das famílias que
+                    serão contempladas, realizado pela entidade executora com a participação de
+                    instituições representativas
+                    da
+                    localidade.
+                </p>
+
+                <p>
+                    <strong>2) Capacitação</strong> - é a fase do projeto que caracteriza as
+                    tecnologias implementadas pelo
+                    Programa Cisternas
+                    como “tecnologias sociais”, afinal, estimula-se o envolvimento dos beneficiários
+                    por meio da realização
+                    de
+                    capacitações específicas. Tais capacitações são realizadas valorizando a
+                    organização comunitária
+                    existente,
+                    com proposta pedagógica adequada, voltada à educação popular. Os materiais
+                    didáticos utilizados são
+                    produzidos com linguagem simples e ilustrações, favorecendo a compreensão dos
+                    processos envolvidos.
+                </p>
+
+                <p>
+                    <strong>3) Implementação</strong> – é a fase do projeto que se constrói ou
+                    implementa a tecnologia. A
+                    mão
+                    de obra é escolhida
+                    preferencialmente na própria comunidade, barateando, assim, custos, gerando
+                    oportunidades de trabalho e
+                    movimentando a economia local. As famílias beneficiadas e os pedreiros
+                    envolvidos são capacitados pelo
+                    próprio programa. Assim o processo de construção e implementação das tecnologias
+                    é realizado em regime
+                    de
+                    cooperação, gerando sentimento de pertencimento, o que promove mais
+                    sustentabilidade ao equipamento
+                    instalado.
+                </p>
+            </div>
+            <div class="br-modal-footer justify-content-center">
+                <button class="br-button secondary" type="button" id="scrimfechar"
+                        data-dismiss="scrimexample">Voltar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12" style="padding-top: 2.5em">
+            <img style="width: 100%" src="{% static 'img/cisterna_numeros.jpeg' %}">
+        </div>
+    </div>
+    <div class="row" style="padding-top: 2.5em">
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="br-card">
+                <div class="card-content"><img src="{% static 'img/card_cisterna.jpg' %}"
+                                               alt="Imagem de exemplo"/></div>
+                <div class="card-footer">
+                    <div class="d-flex">
+                        <div class="ml-3">
+                            <div class="text-weight-semi-bold text-up-02">Mais de 1 milhão de
+                                cisternas construídas
+                            </div>
+                            <div>Entre 2003 e 2022</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="br-card">
+                <div class="card-content"><img src="{% static 'img/card_cisterna.jpg' %}"
+                                               alt="Imagem de exemplo"/></div>
+                <div class="card-footer">
+                    <div class="d-flex">
+                        <div class="ml-3">
+                            <div class="text-weight-semi-bold text-up-02">Mais de 1 milhão de
+                                cisternas construídas
+                            </div>
+                            <div>Entre 2003 e 2022</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="br-card">
+                <div class="card-content"><img src="{% static 'img/card_cisterna.jpg' %}"
+                                               alt="Imagem de exemplo"/></div>
+                <div class="card-footer">
+                    <div class="d-flex">
+                        <div class="ml-3">
+                            <div class="text-weight-semi-bold text-up-02">Mais de 1 milhão de
+                                cisternas construídas
+                            </div>
+                            <div>Entre 2003 e 2022</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="br-card">
+                <div class="card-content"><img src="{% static 'img/card_cisterna.jpg' %}"
+                                               alt="Imagem de exemplo"/></div>
+                <div class="card-footer">
+                    <div class="d-flex">
+                        <div class="ml-3">
+                            <div class="text-weight-semi-bold text-up-02">Mais de 1 milhão de
+                                cisternas construídas
+                            </div>
+                            <div>Entre 2003 e 2022</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
