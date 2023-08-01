@@ -1,0 +1,83 @@
+{% extends 'base-interno.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block css %}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="row">
+            <div class="col-lg-12 mb-4 order-0">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between mb-2">
+                        <h5 class="card-title d-sm-inline-block">INCLUIR EVENTO</h5>
+                    </div>
+                    <form method="post" id="evento_form">{% csrf_token %}
+                        {{ form.media.js }}
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-sm-4 mb-6">
+                                    <div class="br-input">
+                                        <label for="evento">Tipo de Evento</label>
+                                        {% render_field form.nometipoevento type="text" %}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- /.card-body -->
+                            <div class="card-footer mt-3">
+                                <div class="card-footer mt-3">
+                                    <div class="card-footer mt-3">
+                                        {% if form.errors %}
+                                            {% for field in form %}
+                                                {% for error in field.errors %}
+
+                                                    <div class="br-message danger" role="alert">
+                                                        <div class="icon"><i class="fas fa-times-circle fa-lg"
+                                                                             aria-hidden="true"></i>
+                                                        </div>
+                                                        <div class="content"><span
+                                                                class="message-title">Erro no campo {{ field.label }}.</span><span
+                                                                class="message-body"> {{ error }}</span>
+                                                        </div>
+                                                        <div class="close">
+                                                            <button class="br-button circle small" type="button"
+                                                                    aria-label="content"><i
+                                                                    class="fas fa-times" aria-hidden="true"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            {% endfor %}
+                                        {% endif %}
+                                        <button type="submit" class="br-button primary mr-3"><i class="fas fa-save"
+                                                                                                style="padding-right: 20px;"></i>
+                                            Salvar
+                                        </button>
+                                        <a href="{% url 'tipo_evento' %}" class="br-button">Cancelar</a>
+                                    </div>                  <!-- /.card-footer -->
+                                </div>
+                            </div>                  <!-- /.card-footer -->
+                        </div>
+                    </form>                  <!-- /.card-footer -->
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+
+    <script src="{% static '@govbr-ds/core/dist/core.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{% static 'js/gerenciamento_select2.js' %}"></script>
+    <script>
+        $("input[type=text]").keyup(function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+    </script>
+{% endblock %}

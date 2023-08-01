@@ -1,0 +1,194 @@
+{% extends 'base-interno.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/table.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md">
+            <div class="br-card ">
+                <div class="card-header">
+                    <div class="d-flex"><span class="br-avatar mt-1">
+                        <div class="ml-6">
+                            <div class="text-weight-semi-bold text-up-02">Atividade Econômica</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content ml-6 mr-6">
+                    <form method="post" id="atividadeeconomica_form">{% csrf_token %}
+                        <div class="form-group row">
+                            <div class="col-sm-12 mb-3">
+                                <div class="br-input">
+                                    <label for="programa">Descrição</label>
+                                    {% render_field form.descricao type="text" %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 mt-6">
+                                <a class="br-button mr-3" href="{% url 'atividades_add' %}"
+                                   type="button">
+                                    <i class="fas fa-arrow-left primary" style="padding-right: 20px;"></i>
+                                    Voltar
+                                </a>
+                                {% if not request.resolver_match.url_name == "atividades_update" %}
+                                    <button class="br-button primary active mr-3" type="submit" formmethod="get">
+                                        <i class="fas fa-search primary" style="padding-right: 20px;"></i>
+                                        Consultar
+                                    </button>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <span class="br-divider my-6" style="border-color:rgba(19, 81, 180, 1);
+                        ;"></span>
+                        <div class="col-sm-12 mt-3">
+                            <div class="br-table">
+                                <div class="table-header">
+                                    <div class="top-bar">
+                                        <div class="table-title mb-4">Atividade Econômica</div>
+                                        {% if request.resolver_match.url_name == "atividades_update" %}
+                                            <button form="atividadeeconomica_form" type="submit" class="br-button mr-3">
+                                                <i class="fas fa-save" style="padding-right: 20px;"></i>
+                                                Salvar
+                                            </button>
+                                        {% else %}
+                                            <button form="atividadeeconomica_form" type="submit" class="br-button mr-3">
+                                                <i class="fas fa-plus" style="padding-right: 20px;"></i>
+                                                Incluir
+                                            </button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <table>
+                                    <caption>Atividade Econômica</caption>
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="col-sm-2"></th>
+                                        <th scope="col" class="col-sm-10 table-head">Descrição</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% if atividadeseconomicas %}
+                                        {% for atividadeeconomica in atividadeseconomicas %}
+                                            <tr>
+                                                <td data-th="Ações">
+                                                    <a href="{% url 'atividades_update' pk=atividadeeconomica.id %}"
+                                                       class="br-button circle "><i
+                                                            class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                                                    <a class="br-button circle" data-toggle="modal"
+                                                       data-target="#atividadeeconomica{{ atividadeeconomica.id }}"><i
+                                                            class="fas fa-trash-alt" aria-hidden="true"></i></a>
+                                                    <div class="br-scrim-util foco"
+                                                         id="atividadeeconomica{{ atividadeeconomica.id }}"
+                                                         data-scrim="true">
+                                                        <div class="br-modal">
+                                                            <div class="br-modal-header">
+                                                                <strong>Excluir</strong></div>
+                                                            <div class="br-modal-body">
+                                                                <p>Deseja realmente excluir a
+                                                                    Atividade
+                                                                    Econômica {{ atividadeeconomica.descricao }}
+                                                                    ?</p>
+                                                            </div>
+                                                            <div class="br-modal-footer justify-content-center">
+                                                                <a class="br-button mr-3"
+                                                                   href="{% url 'atividades_add' %}"
+                                                                   type="button">
+                                                                    Não
+                                                                </a>
+                                                                <a class="br-button primary mr-3"
+                                                                   href="{% url 'atividades_delete' pk=atividadeeconomica.pk %}"
+                                                                   type="button">
+                                                                    Sim
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td data-th="comunidade">{{ atividadeeconomica.descricao }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% elif atividadeeconomica %}
+                                        <tr>
+                                            <td data-th="Ações">
+                                            </td>
+                                            <td data-th="comunidade">{{ atividadeeconomica.descricao }}</td>
+                                        </tr>
+                                    {% else %}
+                                        <p style="text-align: center" class="my-2">Nenhum item foi encontrado para a
+                                            busca com os parâmetros solicitados !</p>
+
+                                    {% endif %}
+                                    </tbody>
+                                </table>
+                                <div class="table-footer">
+                                    {% if is_paginated %}
+                                        <nav class="br-pagination" aria-label="Paginação de resultados">
+                                            <div class="pagination-arrows ml-auto ml-sm-0">
+                                                {% if page_obj.has_previous %}
+
+                                                    <a class="br-button circle"
+                                                       href="?page={{ page_obj.previous_page_number }}"
+                                                       aria-label="Voltar página">
+                                                        <i class="fas fa-angle-left" aria-hidden="true"></i>
+                                                    </a>
+                                                {% endif %}
+                                                <div class="pagination-information d-none d-sm-flex"><span
+                                                        class="current">{{ page_obj.number }}</span><span
+                                                        class="per-page"></span>&nbsp;de&nbsp;<span
+                                                        class="total">{{ paginator.num_pages }}</span>&nbsp;páginas
+                                                </div>
+                                                {% if page_obj.has_next %}
+                                                    <a class="br-button circle"
+                                                       href="?page={{ page_obj.next_page_number }}"
+                                                       aria-label="Avançar página">
+                                                        <i class="fas fa-angle-right" aria-hidden="true"></i>
+                                                    </a>
+                                                {% endif %}
+                                            </div>
+                                        </nav>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+
+                                <div class="br-message danger" role="alert">
+                                    <div class="icon"><i class="fas fa-times-circle fa-lg"
+                                                         aria-hidden="true"></i>
+                                    </div>
+                                    <div class="content"><span
+                                            class="message-title">Erro no campo {{ field.label }}.</span><span
+                                            class="message-body"> {{ error }}</span>
+                                    </div>
+                                    <div class="close">
+                                        <button class="br-button circle small" type="button"
+                                                aria-label="content"><i
+                                                class="fas fa-times" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $("input[type=text]").keyup(function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+    </script>
+{% endblock %}
+

@@ -1,0 +1,8 @@
+.table-head {
+    color: rgba(19, 81, 180, 1);
+    font-weight: bold;
+}
+
+.table-header {
+    top: 1px !important;
+}
