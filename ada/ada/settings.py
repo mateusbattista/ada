@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'registros',
     'comum',
+    'autenticacao',
     'widget_tweaks',
 ]
 
@@ -83,6 +84,12 @@ DATABASES = {
     }
 }
 
+LOGIN_URL = '/autenticacao/login/'
+
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGOUT_REDIRECT_URL = 'index'
+
+AUTH_USER_MODEL = 'autenticacao.Usuario'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

@@ -9,11 +9,9 @@ from registros.models import *
 from registros.forms import *
 
 
-
-
 # Create your views here.
-class PortariaListView(ListView):
-    #login_url = '/authenticate/login/'
+class PortariaListView(LoginRequiredMixin, ListView):
+    login_url = '/autenticacao/login/'
     model = TipoPortariaADA
     context_object_name = 'portarias'
     template_name = 'portaria_list.html'
@@ -34,8 +32,8 @@ class PortariaListView(ListView):
         return queryset
 
 
-class PortariaUpdateView(UpdateView):
-    #login_url = '/authenticate/login/'
+class PortariaUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/autenticacao/login/'
     form_class = TipoPortariaForms
     model = TipoPortariaADA
     template_name = 'portaria_create_update_form.html'
@@ -47,8 +45,8 @@ class PortariaUpdateView(UpdateView):
         return context
 
 
-class PortariaCreateView(CreateView):
-   # login_url = '/authenticate/login/'
+class PortariaCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/autenticacao/login/'
     form_class = TipoPortariaForms
     model = TipoPortariaADA
     template_name = 'portaria_create_update_form.html'
@@ -60,22 +58,14 @@ class PortariaCreateView(CreateView):
         return context
 
 
-class PortariaDeleteView(DeleteView):
-   # login_url = '/autenticacao/login/'
-    model = TipoPortariaADA
-    form_class = TipoPortariaADA
-    template_name = 'portaria_list.html'
-    success_url = '/portaria/'
-
-
-def portaria_delete(request, pk):
-    portaria = Portaria.objects.get(pk=pk)
+def Portaria_delete(request, pk):
+    portaria = TipoPortariaADA.objects.get(pk=pk)
     portaria.delete()
     return redirect('tipo_portaria')
 
 
-class EventoListView(ListView):
-    # login_url = '/authenticate/login/'
+class EventoListView(LoginRequiredMixin, ListView):
+    login_url = '/autenticacao/login/'
     model = TipoEventoADA
     context_object_name = 'eventos'
     template_name = 'evento_list.html'
@@ -96,22 +86,8 @@ class EventoListView(ListView):
         return queryset
 
 
-class EventoUpdateView(UpdateView):
-    # login_url = '/authenticate/login/'
-    form_class = TipoEventoForms
-    model = TipoEventoADA
-    template_name = 'evento_create_update_form.html'
-    success_url = '/evento/'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-
-        return context
-
-
-class EventoCreateView(CreateView):
-    # login_url = '/authenticate/login/'
+class EventoUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/autenticacao/login/'
     form_class = TipoEventoForms
     model = TipoEventoADA
     template_name = 'evento_create_update_form.html'
@@ -123,8 +99,27 @@ class EventoCreateView(CreateView):
         return context
 
 
-class PublicoListView(ListView):
-    # login_url = '/authenticate/login/'
+class EventoCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/autenticacao/login/'
+    form_class = TipoEventoForms
+    model = TipoEventoADA
+    template_name = 'evento_create_update_form.html'
+    success_url = '/evento/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
+
+
+def Evento_delete(request, pk):
+    evento = TipoEventoADA.objects.get(pk=pk)
+    evento.delete()
+    return redirect('tipo_evento')
+
+
+class PublicoListView(LoginRequiredMixin, ListView):
+    login_url = '/autenticacao/login/'
     model = TipoPublicoADA
     context_object_name = 'publicos'
     template_name = 'publico_list.html'
@@ -145,8 +140,8 @@ class PublicoListView(ListView):
         return queryset
 
 
-class PublicoUpdateView(UpdateView):
-    # login_url = '/authenticate/login/'
+class PublicoUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/autenticacao/login/'
     form_class = TipoPublicoForms
     model = TipoPublicoADA
     template_name = 'publico_create_update_form.html'
@@ -158,8 +153,8 @@ class PublicoUpdateView(UpdateView):
         return context
 
 
-class PublicoCreateView(CreateView):
-    # login_url = '/authenticate/login/'
+class PublicoCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/autenticacao/login/'
     form_class = TipoPublicoForms
     model = TipoPublicoADA
     template_name = 'publico_create_update_form.html'
@@ -170,8 +165,14 @@ class PublicoCreateView(CreateView):
 
         return context
 
-class SolicitacaoListView(ListView):
-    # login_url = '/authenticate/login/'
+def Publico_delete(request, pk):
+    publico = TipoPublicoADA.objects.get(pk=pk)
+    publico.delete()
+    return redirect('tipo_publico')
+
+
+class SolicitacaoListView(LoginRequiredMixin, ListView):
+    login_url = '/autenticacao/login/'
     model = TermoAdesaoADA
     context_object_name = 'solicitacoes'
     template_name = 'solicitacao_list.html'
@@ -221,14 +222,11 @@ class SolicitacaoListView(ListView):
         if aceito:
             queryset = queryset.filter(numero__contains=aceito)
 
-
-
-
         return queryset
 
 
-class SolicitacaoUpdateView(UpdateView):
-    # login_url = '/authenticate/login/'
+class SolicitacaoUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/autenticacao/login/'
     form_class = SolicitacaoForms
     model = TermoAdesaoADA
     template_name = 'solicitacao_create_update_form.html'
@@ -240,8 +238,8 @@ class SolicitacaoUpdateView(UpdateView):
         return context
 
 
-class SolicitacaoCreateView(CreateView):
-    # login_url = '/authenticate/login/'
+class SolicitacaoCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/autenticacao/login/'
     form_class = SolicitacaoForms
     model = TermoAdesaoADA
     template_name = 'solicitacao_create_update_form.html'
@@ -252,8 +250,9 @@ class SolicitacaoCreateView(CreateView):
 
         return context
 
-class TermoAdesaoListView(ListView):
-    # login_url = '/authenticate/login/'
+
+class TermoAdesaoListView(LoginRequiredMixin, ListView):
+    login_url = '/autenticacao/login/'
     model = TermoAdesaoADA
     context_object_name = 'termos'
     template_name = 'termoadesao_list.html'
@@ -303,14 +302,11 @@ class TermoAdesaoListView(ListView):
         if aceito:
             queryset = queryset.filter(numero__contains=aceito)
 
-
-
-
         return queryset
 
 
-class TermoAdesaoUpdateView(UpdateView):
-    # login_url = '/authenticate/login/'
+class TermoAdesaoUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/autenticacao/login/'
     form_class = TermoAdesaoForms
     model = TermoAdesaoADA
     template_name = 'termoadesao_create_update_form.html'
@@ -322,8 +318,8 @@ class TermoAdesaoUpdateView(UpdateView):
         return context
 
 
-class TermoAdesaoCreateView(CreateView):
-    # login_url = '/authenticate/login/'
+class TermoAdesaoCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/autenticacao/login/'
     form_class = TermoAdesaoForms
     model = TermoAdesaoADA
     template_name = 'termoadesao_create_update_form.html'
@@ -333,5 +329,3 @@ class TermoAdesaoCreateView(CreateView):
         context = super().get_context_data(**kwargs)
 
         return context
-
-

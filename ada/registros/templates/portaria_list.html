@@ -14,7 +14,7 @@
                 <div class="card-header">
                     <div class="d-flex">
                         <div class="ml-6">
-                            <div class="text-weight-semi-bold text-up-02">TIPOS DE EVENTOS</div>
+                            <div class="text-weight-semi-bold text-up-02">TIPOS DE PORTARIAS</div>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12 mt-6">
-                                <a class="br-button mr-3" href="{% url 'tipo_portaria' %}"
+                                <a class="br-button mr-3" href="{% url 'dashboard' %}"
                                    type="button">
                                     <i class="fas fa-arrow-left primary" style="padding-right: 20px;"></i>
                                     Voltar
@@ -54,46 +54,62 @@
                                     </a>
                                 </div>
                             </div>
-                            <table>
-                                <caption>TIPOS DE PORTARIAS</caption>
+                             <table>
+                                <caption>Portarias</caption>
                                 <thead>
                                 <tr>
-                                    <th scope="col" class="table-head"></th>
-                                    <th scope="col" class="table-head">Portarias</th>
+                                    <th scope="col" class="col-sm-2"></th>
+                                    <th scope="col" class="col-sm-10 table-head">Tipo de Portarias</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% if portarias %}
-                                    {% for portaria in portarias %}
+                                {% if eventos %}
+                                    {% for evento in eventos %}
                                         <tr>
                                             <td data-th="Ações">
-                                                <a href="{% url 'tipo_portaria_update' pk=portaria.id %}"
-                                                   class="br-button"><i
-                                                        class="fas fa-pen" aria-hidden="true"></i></a>
+                                                <a href="{% url 'tipo_evento_update' pk=evento.id %}"
+                                                   class="br-button circle "><i
+                                                        class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                                                <a class="br-button circle" data-toggle="modal"
+                                                   data-target="#evento{{ evento.id }}"><i
+                                                        class="fas fa-trash-alt" aria-hidden="true"></i></a>
+                                                <div class="br-scrim-util foco"
+                                                     id="evento{{ evento.id }}"
+                                                     data-scrim="true">
+                                                    <div class="br-modal">
+                                                        <div class="br-modal-header">
+                                                            <strong>Excluir</strong></div>
+                                                        <div class="br-modal-body">
+                                                            <p>Deseja realmente excluir o evento {{ evento.nometipoevento }}
+                                                                ?</p>
+                                                        </div>
+                                                        <div class="br-modal-footer justify-content-center">
+                                                            <a class="br-button mr-3"
+                                                               href="{% url 'tipo_evento' %}"
+                                                               type="button">
+                                                                Não
+                                                            </a>
+                                                            <a class="br-button primary mr-3"
+                                                               href="{% url 'tipo_evento_delete' pk=evento.pk %}"
+                                                               type="button">
+                                                                Sim
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
-                                            <td data-th="nometipoportaria">{{ portaria.nometipoportaria }}</td>
-{#                                                {% for atividade in comunidade.principais_atividades_economicas.all %}#}
-{#                                                    <span class="br-tag bg-violet-warm-vivid-70 p-0 m-2"#}
-{#                                                          style="display: inline-block; border: 1px solid black; box-sizing: border-box;">#}
-{#                                                      <span style="display: inline-block; padding: 5px 10px;">{{ atividade }}</span>#}
-{#                                                    </span>#}
-{#                                                {% endfor %}#}
-                                            </td>
-
-{#                                            {% if comunidade.ativo == True %}#}
-{#                                                <td data-th="ativo"><span#}
-{#                                                        class="br-tag bg-green-cool-vivid-20"><span>Sim</span></span>#}
-{#                                                </td>#}
-{#                                            {% else %}#}
-{#                                                <td data-th="ativo"><span#}
-{#                                                        class="br-tag bg-red-50"><span>Não</span></span>#}
-{#                                                </td>#}
-{#                                            {% endif %}#}
+                                            <td data-th="evento">{{ evento.nometipoevento }}</td>
                                         </tr>
                                     {% endfor %}
+                                {% elif evento %}
+                                    <tr>
+                                        <td data-th="Ações">
+                                        </td>
+                                        <td data-th="evento">{{ evento.nometipoevento }}</td>
+                                    </tr>
                                 {% else %}
-                                    <p style="text-align: center" class="my-2">Não encontramos nenhum dado para a
-                                        pesquisa realizada !</p>
+                                    <p style="text-align: center" class="my-2">Nenhum item foi encontrado para a
+                                        busca com os parâmetros solicitados !</p>
                                 {% endif %}
                                 </tbody>
                             </table>

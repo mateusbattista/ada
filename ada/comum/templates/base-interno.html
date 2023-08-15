@@ -37,7 +37,7 @@
                 <div class="header-actions">
                     <div class="header-login">
                         <div class="header-sign-in">
-                            <a class="br-button secondary mr-3" type="button" href=""><i
+                            <a class="br-button secondary mr-3" type="button" href="{% url 'logout' %}"><i
                                     class="fas fa-user"
                                     aria-hidden="true"></i><span
                                     class="d-sm-inline">Sair</span>
@@ -83,10 +83,10 @@
                                 <a class="menu-item" href="{% url 'solicitacao' %}"><span
                                         class="icon"><i class="fas fa-bell" aria-hidden="true"></i></span><span
                                         class="content">Solicitação</span></a>
-                                <a class="menu-item" href="{% url 'tipo_portaria' %}"><span
+                                <a class="menu-item" href="{% url 'termoadesao' %}"><span
                                         class="icon"><i class="fas fa-bell" aria-hidden="true"></i></span><span
                                         class="content">Termo de Adesão</span></a>
-                                <a class="menu-item" href="{% url 'termoadesao' %}"><span
+                                <a class="menu-item" href="{% url 'tipo_portaria' %}"><span
                                         class="icon"><i class="fas fa-bell" aria-hidden="true"></i></span><span
                                         class="content">Portaria</span></a>
                                 <a class="menu-item" href="{% url 'tipo_evento' %}"><span
