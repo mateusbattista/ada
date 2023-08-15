@@ -60,6 +60,20 @@ class PortariaCreateView(CreateView):
         return context
 
 
+class PortariaDeleteView(DeleteView):
+   # login_url = '/autenticacao/login/'
+    model = TipoPortariaADA
+    form_class = TipoPortariaADA
+    template_name = 'portaria_list.html'
+    success_url = '/portaria/'
+
+
+def portaria_delete(request, pk):
+    portaria = Portaria.objects.get(pk=pk)
+    portaria.delete()
+    return redirect('tipo_portaria')
+
+
 class EventoListView(ListView):
     # login_url = '/authenticate/login/'
     model = TipoEventoADA
@@ -155,3 +169,169 @@ class PublicoCreateView(CreateView):
         context = super().get_context_data(**kwargs)
 
         return context
+
+class SolicitacaoListView(ListView):
+    # login_url = '/authenticate/login/'
+    model = TermoAdesaoADA
+    context_object_name = 'solicitacoes'
+    template_name = 'solicitacao_list.html'
+    paginate_by = 20
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["solicitacao_filtro_form"] = SolicitacaoForms()
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        nome = self.request.GET.get("name")
+        cpf = self.request.GET.get("cpf")
+        prefeito = self.request.GET.get("prefeito")
+        cpfprefeito = self.request.GET.get("cpfprefeito")
+        ibge = self.request.GET.get("ibge")
+        municipio = self.request.GET.get("municipio")
+        uf = self.request.GET.get("uf")
+        situacao = self.request.GET.get("uf")
+        aceito = self.request.GET.get("uf")
+
+        if nome:
+            queryset = queryset.filter(name__contains=nome)
+
+        if cpf:
+            queryset = queryset.filter(cpfsolicitante__contains=cpf)
+
+        if prefeito:
+            queryset = queryset.filter(nomeprefeito__contains=prefeito)
+
+        if cpfprefeito:
+            queryset = queryset.filter(cpfprefeito__contains=cpfprefeito)
+
+        if ibge:
+            queryset = queryset.filter(ibge__contains=ibge)
+
+        if municipio:
+            queryset = queryset.filter(nomemunicipio__contains=municipio)
+
+        if uf:
+            queryset = queryset.filter(ufrgprefeito__contains=uf)
+
+        if situacao:
+            queryset = queryset.filter(situacao__contains=situacao)
+
+        if aceito:
+            queryset = queryset.filter(numero__contains=aceito)
+
+
+
+
+        return queryset
+
+
+class SolicitacaoUpdateView(UpdateView):
+    # login_url = '/authenticate/login/'
+    form_class = SolicitacaoForms
+    model = TermoAdesaoADA
+    template_name = 'solicitacao_create_update_form.html'
+    success_url = '/solicitacao/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
+
+
+class SolicitacaoCreateView(CreateView):
+    # login_url = '/authenticate/login/'
+    form_class = SolicitacaoForms
+    model = TermoAdesaoADA
+    template_name = 'solicitacao_create_update_form.html'
+    success_url = '/solicitacao/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
+
+class TermoAdesaoListView(ListView):
+    # login_url = '/authenticate/login/'
+    model = TermoAdesaoADA
+    context_object_name = 'termos'
+    template_name = 'termoadesao_list.html'
+    paginate_by = 20
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["termo_adesao_filtro_form"] = TermoAdesaoForms()
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        nome = self.request.GET.get("name")
+        cpf = self.request.GET.get("cpf")
+        prefeito = self.request.GET.get("prefeito")
+        cpfprefeito = self.request.GET.get("cpfprefeito")
+        ibge = self.request.GET.get("ibge")
+        municipio = self.request.GET.get("municipio")
+        uf = self.request.GET.get("uf")
+        situacao = self.request.GET.get("uf")
+        aceito = self.request.GET.get("uf")
+
+        if nome:
+            queryset = queryset.filter(name__contains=nome)
+
+        if cpf:
+            queryset = queryset.filter(cpfsolicitante__contains=cpf)
+
+        if prefeito:
+            queryset = queryset.filter(nomeprefeito__contains=prefeito)
+
+        if cpfprefeito:
+            queryset = queryset.filter(cpfprefeito__contains=cpfprefeito)
+
+        if ibge:
+            queryset = queryset.filter(ibge__contains=ibge)
+
+        if municipio:
+            queryset = queryset.filter(nomemunicipio__contains=municipio)
+
+        if uf:
+            queryset = queryset.filter(ufrgprefeito__contains=uf)
+
+        if situacao:
+            queryset = queryset.filter(situacao__contains=situacao)
+
+        if aceito:
+            queryset = queryset.filter(numero__contains=aceito)
+
+
+
+
+        return queryset
+
+
+class TermoAdesaoUpdateView(UpdateView):
+    # login_url = '/authenticate/login/'
+    form_class = TermoAdesaoForms
+    model = TermoAdesaoADA
+    template_name = 'termoadesao_create_update_form.html'
+    success_url = '/termoadesao/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
+
+
+class TermoAdesaoCreateView(CreateView):
+    # login_url = '/authenticate/login/'
+    form_class = TermoAdesaoForms
+    model = TermoAdesaoADA
+    template_name = 'termoadesao_create_update_form.html'
+    success_url = '/termoadesao/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
+
+

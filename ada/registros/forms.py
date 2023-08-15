@@ -2,7 +2,6 @@ from django import forms
 from .models import *
 
 
-
 class TipoPortariaForms(forms.ModelForm):
     class Meta:
         model = TipoPortariaADA
@@ -18,4 +17,16 @@ class TipoEventoForms(forms.ModelForm):
 class TipoPublicoForms(forms.ModelForm):
     class Meta:
         model = TipoPublicoADA
+        fields = '__all__'
+
+
+class SolicitacaoForms(forms.ModelForm):
+    class Meta:
+        model = TermoAdesaoADA
+        fields = '__all__'
+
+
+class TermoAdesaoForms(forms.ModelForm):
+    class Meta:
+        model = TermoAdesaoADA
         fields = '__all__'

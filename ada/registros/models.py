@@ -73,7 +73,6 @@ class TermoAdesaoADA(models.Model):
     class Meta:
         db_table = 'termoadesao_ada'
 
-
 class MetaADA(models.Model):
     nomemeta = models.CharField(max_length=50, null=False)
     quantidade = models.BigIntegerField(null=False)
@@ -84,10 +83,9 @@ class MetaADA(models.Model):
 
 class TipoPublicoADA(models.Model):
     nometipopublico = models.CharField(max_length=50, null=True)
+
     class Meta:
         db_table = 'tipopublico_ada'
-
-
 
 
 class TipoEventoADA(models.Model):

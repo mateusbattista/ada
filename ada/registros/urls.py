@@ -11,5 +11,11 @@ urlpatterns = [
     path("publico/", PublicoListView.as_view(), name="tipo_publico"),
     path('publico/add', PublicoCreateView.as_view(), name='tipo_publico_add'),
     path('publico/update/<pk>', PublicoUpdateView.as_view(), name='tipo_publico_update'),
+    path("solicitacao/", SolicitacaoListView.as_view(), name="solicitacao"),
+    path('solicitacao/add', SolicitacaoCreateView.as_view(), name='solicitacao_add'),
+    path('solicitacao/update/<pk>', SolicitacaoUpdateView.as_view(), name='solicitacao_update'),
+    path("termoadesao/", TermoAdesaoListView.as_view(), name="termoadesao"),
+    path('termoadesao/add', TermoAdesaoCreateView.as_view(), name='termoadesao_add'),
+    path('termoadesao/update/<pk>', TermoAdesaoUpdateView.as_view(), name='termoadesao_update'),
 
 ]
