@@ -80,19 +80,22 @@
                                 </div>
                             </div>
                             <nav class="menu-body">
-                                {#                                <div class="menu-item" href="{% url 'tipo_portaria' %}">#}
-                                <a class="menu-item" href="{% url 'tipo_portaria' %}">
-                                    <span class="icon">
-                                        <i class="fas fa-bell" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="content">Portarias</span>
-                                </a>
+                                <a class="menu-item" href="{% url 'solicitacao' %}"><span
+                                        class="icon"><i class="fas fa-bell" aria-hidden="true"></i></span><span
+                                        class="content">Solicitação</span></a>
+                                <a class="menu-item" href="{% url 'tipo_portaria' %}"><span
+                                        class="icon"><i class="fas fa-bell" aria-hidden="true"></i></span><span
+                                        class="content">Termo de Adesão</span></a>
+                                <a class="menu-item" href="{% url 'termoadesao' %}"><span
+                                        class="icon"><i class="fas fa-bell" aria-hidden="true"></i></span><span
+                                        class="content">Portaria</span></a>
                                 <a class="menu-item" href="{% url 'tipo_evento' %}"><span
                                         class="icon"><i class="fas fa-bell" aria-hidden="true"></i></span><span
                                         class="content">Eventos</span></a>
                                 <a class="menu-item" href="{% url 'tipo_publico' %}"><span
                                         class="icon"><i class="fas fa-bell" aria-hidden="true"></i></span><span
                                         class="content">Públicos</span></a>
+
 
                                 <!--
                                 <ul>
