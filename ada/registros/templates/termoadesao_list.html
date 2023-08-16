@@ -101,80 +101,80 @@
                         </div>
                         <span class="br-divider my-6" style="border-color:rgba(19, 81, 180, 1);
                         ;"></span>
-                        <div class="br-table">
-                            <div class="table-header">
-                                <div class="top-bar">
-                                    <div class="table-title mb-4">SOLICITAÇÕES</div>
-                                    <a href="{% url 'termoadesao_add' %}" class="br-button mb-4">
-                                        <i class="fas fa-plus" style="padding-right: 20px;"></i>
-                                        Incluir
-                                    </a>
+                            <div class="br-table">
+                                <div class="table-header">
+                                    <div class="top-bar">
+                                        <div class="table-title mb-4">SOLICITAÇÕES</div>
+                                        <a href="{% url 'termoadesao_add' %}" class="br-button mb-4">
+                                            <i class="fas fa-plus" style="padding-right: 20px;"></i>
+                                            Incluir
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <table>
-                                <caption>TERMOS DE ADESÃO</caption>
-                                <thead>
-                                <tr>
-                                    <th scope="col" class="table-head"></th>
-                                    <th scope="col" class="table-head">IBGE</th>
-                                    <th scope="col" class="table-head">UF</th>
-                                    <th scope="col" class="table-head">Município</th>
-                                    <th scope="col" class="table-head">Número</th>
-                                    <th scope="col" class="table-head">Nome Prefeito</th>
-                                    <th scope="col" class="table-head">Nº Cestas</th>
-                                    <th scope="col" class="table-head">Função</th>
-                                    <th scope="col" class="table-head">Solicitado em</th>
-                                    <th scope="col" class="table-head">Situação</th>
-                                    <th scope="col" class="table-head">Termo de Adesão</th>
-                                    <th scope="col" class="table-head">Publicação DOU</th>
-                                    <th scope="col" class="table-head">Link DOU</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% if solicitacoes %}
-                                    {% for termo in termos %}
-                                        <tr>
-                                            <td data-th="Ações">
-                                                <a href="{% url 'termoadesao_update' pk=solitacao.id %}"
-                                                   class="br-button"><i
-                                                        class="fas fa-pen" aria-hidden="true"></i></a>
-                                            </td>
-                                            <td data-th="ibgeprefeitura">{{ termo.ibgeprefeitura }}</td>
-                                            <td data-th="ufprefeitura">{{ termo.ufprefeitura }}</td>
-                                            <td data-th="municipioprefeitura">{{ termo.municipioprefeitura }}</td>
-                                            <td data-th="numero">{{ termo.numero }}</td>
-                                            <td data-th="nomeprefreito">{{ termo.nomeprefreito }}</td>
-                                            <td data-th="quantidadecestas">{{ termo.quantidadecestas }}</td>
-                                            <td data-th="datasolicitacao">{{ termo.datasolicitacao }}</td>
-                                            <td data-th="situacao">{{ termo.situacao }}</td>
-                                            <td data-th="ntermo">{{ termo.ntermo }}</td>
-                                            <td data-th="data_publicacao_dou">{{ termo.data_publicacao_dou }}</td>
-                                            <td data-th="link_publicacao_dou">{{ termo.link_publicacao_dou }}</td>
-                                            {#                                                {% for atividade in comunidade.principais_atividades_economicas.all %}#}
-                                            {#                                                    <span class="br-tag bg-violet-warm-vivid-70 p-0 m-2"#}
-                                            {#                                                          style="display: inline-block; border: 1px solid black; box-sizing: border-box;">#}
-                                            {#                                                      <span style="display: inline-block; padding: 5px 10px;">{{ atividade }}</span>#}
-                                            {#                                                    </span>#}
-                                            {#                                                {% endfor %}#}
+                                <table>
+                                    <caption>TERMOS DE ADESÃO</caption>
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="table-head"></th>
+                                        <th scope="col" class="table-head">IBGE</th>
+                                        <th scope="col" class="table-head">UF</th>
+                                        <th scope="col" class="table-head">Município</th>
+                                        <th scope="col" class="table-head">Número</th>
+                                        <th scope="col" class="table-head">Nome Prefeito</th>
+                                        <th scope="col" class="table-head">Nº Cestas</th>
+                                        <th scope="col" class="table-head">Função</th>
+                                        <th scope="col" class="table-head">Solicitado em</th>
+                                        <th scope="col" class="table-head">Situação</th>
+                                        <th scope="col" class="table-head">Termo de Adesão</th>
+                                        <th scope="col" class="table-head">Publicação DOU</th>
+                                        <th scope="col" class="table-head">Link DOU</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% if solicitacoes %}
+                                        {% for termo in termos %}
+                                            <tr>
+                                                <td data-th="Ações">
+                                                    <a href="{% url 'termoadesao_update' pk=solitacao.id %}"
+                                                       class="br-button"><i
+                                                            class="fas fa-pen" aria-hidden="true"></i></a>
+                                                </td>
+                                                <td data-th="ibgeprefeitura">{{ termo.ibgeprefeitura }}</td>
+                                                <td data-th="ufprefeitura">{{ termo.ufprefeitura }}</td>
+                                                <td data-th="municipioprefeitura">{{ termo.municipioprefeitura }}</td>
+                                                <td data-th="numero">{{ termo.numero }}</td>
+                                                <td data-th="nomeprefreito">{{ termo.nomeprefreito }}</td>
+                                                <td data-th="quantidadecestas">{{ termo.quantidadecestas }}</td>
+                                                <td data-th="datasolicitacao">{{ termo.datasolicitacao }}</td>
+                                                <td data-th="situacao">{{ termo.situacao }}</td>
+                                                <td data-th="ntermo">{{ termo.ntermo }}</td>
+                                                <td data-th="data_publicacao_dou">{{ termo.data_publicacao_dou }}</td>
+                                                <td data-th="link_publicacao_dou">{{ termo.link_publicacao_dou }}</td>
+                                                {#                                                {% for atividade in comunidade.principais_atividades_economicas.all %}#}
+                                                {#                                                    <span class="br-tag bg-violet-warm-vivid-70 p-0 m-2"#}
+                                                {#                                                          style="display: inline-block; border: 1px solid black; box-sizing: border-box;">#}
+                                                {#                                                      <span style="display: inline-block; padding: 5px 10px;">{{ atividade }}</span>#}
+                                                {#                                                    </span>#}
+                                                {#                                                {% endfor %}#}
 
 
-                                            {#                                            {% if comunidade.ativo == True %}#}
-                                            {#                                                <td data-th="ativo"><span#}
-                                            {#                                                        class="br-tag bg-green-cool-vivid-20"><span>Sim</span></span>#}
-                                            {#                                                </td>#}
-                                            {#                                            {% else %}#}
-                                            {#                                                <td data-th="ativo"><span#}
-                                            {#                                                        class="br-tag bg-red-50"><span>Não</span></span>#}
-                                            {#                                                </td>#}
-                                            {#                                            {% endif %}#}
-                                        </tr>
-                                    {% endfor %}
-                                {% else %}
-                                    <p style="text-align: center" class="my-2">Não encontramos nenhum dado para a
-                                        pesquisa realizada !</p>
-                                {% endif %}
-                                </tbody>
-                            </table>
+                                                {#                                            {% if comunidade.ativo == True %}#}
+                                                {#                                                <td data-th="ativo"><span#}
+                                                {#                                                        class="br-tag bg-green-cool-vivid-20"><span>Sim</span></span>#}
+                                                {#                                                </td>#}
+                                                {#                                            {% else %}#}
+                                                {#                                                <td data-th="ativo"><span#}
+                                                {#                                                        class="br-tag bg-red-50"><span>Não</span></span>#}
+                                                {#                                                </td>#}
+                                                {#                                            {% endif %}#}
+                                            </tr>
+                                        {% endfor %}
+                                    {% else %}
+                                        <p style="text-align: center" class="my-2">Não encontramos nenhum dado para a
+                                            pesquisa realizada !</p>
+                                    {% endif %}
+                                    </tbody>
+                                </table>
                             <div class="table-footer">
                                 {% if is_paginated %}
                                     <nav class="br-pagination" aria-label="Paginação de resultados">
