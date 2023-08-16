@@ -59,38 +59,38 @@
                                 <thead>
                                 <tr>
                                     <th scope="col" class="col-sm-2"></th>
-                                    <th scope="col" class="col-sm-10 table-head">Tipo de Portarias</th>
+                                    <th scope="col" class="col-sm-10 table-head">Tipos de Portarias</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% if eventos %}
-                                    {% for evento in eventos %}
+                                {% if portarias %}
+                                    {% for portaria in portarias %}
                                         <tr>
                                             <td data-th="Ações">
-                                                <a href="{% url 'tipo_evento_update' pk=evento.id %}"
+                                                <a href="{% url 'tipo_portaria_update' pk=portaria.id %}"
                                                    class="br-button circle "><i
                                                         class="fas fa-pencil-alt" aria-hidden="true"></i></a>
                                                 <a class="br-button circle" data-toggle="modal"
-                                                   data-target="#evento{{ evento.id }}"><i
+                                                   data-target="#portaria{{ portaria.id }}"><i
                                                         class="fas fa-trash-alt" aria-hidden="true"></i></a>
                                                 <div class="br-scrim-util foco"
-                                                     id="evento{{ evento.id }}"
+                                                     id="portaria{{ portaria.id }}"
                                                      data-scrim="true">
                                                     <div class="br-modal">
                                                         <div class="br-modal-header">
                                                             <strong>Excluir</strong></div>
                                                         <div class="br-modal-body">
-                                                            <p>Deseja realmente excluir o evento {{ evento.nometipoevento }}
+                                                            <p>Deseja realmente excluir o portaria {{ portaria.nometipoportaria }}
                                                                 ?</p>
                                                         </div>
                                                         <div class="br-modal-footer justify-content-center">
                                                             <a class="br-button mr-3"
-                                                               href="{% url 'tipo_evento' %}"
+                                                               href="{% url 'tipo_portaria' %}"
                                                                type="button">
                                                                 Não
                                                             </a>
                                                             <a class="br-button primary mr-3"
-                                                               href="{% url 'tipo_evento_delete' pk=evento.pk %}"
+                                                               href="{% url 'tipo_portaria_delete' pk=portaria.pk %}"
                                                                type="button">
                                                                 Sim
                                                             </a>
@@ -98,14 +98,14 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td data-th="evento">{{ evento.nometipoevento }}</td>
+                                            <td data-th="portaria">{{ portaria.nometipoportaria }}</td>
                                         </tr>
                                     {% endfor %}
                                 {% elif evento %}
                                     <tr>
                                         <td data-th="Ações">
                                         </td>
-                                        <td data-th="evento">{{ evento.nometipoevento }}</td>
+                                        <td data-th="portaria">{{ portaria.nometipoportaria }}</td>
                                     </tr>
                                 {% else %}
                                     <p style="text-align: center" class="my-2">Nenhum item foi encontrado para a

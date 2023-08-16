@@ -71,20 +71,21 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-6">
-                                <label for="situacao">Situação</label>
-                                <div class="br-input">
-                                    {% render_field termo_adesao_filtro_form.situacao class="campo-select" style="width:100%" %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
                                 <label for="ibge">IBGE</label>
                                 <div class="br-input">
                                     {% render_field termo_adesao_filtro_form.ibge type="text" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-6">
+                                <label for="situacao">Situação</label>
+                                <div class="br-input">
+                                    {% render_field termo_adesao_filtro_form.situacao class="br-select small" type="select" style="width:100%" %}
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <div class="col-sm-12 mt-6">
                                 <a class="br-button mr-3" href="{% url 'dashboard' %}"
@@ -147,8 +148,8 @@
                                             <td data-th="datasolicitacao">{{ termo.datasolicitacao }}</td>
                                             <td data-th="situacao">{{ termo.situacao }}</td>
                                             <td data-th="ntermo">{{ termo.ntermo }}</td>
-                                            <td data-th="data_publicacao_dou">{{ termo.data_publicacao_dou}}</td>
-                                            <td data-th="link_publicacao_dou">{{ termo.link_publicacao_dou}}</td>
+                                            <td data-th="data_publicacao_dou">{{ termo.data_publicacao_dou }}</td>
+                                            <td data-th="link_publicacao_dou">{{ termo.link_publicacao_dou }}</td>
                                             {#                                                {% for atividade in comunidade.principais_atividades_economicas.all %}#}
                                             {#                                                    <span class="br-tag bg-violet-warm-vivid-70 p-0 m-2"#}
                                             {#                                                          style="display: inline-block; border: 1px solid black; box-sizing: border-box;">#}

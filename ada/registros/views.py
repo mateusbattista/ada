@@ -329,3 +329,76 @@ class TermoAdesaoCreateView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
 
         return context
+
+def delete_termo_adesao(request, pk, ck):
+    termo = get_object_or_404(TermoAdesaoADA, pk=ck)
+    arquivo = ArquivoVisitaDomiciliar.objects.get(pk=pk)
+    termo.arquivotermoadesao.remove(arquivo)
+    return redirect('termoadesao_update', pk=visita.pk )
+
+
+class TermoAdesaoLocalListView(LoginRequiredMixin, ListView):
+    login_url = '/autenticacao/login/'
+    model = TermoAdesaoADA
+    context_object_name = 'termos'
+    template_name = 'termoadesao_local_list.html'
+    paginate_by = 20
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["termo_adesao_filtro_form"] = TermoAdesaoForms()
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        nome = self.request.GET.get("name")
+        cpf = self.request.GET.get("cpf")
+        prefeito = self.request.GET.get("prefeito")
+        cpfprefeito = self.request.GET.get("cpfprefeito")
+        ibge = self.request.GET.get("ibge")
+        municipio = self.request.GET.get("municipio")
+        uf = self.request.GET.get("uf")
+        situacao = self.request.GET.get("uf")
+        aceito = self.request.GET.get("uf")
+
+        if nome:
+            queryset = queryset.filter(name__contains=nome)
+
+        if cpf:
+            queryset = queryset.filter(cpfsolicitante__contains=cpf)
+
+        if prefeito:
+            queryset = queryset.filter(nomeprefeito__contains=prefeito)
+
+        if cpfprefeito:
+            queryset = queryset.filter(cpfprefeito__contains=cpfprefeito)
+
+        if ibge:
+            queryset = queryset.filter(ibge__contains=ibge)
+
+        if municipio:
+            queryset = queryset.filter(nomemunicipio__contains=municipio)
+
+        if uf:
+            queryset = queryset.filter(ufrgprefeito__contains=uf)
+
+        if situacao:
+            queryset = queryset.filter(situacao__contains=situacao)
+
+        if aceito:
+            queryset = queryset.filter(numero__contains=aceito)
+
+        return queryset
+
+
+class TermoAdesaoLocalUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/autenticacao/login/'
+    form_class = TermoAdesaoForms
+    model = TermoAdesaoADA
+    template_name = 'termoadesao_local_create_update_form.html'
+    success_url = '/termoadesao_local/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
