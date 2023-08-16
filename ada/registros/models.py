@@ -2,6 +2,19 @@ from django.db import models
 
 
 class TermoAdesaoADA(models.Model):
+    SITUACAO_TERMO_CHOICE = [
+        ("SOLICITADO", "SOLICITADO"),
+        ("ACEITO (AGUARDANDO ASSINATURA SEI)", "ACEITO (AGUARDANDO ASSINATURA SEI)"),
+        ("ACEITO (AGUARDANDO PUBLICACAO NO D.O.U)", "ACEITO (AGUARDANDO PUBLICACAO NO D.O.U)"),
+        ("ADERIDO", "ADERIDO"),
+        ("NEGADO","NEGADO"),
+    ]
+
+    ACEITO_TERMO = [
+        ("SIM", "SIM"),
+        ("NAO", "NAO" ),
+    ]
+
     numero = models.CharField(max_length=100, null=True)
     ano = models.IntegerField(null=True)
     processosei = models.CharField(max_length=100, null=True)
@@ -15,7 +28,7 @@ class TermoAdesaoADA(models.Model):
     orgaorgprefeito = models.CharField(max_length=50, null=True)
     ufrgprefeito = models.CharField(max_length=2, null=True)
     cnpjprefeitura = models.CharField(max_length=20, null=True)
-    situacao = models.CharField(max_length=60, null=True, default='SOLICITADO')
+    situacao = models.CharField(max_length=60, null=True, default='SOLICITADO', choices=SITUACAO_TERMO_CHOICE )
     arquivotermoadesao = models.CharField(max_length=50, null=True)
     datasolicitacao = models.DateTimeField(auto_now_add=True, null=True)
     datatermo = models.DateTimeField(null=True)
@@ -69,6 +82,7 @@ class TermoAdesaoADA(models.Model):
     enderecoarmazenamento = models.CharField(max_length=100, null=True)
     enderecocontrolesocial = models.CharField(max_length=100, null=True)
     funcao = models.CharField(max_length=100, null=True)
+    ntermo = models.CharField(max_length=10, null=True, choices=ACEITO_TERMO)
 
     class Meta:
         db_table = 'termoadesao_ada'

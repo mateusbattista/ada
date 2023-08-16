@@ -25,7 +25,7 @@
                             <div class="col-sm-6 mb-6">
                                 <label for="name">Nome Solicitante</label>
                                 <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.name type="text" disabled="true" style="width:100%" %}
+                                    {% render_field solicitacao_filtro_form.name type="text"  style="width:100%" %}
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                             <div class="col-sm-6 mb-6">
                                 <label for="situacao">Situação</label>
                                 <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.situacao class="campo-select" style="width:100%" %}
+                                    {% render_field solicitacao_filtro_form.situacao class="br-select small" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
@@ -89,19 +89,20 @@
                             <div class="col-sm-6 mb-6">
                                 <label for="aceito">Aceito?</label>
                                 <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.numero class="campo-select" style="width:100%" %}
+                                    {% render_field solicitacao_filtro_form.ntermo class="br-select small" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12 mt-6">
-                                <a class="br-button mr-3" href="{% url 'solicitacao' %}"
+                                <a class="br-button mr-3" href="{% url 'dashboard' %}"
                                    type="button">
                                     <i class="fas fa-arrow-left primary" style="padding-right: 20px;"></i>
                                     Voltar
                                 </a>
                                 <button class="br-button primary active mr-3" type="submit" formmethod="get">
-                                    <i class="fas fa-search primary" style="padding-right: 20px;"></i>
+                                    <i class="fas fa-searc
+                                    h primary" style="padding-right: 20px;"></i>
                                     Consultar
                                 </button>
                             </div>

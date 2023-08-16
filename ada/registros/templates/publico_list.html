@@ -25,13 +25,13 @@
                             <div class="col-sm-6 mb-6">
                                 <label for="publico">Público</label>
                                 <div class="br-input">
-                                    {% render_field publico_filtro_form.nometipopublico class="campo-select" style="width:100%" %}
+                                    {% render_field publico_filtro_form.nometipopublico  class="campo-select" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12 mt-6">
-                                <a class="br-button mr-3" href="{% url 'tipo_publico' %}"
+                                <a class="br-button mr-3" href="{% url 'dashboard' %}"
                                    type="button">
                                     <i class="fas fa-arrow-left primary" style="padding-right: 20px;"></i>
                                     Voltar
@@ -55,11 +55,11 @@
                                 </div>
                             </div>
                             <table>
-                                <caption>TIPOS DE PÚBLICOS</caption>
+                                <caption>Publicos</caption>
                                 <thead>
                                 <tr>
-                                    <th scope="col" class="table-head"></th>
-                                    <th scope="col" class="table-head">Público</th>
+                                    <th scope="col" class="col-sm-2"></th>
+                                    <th scope="col" class="col-sm-10 table-head">Tipo de Publicos</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -68,32 +68,49 @@
                                         <tr>
                                             <td data-th="Ações">
                                                 <a href="{% url 'tipo_publico_update' pk=publico.id %}"
-                                                   class="br-button"><i
-                                                        class="fas fa-pen" aria-hidden="true"></i></a>
+                                                   class="br-button circle "><i
+                                                        class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                                                <a class="br-button circle" data-toggle="modal"
+                                                   data-target="#publico{{ publico.id }}"><i
+                                                        class="fas fa-trash-alt" aria-hidden="true"></i></a>
+                                                <div class="br-scrim-util foco"
+                                                     id="publico{{ publico.id }}"
+                                                     data-scrim="true">
+                                                    <div class="br-modal">
+                                                        <div class="br-modal-header">
+                                                            <strong>Excluir</strong></div>
+                                                        <div class="br-modal-body">
+                                                            <p>Deseja realmente excluir o
+                                                                publico {{ publico.nometipopublico }}
+                                                                ?</p>
+                                                        </div>
+                                                        <div class="br-modal-footer justify-content-center">
+                                                            <a class="br-button mr-3"
+                                                               href="{% url 'tipo_publico' %}"
+                                                               type="button">
+                                                                Não
+                                                            </a>
+                                                            <a class="br-button primary mr-3"
+                                                               href="{% url 'tipo_publico_delete' pk=publico.pk %}"
+                                                               type="button">
+                                                                Sim
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
-                                            <td data-th="nometipopublico">{{ publico.nometipopublico }}</td>
-{#                                                {% for atividade in comunidade.principais_atividades_economicas.all %}#}
-{#                                                    <span class="br-tag bg-violet-warm-vivid-70 p-0 m-2"#}
-{#                                                          style="display: inline-block; border: 1px solid black; box-sizing: border-box;">#}
-{#                                                      <span style="display: inline-block; padding: 5px 10px;">{{ atividade }}</span>#}
-{#                                                    </span>#}
-{#                                                {% endfor %}#}
-                                            </td>
-
-{#                                            {% if comunidade.ativo == True %}#}
-{#                                                <td data-th="ativo"><span#}
-{#                                                        class="br-tag bg-green-cool-vivid-20"><span>Sim</span></span>#}
-{#                                                </td>#}
-{#                                            {% else %}#}
-{#                                                <td data-th="ativo"><span#}
-{#                                                        class="br-tag bg-red-50"><span>Não</span></span>#}
-{#                                                </td>#}
-{#                                            {% endif %}#}
+                                            <td data-th="publico">{{ publico.nometipopublico }}</td>
                                         </tr>
                                     {% endfor %}
+                                {% elif evento %}
+                                    <tr>
+                                        <td data-th="Ações">
+                                        </td>
+                                        <td data-th="evento">{{ publico.nometipopublico }}</td>
+                                    </tr>
                                 {% else %}
-                                    <p style="text-align: center" class="my-2">Não encontramos nenhum dado para a
-                                        pesquisa realizada !</p>
+                                    <p style="text-align: center" class="my-2">Nenhum item foi encontrado para a
+                                        busca com os parâmetros solicitados !</p>
                                 {% endif %}
                                 </tbody>
                             </table>
@@ -141,7 +158,7 @@
 
     <script src="{% static '@govbr-ds/core/dist/core.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-{#    <script src="{% static 'js/gerenciamento_select2.js' %}"></script>#}
+    {#    <script src="{% static 'js/gerenciamento_select2.js' %}"></script>#}
     <script>
         $("input[type=text]").keyup(function () {
             $(this).val($(this).val().toUpperCase());
