@@ -1,4 +1,4 @@
-'''from django.db import models
+from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 from smart_selects.db_fields import ChainedForeignKey
 
@@ -31,7 +31,7 @@ class Municipio(models.Model):
     def __str__(self):
         return f'{self.nome}/{self.estado.sigla} - [{self.ibge}]'
 
-
+'''
 class AtividadesEconomicas(models.Model):
     descricao = models.CharField(max_length=255)
 

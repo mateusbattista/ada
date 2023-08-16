@@ -30,3 +30,10 @@ class TermoAdesaoForms(forms.ModelForm):
     class Meta:
         model = TermoAdesaoADA
         fields = '__all__'
+
+
+
+# class GerenciamentoTermoForms(forms.ModelForm):
+#     class Meta:
+#         model = TermoAdesaoADA
+#         fields = ('documentos',)

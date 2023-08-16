@@ -12,280 +12,542 @@
             <div class="col-lg-12 mb-4 order-0">
                 <div class="br-card">
                     <div class='f"card-header d-flex align-items-center justify-content-between mb-2 '>
-                    <h5 class="card-title d-sm-inline-block ml-6">TERMO DE ADESÃO ADA</h5>
-                </div>
-                <span class="br-divider sm my-3"></span>
-                <div class="card-content ml-6 mr-6">
-                    <div class="header-subtitle"><strong>Dados do Termo de Adesão</strong>
-                    </div>
-                    <span class="br-divider sm my-3"></span>
-                    <div class="form-group row">
-                        <div class="col-sm-4 col-lg-3 mb-3">
-                            <div class="br-input small">
-                                <label for="numero">Número</label>
-                                {% render_field form.numero id="numero" type="text" %}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-4 col-lg-3 mb-3">
-                            <div class="br-input small">
-                                <label for="ano">Ano</label>
-                                {% render_field form.ano id="ano" type="text" %}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-4 col-lg-3 mb-3">
-                            <div class="br-input small">
-                                <label for="processosei">SEI</label>
-                                {% render_field form.processosei id="processosei" type="text" %}
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="header-subtitle"><strong>Dados do Solicitante da Ação de Distribuição de Cestas
-                        Emergenciais</strong>
+                        <h5 class="card-title d-sm-inline-block ml-6">TERMO DE ADESÃO ADA</h5>
                     </div>
                     <span class="br-divider sm my-3"></span>
                     <form method="post" id="solicitacao_form">{% csrf_token %}
                         {{ form.media.js }}
-                        <div class="card-body">
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="name">Nome Completo</label>
-                                        {% render_field form.name id="name" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="funcao">Função</label>
-                                        {% render_field form.funcao id="funcao" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="cpf">CPF</label>
-                                        {% render_field form.cpfsolicitante id="cpf" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="emailsolicitante">E-email</label>
-                                        {% render_field form.emailsolicitante id="emailsolicitante" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="telefone1solicitante">Telefone</label>
-                                        {% render_field form.telefone1solicitante id="telefone1solicitante" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="cepsolicitante">CEP</label>
-                                        {% render_field form.cepsolicitante id="cepsolicitante" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="enderecosolicitante">Endereço</label>
-                                        {% render_field form.enderecosolicitante id="enderecosolicitante" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="numerosolicitante">Número</label>
-                                        {% render_field form.numerosolicitante id="numerosolicitante" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="complementosolicitante">Complemento</label>
-                                        {% render_field form.complementosolicitante id="complementosolicitante" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="bairrosolicitante">Bairro</label>
-                                        {% render_field form.bairrosolicitante id="bairrosolicitante" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="municipiosolicitante_id">Município (UF)</label>
-                                        {% render_field form.municipiosolicitante_id id="municipiosolicitante_id" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="header-subtitle"><strong>Informações Gerais do Ente Federativo</strong>
+                        <div class="card-content ml-6 mr-6">
+                            <div class="header-subtitle"><strong>Dados do Termo de Adesão</strong>
                             </div>
                             <span class="br-divider sm my-3"></span>
                             <div class="form-group row">
                                 <div class="col-sm-4 col-lg-3 mb-3">
                                     <div class="br-input small">
-                                        <label for="municipioprefeitura">Nome do Município ou Estado/DF:</label>
-                                        {% render_field form.municipioprefeitura id="municipioprefeitura" type="text" %}
+                                        <label for="numero">Número</label>
+                                        {% render_field form.numero id="numero" type="text" %}
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-4 col-lg-3 mb-3">
                                     <div class="br-input small">
-                                        <label for="cnpjprefeitura">CNPJ do Município ou Estado/DF:</label>
-                                        {% render_field form.cnpjprefeitura id="cnpjprefeitura" type="text" %}
+                                        <label for="ano">Ano</label>
+                                        {% render_field form.ano id="ano" type="text" %}
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-4 col-lg-3 mb-3">
                                     <div class="br-input small">
-                                        <label for="cepprefeitura">CEP</label>
-                                        {% render_field form.cepprefeitura id="cepprefeitura" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="enderecoprefeitura">Endereço</label>
-                                        {% render_field form.enderecoprefeitura id="enderecoprefeitura" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="numeroprefeitura">Número</label>
-                                        {% render_field form.numeroprefeitura id="numeroprefeitura" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="complementoprefeitura">Complemento</label>
-                                        {% render_field form.complementoprefeitura id="complementoprefeitura" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="bairroprefeitura">Bairro</label>
-                                        {% render_field form.bairroprefeitura id="bairroprefeitura" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="municipioprefeitura">Município</label>
-                                        {% render_field form.municipioprefeitura id="municipioprefeitura" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="emailprefeitura">E-mail</label>
-                                        {% render_field form.emailprefeitura id="emailprefeitura" type="text" %}
+                                        <label for="processosei">SEI</label>
+                                        {% render_field form.processosei id="processosei" type="text" %}
                                     </div>
                                 </div>
                             </div>
                             <br>
-                            <div class="header-subtitle"><strong>Informações do Prefeito(a) ou
-                                Governador(a)</strong>
+                            <div class="header-subtitle"><strong>Dados do Solicitante da Ação de Distribuição de Cestas
+                                Emergenciais</strong>
+                            </div>
+                            <span class="br-divider sm my-3"></span>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="name">Nome Completo</label>
+                                            {% render_field form.name id="name" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="funcao">Função</label>
+                                            {% render_field form.funcao id="funcao" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="cpf">CPF</label>
+                                            {% render_field form.cpfsolicitante id="cpf" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="emailsolicitante">E-email</label>
+                                            {% render_field form.emailsolicitante id="emailsolicitante" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="telefone1solicitante">Telefone</label>
+                                            {% render_field form.telefone1solicitante id="telefone1solicitante" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="cepsolicitante">CEP</label>
+                                            {% render_field form.cepsolicitante id="cepsolicitante" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="enderecosolicitante">Endereço</label>
+                                            {% render_field form.enderecosolicitante id="enderecosolicitante" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="numerosolicitante">Número</label>
+                                            {% render_field form.numerosolicitante id="numerosolicitante" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="complementosolicitante">Complemento</label>
+                                            {% render_field form.complementosolicitante id="complementosolicitante" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="bairrosolicitante">Bairro</label>
+                                            {% render_field form.bairrosolicitante id="bairrosolicitante" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="municipiosolicitante_id">Município (UF)</label>
+                                            {% render_field form.municipiosolicitante_id id="municipiosolicitante_id" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="header-subtitle"><strong>Informações Gerais do Ente Federativo</strong>
+                                </div>
+                                <span class="br-divider sm my-3"></span>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="municipioprefeitura">Nome do Município ou Estado/DF:</label>
+                                            {% render_field form.municipioprefeitura id="municipioprefeitura" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="cnpjprefeitura">CNPJ do Município ou Estado/DF:</label>
+                                            {% render_field form.cnpjprefeitura id="cnpjprefeitura" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="cepprefeitura">CEP</label>
+                                            {% render_field form.cepprefeitura id="cepprefeitura" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="enderecoprefeitura">Endereço</label>
+                                            {% render_field form.enderecoprefeitura id="enderecoprefeitura" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="numeroprefeitura">Número</label>
+                                            {% render_field form.numeroprefeitura id="numeroprefeitura" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="complementoprefeitura">Complemento</label>
+                                            {% render_field form.complementoprefeitura id="complementoprefeitura" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="bairroprefeitura">Bairro</label>
+                                            {% render_field form.bairroprefeitura id="bairroprefeitura" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="municipioprefeitura">Município</label>
+                                            {% render_field form.municipioprefeitura id="municipioprefeitura" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="emailprefeitura">E-mail</label>
+                                            {% render_field form.emailprefeitura id="emailprefeitura" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="header-subtitle"><strong>Informações do Prefeito(a) ou
+                                    Governador(a)</strong>
+                                </div>
+                                <span class="br-divider sm my-3"></span>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="nomeprefeito">Nome Completo</label>
+                                            {% render_field form.nomeprefeito id="nomeprefeito" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="telefoneprefeito">Telefone</label>
+                                            {% render_field form.telefoneprefeito id="telefoneprefeito" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="cpfprefeito">CPF</label>
+                                            {% render_field form.cpfprefeito id="cpfprefeito" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="rgprefeito">RG</label>
+                                            {% render_field form.rgprefeito id="rgprefeito" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="orgaorgprefeito">Órgão Emissor do RG</label>
+                                            {% render_field form.orgaorgprefeito id="orgaorgprefeito" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="ufrgprefeito">UF Emissor do RG</label>
+                                            {% render_field form.ufrgprefeito id="ufrgprefeito" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="emailprefeito">E-mail</label>
+                                            {% render_field form.emailprefeito id="emailprefeito" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="header-subtitle"><strong>Quantidade de Cestas Emergenciais
+                                    Pleiteadas</strong>
+                                </div>
+                                <span class="br-divider sm my-3"></span>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="quantidadecestas">Número de Cestas</label>
+                                            {% render_field form.quantidadecestas id="quantidadecestas" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="header-subtitle"><strong>Local de Armazenamento das Cestas</strong>
+                                </div>
+                                <span class="br-divider sm my-3"></span>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="nomelocalarmazenamento">Nome do Local</label>
+                                            {% render_field form.nomelocalarmazenamento id="nomelocalarmazenamento" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="nomemunicipioarmazenamento">Nome do Município ou
+                                                Estado/DF</label>
+                                            {% render_field form.nomemunicipioarmazenamento id="nomemunicipioarmazenamento" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="ceparmazenamento">CEP</label>
+                                            {% render_field form.ceparmazenamento id="ceparmazenamento" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="enderecoarmazenamento">Endereço</label>
+                                            {% render_field form.enderecoarmazenamento id="enderecoarmazenamento" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="bairroarmazenamento">Bairro</label>
+                                            {% render_field form.bairroarmazenamento id="bairroarmazenamento" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="nomemunicipioarmazenamento">Município</label>
+                                            {% render_field form.nomemunicipioarmazenamento id="nomemunicipioarmazenamento" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="nomemunicipioarmazenamento">Município</label>
+                                            {% render_field form.nomemunicipioarmazenamento id="nomemunicipioarmazenamento" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="header-subtitle"><strong>Dados do Órgão de Controle Social</strong>
+                                </div>
+                                <span class="br-divider sm my-3"></span>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="nomelocalcontrolesocial">Nome do Local</label>
+                                            {% render_field form.nomelocalcontrolesocial id="nomelocalcontrolesocial" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="nomemunicipiocontrolesocial">Nome do Município ou
+                                                Estado/DF</label>
+                                            {% render_field form.nomemunicipiocontrolesocial id="nomemunicipiocontrolesocial" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="cepcontrolesocial">CEP</label>
+                                            {% render_field form.cepcontrolesocial id="cepcontrolesocial" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="enderecocontrolesocial">Endereço</label>
+                                            {% render_field form.enderecocontrolesocial id="enderecocontrolesocial" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="numerocontrolesocial">Número</label>
+                                            {% render_field form.numerocontrolesocial id="numerocontrolesocial" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="complementocontrolesocial">Complemento</label>
+                                            {% render_field form.complementocontrolesocial id="complementocontrolesocial" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="bairrocontrolesocial">Bairro</label>
+                                            {% render_field form.bairrocontrolesocial id="bairrocontrolesocial" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="nomemunicipiocontrolesocial">Município</label>
+                                            {% render_field form.nomemunicipiocontrolesocial id="nomemunicipiocontrolesocial" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="telefone1controlesocial">Telefone</label>
+                                            {% render_field form.telefone1controlesocial id="telefone1controlesocial" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="telefone2controlesocial">Telefone</label>
+                                            {% render_field form.telefone2controlesocial id="telefone2controlesocial" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="emailcontrolesocial">E-mail</label>
+                                            {% render_field form.emailcontrolesocial id="emailcontrolesocial" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-lg-3 mb-3">
+                                        <div class="br-input small">
+                                            <label for="dirigentecontrolesocial">Dirigente/representante</label>
+                                            {% render_field form.dirigentecontrolesocial id="dirigentecontrolesocial" type="text" %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="header-subtitle"><strong>Arquivos</strong>
+                            </div>
+
+                            <span class="br-divider sm my-3"></span>
+                            <div class="form-group row">
+                                <div class="col-sm-12 my-6">
+                                    <div class="br-upload">
+                                        <label class="upload-label"
+                                               for="multiple-files"><span>Termo de Adesão assinado </span></label>
+                                        <input class="upload-input" id="multiple-files" name='documentos' type="file"
+                                               multiple="multiple"/>
+                                        <div class="upload-list"></div>
+                                    </div>
+                                    <p class="text-base mt-1">Clique ou arraste os arquivos para cima do componente
+                                        Upload.</p>
+                                </div>
+                            </div>
+                            <div class="br-table">
+                                <div class="table-header">
+                                    <div class="top-bar">
+                                        <div class="table-title mb-4"></div>
+                                    </div>
+                                </div>
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col" class="table-head">Nome do Arquivo</th>
+                                        <th scope="col" class="table-head">Tipo do Documento</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for termoadesao in termos.documentos.all %}
+                                        <tr>
+                                            <td data-th="Ações">
+                                                <a href="{{ termoadesao.documentos.url }}"
+                                                   class="br-button" download><i
+                                                        class="fas fa-eye" aria-hidden="true"></i></a>
+                                            </td>
+                                            <td data-th="">{{ termoadesao.documentos }}</td>
+                                            <td data-th="">Termo de Adesão assinado</td>
+                                            <td>
+                                                <a class="br-button circle" data-toggle="modal"
+                                                   data-target="#termoadesao{{ termoadesao.id }}"><i
+                                                        class="fas fa-trash-alt"
+                                                        aria-hidden="true"></i></a>
+                                                <div class="br-scrim-util foco" id="termoadesao{{ termoadesao.id }}"
+                                                     data-scrim="true">
+                                                    <div class="br-modal">
+                                                        <div class="br-modal-header">
+                                                            <strong>Excluir</strong>
+                                                        </div>
+                                                        <div class="br-modal-body">
+                                                            <p>Deseja realmente excluir
+                                                                <strong>{{ termoadesao.documentos }}</strong>
+                                                                ?</p>
+                                                        </div>
+                                                        <div class="br-modal-footer justify-content-center">
+                                                            <a class="br-button mr-3"
+                                                               href="{% url 'termoadesao_update' pk=termos.pk %}"
+                                                               type="button">
+                                                                Não
+                                                            </a>
+                                                            <a class="br-button primary mr-3"
+                                                               href="{% url 'delete_termo_adesao' pk=termoadesao.pk ck=termos.pk %}"
+                                                               type="button">
+                                                                Sim
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br>
+                            <div class="header-subtitle"><strong>Local de Armazenamento das Cestas</strong>
                             </div>
                             <span class="br-divider sm my-3"></span>
                             <div class="form-group row">
                                 <div class="col-sm-4 col-lg-3 mb-3">
                                     <div class="br-input small">
-                                        <label for="nomeprefeito">Nome Completo</label>
-                                        {% render_field form.nomeprefeito id="nomeprefeito" type="text" %}
+                                        <label for="data_publicacao_dou">Data da Publicação</label>
+                                        {% render_field form.data_publicacao_dou id="data_publicacao_dou" type="text" %}
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-4 col-lg-3 mb-3">
                                     <div class="br-input small">
-                                        <label for="telefoneprefeito">Telefone</label>
-                                        {% render_field form.telefoneprefeito id="telefoneprefeito" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="cpfprefeito">CPF</label>
-                                        {% render_field form.cpfprefeito id="cpfprefeito" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="rgprefeito">RG</label>
-                                        {% render_field form.rgprefeito id="rgprefeito" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="orgaorgprefeito">Órgão Emissor do RG</label>
-                                        {% render_field form.orgaorgprefeito id="orgaorgprefeito" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="ufrgprefeito">UF Emissor do RG</label>
-                                        {% render_field form.ufrgprefeito id="ufrgprefeito" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="emailprefeito">E-mail</label>
-                                        {% render_field form.emailprefeito id="emailprefeito" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="header-subtitle"><strong>Quantidade de Cestas Emergenciais
-                                Pleiteadas</strong>
-                            </div>
-                            <span class="br-divider sm my-3"></span>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="quantidadecestas">Número de Cestas</label>
-                                        {% render_field form.quantidadecestas id="quantidadecestas" type="text" %}
+                                        <label for="link_publicacao_dou">Link da Publicação</label>
+                                        {% render_field form.link_publicacao_dou id="link_publicacao_dou" type="text" %}
                                     </div>
                                 </div>
                             </div>
@@ -295,330 +557,68 @@
                             <span class="br-divider sm my-3"></span>
                             <div class="form-group row">
                                 <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="nomelocalarmazenamento">Nome do Local</label>
-                                        {% render_field form.nomelocalarmazenamento id="nomelocalarmazenamento" type="text" %}
+                                    <div class="br-select small ">
+                                        <label for="situacao">Situação do Parecer</label>
+                                        {% render_field form.situacao class="br-select small" id="situacao" type="select" %}
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="nomemunicipioarmazenamento">Nome do Município ou
-                                            Estado/DF</label>
-                                        {% render_field form.nomemunicipioarmazenamento id="nomemunicipioarmazenamento" type="text" %}
+                                    <div class="br-textarea">
+                                        <label for="observacao">Descrição do Parecer</label>
+                                        {% render_field form.observacao id="observacao" type="text" %}
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="ceparmazenamento">CEP</label>
-                                        {% render_field form.ceparmazenamento id="ceparmazenamento" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="enderecoarmazenamento">Endereço</label>
-                                        {% render_field form.enderecoarmazenamento id="enderecoarmazenamento" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="bairroarmazenamento">Bairro</label>
-                                        {% render_field form.bairroarmazenamento id="bairroarmazenamento" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="nomemunicipioarmazenamento">Município</label>
-                                        {% render_field form.nomemunicipioarmazenamento id="nomemunicipioarmazenamento" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="nomemunicipioarmazenamento">Município</label>
-                                        {% render_field form.nomemunicipioarmazenamento id="nomemunicipioarmazenamento" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="header-subtitle"><strong>Dados do Órgão de Controle Social</strong>
-                            </div>
-                            <span class="br-divider sm my-3"></span>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="nomelocalcontrolesocial">Nome do Local</label>
-                                        {% render_field form.nomelocalcontrolesocial id="nomelocalcontrolesocial" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="nomemunicipiocontrolesocial">Nome do Município ou
-                                            Estado/DF</label>
-                                        {% render_field form.nomemunicipiocontrolesocial id="nomemunicipiocontrolesocial" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="cepcontrolesocial">CEP</label>
-                                        {% render_field form.cepcontrolesocial id="cepcontrolesocial" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="enderecocontrolesocial">Endereço</label>
-                                        {% render_field form.enderecocontrolesocial id="enderecocontrolesocial" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="numerocontrolesocial">Número</label>
-                                        {% render_field form.numerocontrolesocial id="numerocontrolesocial" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="complementocontrolesocial">Complemento</label>
-                                        {% render_field form.complementocontrolesocial id="complementocontrolesocial" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="bairrocontrolesocial">Bairro</label>
-                                        {% render_field form.bairrocontrolesocial id="bairrocontrolesocial" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="nomemunicipiocontrolesocial">Município</label>
-                                        {% render_field form.nomemunicipiocontrolesocial id="nomemunicipiocontrolesocial" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="telefone1controlesocial">Telefone</label>
-                                        {% render_field form.telefone1controlesocial id="telefone1controlesocial" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="telefone2controlesocial">Telefone</label>
-                                        {% render_field form.telefone2controlesocial id="telefone2controlesocial" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="emailcontrolesocial">E-mail</label>
-                                        {% render_field form.emailcontrolesocial id="emailcontrolesocial" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-lg-3 mb-3">
-                                    <div class="br-input small">
-                                        <label for="dirigentecontrolesocial">Dirigente/representante</label>
-                                        {% render_field form.dirigentecontrolesocial id="dirigentecontrolesocial" type="text" %}
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
-                        <br>
-                        <div class="header-subtitle"><strong>Arquivos</strong>
-                        </div>
-                        <span class="br-divider sm my-3"></span>
-                        <div class="form-group row">
-                            <div class="col-sm-12 my-6">
-                                <div class="br-upload">
-                                    <label class="upload-label"
-                                           for="multiple-files">
-                                        <span>Termo de Adesão assinado </span></label>
-                                    <input class="upload-input" id="multiple-files"
-                                           name='registros_fotograficos' type="file"
-                                           multiple="multiple"/>
-                                    <div class="upload-list"></div>
-                                </div>
-                                <p class="text-base mt-1">Clique ou arraste os arquivos para
-                                    cima do
-                                    componente
-                                    Upload.</p>
-                            </div>
-                        </div>
-                        <div class="br-table">
-                            <div class="table-header">
-                                <div class="top-bar">
-                                    <div class="table-title mb-4"></div>
-                                </div>
-                            </div>
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col" class="table-head">Nome do Arquivo</th>
-                                    <th scope="col" class="table-head">Tipo do Documento</th>
-                                    <th scope="col"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for termoadesao in termos.arquivotermoadesao.all %}
-                                    <tr>
-                                        <td data-th="Ações">
-                                            <a href="{{ termoadesao.arquivotermoadesao.url }}"
-                                               class="br-button" download><i
-                                                    class="fas fa-eye" aria-hidden="true"></i></a>
-                                        </td>
-                                        <td data-th="">{{ termoadesao.arquivotermoadesao }}</td>
-                                        <td data-th="">Termo de Adesão assinado</td>
-                                        <td>
-                                            <a class="br-button circle" data-toggle="modal"
-                                               data-target="#termoadesao{{ termoadesao.id }}"><i
-                                                    class="fas fa-trash-alt"
-                                                    aria-hidden="true"></i></a>
-                                            <div class="br-scrim-util foco" id="termoadesao{{ termoadesao.id }}"
-                                                 data-scrim="true">
-                                                <div class="br-modal">
-                                                    <div class="br-modal-header">
-                                                        <strong>Excluir</strong>
+
+
+
+
+                        <!-- /.card-body -->
+                        <div class="card-footer mt-3">
+                            <div class="card-footer mt-3">
+                                <div class="card-footer mt-3">
+                                    {% if form.errors %}
+                                        {% for field in form %}
+                                            {% for error in field.errors %}
+
+                                                <div class="br-message danger" role="alert">
+                                                    <div class="icon"><i class="fas fa-times-circle fa-lg"
+                                                                         aria-hidden="true"></i>
                                                     </div>
-                                                    <div class="br-modal-body">
-                                                        <p>Deseja realmente excluir
-                                                            <strong>{{ termoadesao.arquivotermoadesao }}</strong>
-                                                            ?</p>
+                                                    <div class="content"><span
+                                                            class="message-title">Erro no campo {{ field.label }}.</span><span
+                                                            class="message-body"> {{ error }}</span>
                                                     </div>
-                                                    <div class="br-modal-footer justify-content-center">
-                                                        <a class="br-button mr-3"
-                                                           href="{% url 'termoadesao_update' pk=termos.pk %}"
-                                                           type="button">
-                                                            Não
-                                                        </a>
-                                                        <a class="br-button primary mr-3"
-                                                           href="{% url 'delete_termo_adesao' pk=termoadesao.pk ck=termos.pk %}"
-                                                           type="button">
-                                                            Sim
-                                                        </a>
+                                                    <div class="close">
+                                                        <button class="br-button circle small" type="button"
+                                                                aria-label="content"><i
+                                                                class="fas fa-times" aria-hidden="true"></i>
+                                                        </button>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                        <br>
-                        <div class="header-subtitle"><strong>Local de Armazenamento das Cestas</strong>
-                        </div>
-                        <span class="br-divider sm my-3"></span>
-                        <div class="form-group row">
-                            <div class="col-sm-4 col-lg-3 mb-3">
-                                <div class="br-input small">
-                                    <label for="data_publicacao_dou">Data da Publicação</label>
-                                    {% render_field form.data_publicacao_dou id="data_publicacao_dou" type="text" %}
-                                </div>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    {% endif %}
+                                    <button type="submit" class="br-button primary mr-3"><i class="fas fa-save"
+                                                                                            style="padding-right: 20px;"></i>
+                                        Salvar
+                                    </button>
+                                    <a href="{% url 'termoadesao' %}" class="br-button">Cancelar</a>
+                                </div>                  <!-- /.card-footer -->
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-sm-4 col-lg-3 mb-3">
-                                <div class="br-input small">
-                                    <label for="link_publicacao_dou">Link da Publicação</label>
-                                    {% render_field form.link_publicacao_dou id="link_publicacao_dou" type="text" %}
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="header-subtitle"><strong>Local de Armazenamento das Cestas</strong>
-                        </div>
-                        <span class="br-divider sm my-3"></span>
-                        <div class="form-group row">
-                            <div class="col-sm-4 col-lg-3 mb-3">
-                                <div class="br-select small ">
-                                    <label for="situacao">Situação do Parecer</label>
-                                    {% render_field form.situacao class="br-select small" id="situacao" type="select" %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-4 col-lg-3 mb-3">
-                                <div class="br-textarea">
-                                    <label for="observacao">Descrição do Parecer</label>
-                                    {% render_field form.observacao id="observacao" type="text" %}
-                                </div>
-                            </div>
-                        </div>
-
+                    </form>    <!-- /.card-footer -->
                 </div>
-
-
-                <!-- /.card-body -->
-                <div class="card-footer mt-3">
-                    <div class="card-footer mt-3">
-                        <div class="card-footer mt-3">
-                            {% if form.errors %}
-                                {% for field in form %}
-                                    {% for error in field.errors %}
-
-                                        <div class="br-message danger" role="alert">
-                                            <div class="icon"><i class="fas fa-times-circle fa-lg"
-                                                                 aria-hidden="true"></i>
-                                            </div>
-                                            <div class="content"><span
-                                                    class="message-title">Erro no campo {{ field.label }}.</span><span
-                                                    class="message-body"> {{ error }}</span>
-                                            </div>
-                                            <div class="close">
-                                                <button class="br-button circle small" type="button"
-                                                        aria-label="content"><i
-                                                        class="fas fa-times" aria-hidden="true"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    {% endfor %}
-                                {% endfor %}
-                            {% endif %}
-                            <button type="submit" class="br-button primary mr-3"><i class="fas fa-save"
-                                                                                    style="padding-right: 20px;"></i>
-                                Salvar
-                            </button>
-                            <a href="{% url 'termoadesao' %}" class="br-button">Cancelar</a>
-                        </div>                  <!-- /.card-footer -->
-                    </div>
-                </div>                  <!-- /.card-footer -->
+                             <!-- /.card-footer -->
             </div>
-            </form>                  <!-- /.card-footer -->
         </div>
     </div>
-    </div>
-    </div>
-    </div>
+
+
 {% endblock %}
 
 {% block script %}
