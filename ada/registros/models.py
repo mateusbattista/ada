@@ -1,5 +1,17 @@
+import os
+
 from django.db import models
 
+
+
+class ArquivoTermo(models.Model):
+    arquivo = models.FileField(upload_to='registros/')
+
+    def filename(self):
+        return os.path.basename(self.arquivo.name)
+
+    def get_model_fields(model):
+        return model._meta.fields
 
 class TermoAdesaoADA(models.Model):
     SITUACAO_TERMO_CHOICE = [
@@ -83,9 +95,14 @@ class TermoAdesaoADA(models.Model):
     enderecocontrolesocial = models.CharField(max_length=100, null=True)
     funcao = models.CharField(max_length=100, null=True)
     ntermo = models.CharField(max_length=10, null=True, choices=ACEITO_TERMO)
+    documentos = models.ManyToManyField(ArquivoTermo, verbose_name="Documentação", related_name="docs_termo", blank=True)
+
 
     class Meta:
         db_table = 'termoadesao_ada'
+
+
+
 
 class MetaADA(models.Model):
     nomemeta = models.CharField(max_length=50, null=False)

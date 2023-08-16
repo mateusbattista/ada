@@ -165,6 +165,7 @@ class PublicoCreateView(LoginRequiredMixin, CreateView):
 
         return context
 
+
 def Publico_delete(request, pk):
     publico = TipoPublicoADA.objects.get(pk=pk)
     publico.delete()
@@ -330,11 +331,39 @@ class TermoAdesaoCreateView(LoginRequiredMixin, CreateView):
 
         return context
 
+
+def gerenciamento_termo(request, pk):
+    termo = get_object_or_404(TermoAdesaoADA, pk=pk)
+
+    context = {}
+    form = TermoAdesaoForms()
+
+    if request.method == 'POST':
+        form = TermoAdesaoForms(request.POST, request.FILES)
+        if form.is_valid():
+            documentos = request.FILES.getlist('documentos')
+
+            with transaction.atomic():
+                if documentos:
+                    for file in documentos:
+                        reg_termos = ArquivoTermo.objects.create(arquivo=file)
+                        termo.documentos.add(reg_termos)
+
+                termo.save()
+
+    context["form"] = form
+    context['termo'] = termo
+
+    return render(request, 'termoadesao_local_create_update_form.html', context)
+
+
+
+
 def delete_termo_adesao(request, pk, ck):
     termo = get_object_or_404(TermoAdesaoADA, pk=ck)
     arquivo = ArquivoVisitaDomiciliar.objects.get(pk=pk)
     termo.arquivotermoadesao.remove(arquivo)
-    return redirect('termoadesao_update', pk=visita.pk )
+    return redirect('termoadesao_update', pk=visita.pk)
 
 
 class TermoAdesaoLocalListView(LoginRequiredMixin, ListView):
