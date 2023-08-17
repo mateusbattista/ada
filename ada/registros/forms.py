@@ -33,7 +33,4 @@ class TermoAdesaoForms(forms.ModelForm):
 
 
 
-# class GerenciamentoTermoForms(forms.ModelForm):
-#     class Meta:
-#         model = TermoAdesaoADA
-#         fields = ('documentos',)
+
