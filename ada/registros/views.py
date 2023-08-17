@@ -1,5 +1,7 @@
+from django.db import transaction
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template.context_processors import request
 from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DeleteView
 from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DeleteView
@@ -7,6 +9,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from registros.models import *
 from registros.forms import *
+
+from ada.registros.forms import TermoAdesaoForms
 
 
 # Create your views here.
@@ -313,13 +317,30 @@ class TermoAdesaoUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'termoadesao_create_update_form.html'
     success_url = '/termoadesao/'
 
+
+    term = get_object_or_404(TermoAdesaoADA, pk=pk)
+
+
+    if request.method == 'POST':
+        form = TermoAdesaoForms(request.POST, request.FILES)
+        if form.is_valid():
+            documentos = request.FILES.getlist('arquivo')
+
+            with transaction.atomic():
+                if documentos:
+                    for file in documentos:
+                        termos = TermoAdesaoADA.objects.create(arquivo=file)
+                        term.registros_fotograficos.add(termos)
+
+                term.save()
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         return context
 
 
-class TermoAdesaoCreateView(LoginRequiredMixin, CreateView):
+class TermoAdesaoCreateView(LoginRequiredMixin, CreateView, request):
     login_url = '/autenticacao/login/'
     form_class = TermoAdesaoForms
     model = TermoAdesaoADA
@@ -330,32 +351,6 @@ class TermoAdesaoCreateView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
 
         return context
-
-
-def gerenciamento_termo(request, pk):
-    termo = get_object_or_404(TermoAdesaoADA, pk=pk)
-
-    context = {}
-    form = TermoAdesaoForms()
-
-    if request.method == 'POST':
-        form = TermoAdesaoForms(request.POST, request.FILES)
-        if form.is_valid():
-            documentos = request.FILES.getlist('documentos')
-
-            with transaction.atomic():
-                if documentos:
-                    for file in documentos:
-                        reg_termos = ArquivoTermo.objects.create(arquivo=file)
-                        termo.documentos.add(reg_termos)
-
-                termo.save()
-
-    context["form"] = form
-    context['termo'] = termo
-
-    return render(request, 'termoadesao_local_create_update_form.html', context)
-
 
 
 

@@ -77,14 +77,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
-                                <label for="situacao">Situação</label>
-                                <div class="br-input">
-                                    {% render_field termo_adesao_filtro_form.situacao class="br-select small" type="select" style="width:100%" %}
-                                </div>
-                            </div>
-                        </div>
+{#                        <div class="form-group row">#}
+{#                            <div class="col-sm-6 mb-6">#}
+{#                                <label for="situacao">Situação</label>#}
+{#                                <div class="br-input">#}
+{#                                    {% render_field termo_adesao_filtro_form.situacao class="br-select small" type="select" style="width:100%" %}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
 
                         <div class="form-group row">
                             <div class="col-sm-12 mt-6">
@@ -104,11 +104,8 @@
                             <div class="br-table">
                                 <div class="table-header">
                                     <div class="top-bar">
-                                        <div class="table-title mb-4">SOLICITAÇÕES</div>
-                                        <a href="{% url 'termoadesao_add' %}" class="br-button mb-4">
-                                            <i class="fas fa-plus" style="padding-right: 20px;"></i>
-                                            Incluir
-                                        </a>
+                                        <div class="table-title mb-4">TERMOS DE ADESÃO</div>
+                                        <a href="{% url 'termoadesao_add' %}" class="br-button mb-4"><i class="fas fa-plus" style="padding-right: 20px;"></i>Incluir</a>
                                     </div>
                                 </div>
                                 <table>
@@ -131,11 +128,11 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% if solicitacoes %}
+                                    {% if termos %}
                                         {% for termo in termos %}
                                             <tr>
                                                 <td data-th="Ações">
-                                                    <a href="{% url 'termoadesao_update' pk=solitacao.id %}"
+                                                    <a href="{% url 'termoadesao_update' pk=termo.id %}"
                                                        class="br-button"><i
                                                             class="fas fa-pen" aria-hidden="true"></i></a>
                                                 </td>

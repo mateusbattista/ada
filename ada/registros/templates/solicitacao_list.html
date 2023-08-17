@@ -65,7 +65,7 @@
                             <div class="col-sm-6 mb-6">
                                 <label for="municipio">Município</label>
                                 <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.nomemunicipio type="text" style="width:100%" %}
+{#                                    {% render_field solicitacao_filtro_form.nomemunicipio type="text" style="width:100%" %}#}
                                 </div>
                             </div>
                         </div>
@@ -143,7 +143,7 @@
                                     {% for solicitacao in solicitacoes %}
                                         <tr>
                                             <td data-th="Ações">
-                                                <a href="{% url 'solicitacao_update' pk=solitacao.id %}"
+                                                <a href="{% url 'solicitacao_update' pk=solicitacao.id %}"
                                                    class="br-button"><i
                                                         class="fas fa-pen" aria-hidden="true"></i></a>
                                             </td>
