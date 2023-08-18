@@ -18,10 +18,9 @@ urlpatterns = [
     path('solicitacao/add', SolicitacaoCreateView.as_view(), name='solicitacao_add'),
     path('solicitacao/update/<pk>', SolicitacaoUpdateView.as_view(), name='solicitacao_update'),
     path("termoadesao/", TermoAdesaoListView.as_view(), name="termoadesao"),
-    path('termoadesao/add', TermoAdesaoCreateView.as_view(), name='termoadesao_add'),
+    path('termoadesao/add/', TermoAdesaoCreateView.as_view(), name='termoadesao_add'),
     path('termoadesao/update/<pk>', TermoAdesaoUpdateView.as_view(), name='termoadesao_update'),
-    # path('termoadesao/delete_termo_adesao/<int:pk>/<int:ck>',
-    #      delete_termo_adesao, name='delete_termo_adesao'),
+    path('termoadesao/delete_termo_adesao/<int:pk>',delete_termo_adesao, name='delete_termo_adesao'),
     path("termoadesao_local/", TermoAdesaoLocalListView.as_view(), name="termoadesao_local"),
     path('termoadesao_local/update/<pk>', TermoAdesaoLocalUpdateView.as_view(), name='termoadesao_local_update'),
 

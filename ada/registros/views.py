@@ -1,3 +1,5 @@
+import re
+
 from django.db import transaction
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -9,8 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from registros.models import *
 from registros.forms import *
-
-from ada.registros.forms import TermoAdesaoForms
+from pprint import pprint
 
 
 # Create your views here.
@@ -265,6 +266,7 @@ class TermoAdesaoListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        pprint(context)
         context["termo_adesao_filtro_form"] = TermoAdesaoForms()
         return context
 
@@ -317,48 +319,52 @@ class TermoAdesaoUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'termoadesao_create_update_form.html'
     success_url = '/termoadesao/'
 
-
-    term = get_object_or_404(TermoAdesaoADA, pk=pk)
-
-
-    if request.method == 'POST':
-        form = TermoAdesaoForms(request.POST, request.FILES)
-        if form.is_valid():
-            documentos = request.FILES.getlist('arquivo')
-
-            with transaction.atomic():
-                if documentos:
-                    for file in documentos:
-                        termos = TermoAdesaoADA.objects.create(arquivo=file)
-                        term.registros_fotograficos.add(termos)
-
-                term.save()
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        if context['termoadesaoada'].arquivo:
+            substring_filtrada = context['termoadesaoada'].arquivo.url
+
+            padrao = r'(?:[^/]*\/){3}(.*)'
+
+            # Procurar o padrão na string usando re.search()
+            correspondencia = re.search(padrao, substring_filtrada)
+
+            # correspondencia = correspondencia.encode('utf-8')
+
+            if correspondencia:
+                substring = correspondencia.group(1)
+
+            context['substring_filtrada'] = substring
+            context['extensao'] = substring[-3:]
 
         return context
 
 
-class TermoAdesaoCreateView(LoginRequiredMixin, CreateView, request):
+class TermoAdesaoCreateView(LoginRequiredMixin, CreateView):
     login_url = '/autenticacao/login/'
     form_class = TermoAdesaoForms
     model = TermoAdesaoADA
     template_name = 'termoadesao_create_update_form.html'
     success_url = '/termoadesao/'
 
+    def post(self, request, *args, **kwargs):
+        form = TermoAdesaoForms(request.POST, request.FILES)
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         return context
 
 
-
-def delete_termo_adesao(request, pk, ck):
-    termo = get_object_or_404(TermoAdesaoADA, pk=ck)
-    arquivo = ArquivoVisitaDomiciliar.objects.get(pk=pk)
-    termo.arquivotermoadesao.remove(arquivo)
-    return redirect('termoadesao_update', pk=visita.pk)
+def delete_termo_adesao(request, pk):
+    termo = get_object_or_404(TermoAdesaoADA, pk=pk)
+    termo.arquivo.delete()
+    return redirect('termoadesao_update', pk=termo.pk)
 
 
 class TermoAdesaoLocalListView(LoginRequiredMixin, ListView):
