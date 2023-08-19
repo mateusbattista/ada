@@ -65,7 +65,7 @@
                             <div class="col-sm-6 mb-6">
                                 <label for="municipio">Município</label>
                                 <div class="br-input">
-{#                                    {% render_field solicitacao_filtro_form.nomemunicipio type="text" style="width:100%" %}#}
+                                    {% render_field solicitacao_filtro_form.nomemunicipio type="text" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                             <div class="col-sm-6 mb-6">
                                 <label for="situacao">Situação</label>
                                 <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.situacao class="br-select small" style="width:100%" %}
+                                    {% render_field solicitacao_filtro_form.situacao  style="width:100%" %}
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                             <div class="col-sm-6 mb-6">
                                 <label for="aceito">Aceito?</label>
                                 <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.ntermo class="br-select small" style="width:100%" %}
+                                    {% render_field solicitacao_filtro_form.ntermo style="width:100%" %}
                                 </div>
                             </div>
                         </div>
@@ -101,8 +101,7 @@
                                     Voltar
                                 </a>
                                 <button class="br-button primary active mr-3" type="submit" formmethod="get">
-                                    <i class="fas fa-searc
-                                    h primary" style="padding-right: 20px;"></i>
+                                    <i class="fas fa-search primary" style="padding-right: 20px;"></i>
                                     Consultar
                                 </button>
                             </div>
@@ -222,29 +221,19 @@
 
 {% endblock %}
 
-
-
 {% block script %}
-
-    <script src="{% static '@govbr-ds/core/dist/core.js' %}"></script>
+    <script src="{% static 'js/jquery.mask.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-{#    <script src="{% static 'js/gerenciamento_select2.js' %}"></script>#}
+    <script src="{% static 'js/gerenciamento_select2.js' %}"></script>
     <script>
         $("input[type=text]").keyup(function () {
             $(this).val($(this).val().toUpperCase());
         });
+        $(document).ready(function () {
+            $('.cpf').mask('000.000.000-00', {reverse: true});
+        });
+        document.getElementById("id_estado").required = false;
+        document.getElementById("id_municipio").required = false;
+        document.getElementById("id_qualificacao").required = false;
     </script>
 {% endblock %}
-
-{#{% block script %}#}
-{#    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>#}
-{#    <script src="{% static 'js/gerenciamento_select2.js' %}"></script>#}
-{#    <script>#}
-{#        $("input[type=text]").keyup(function () {#}
-{#            $(this).val($(this).val().toUpperCase());#}
-{#        });#}
-{#        document.getElementById("id_estado").required = false;#}
-{#        document.getElementById("id_municipio").required = false;#}
-{#        document.getElementById("id_qualificacao").required = false;#}
-{#    </script>#}
-{#{% endblock %}#}

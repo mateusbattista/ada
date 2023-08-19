@@ -266,48 +266,44 @@ class TermoAdesaoListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        pprint(context)
         context["termo_adesao_filtro_form"] = TermoAdesaoForms()
         return context
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        nome = self.request.GET.get("name")
-        cpf = self.request.GET.get("cpf")
-        prefeito = self.request.GET.get("prefeito")
+        numero = self.request.GET.get("numero")
+        ano = self.request.GET.get("ano")
+        nomeprefeito = self.request.GET.get("nomeprefeito")
         cpfprefeito = self.request.GET.get("cpfprefeito")
+        municipioprefeitura = self.request.GET.get("municipioprefeitura")
+        ufrgprefeito = self.request.GET.get("ufrgprefeito")
         ibge = self.request.GET.get("ibge")
-        municipio = self.request.GET.get("municipio")
-        uf = self.request.GET.get("uf")
-        situacao = self.request.GET.get("uf")
-        aceito = self.request.GET.get("uf")
+        situacao = self.request.GET.get("situacao")
 
-        if nome:
-            queryset = queryset.filter(name__contains=nome)
+        if numero:
+            queryset = queryset.filter(numero__contains=numero)
 
-        if cpf:
-            queryset = queryset.filter(cpfsolicitante__contains=cpf)
+        if ano:
+            queryset = queryset.filter(ano__contains=ano)
 
-        if prefeito:
-            queryset = queryset.filter(nomeprefeito__contains=prefeito)
+        if nomeprefeito:
+            queryset = queryset.filter(nomeprefeito__contains=nomeprefeito)
 
         if cpfprefeito:
             queryset = queryset.filter(cpfprefeito__contains=cpfprefeito)
 
+        if municipioprefeitura:
+            queryset = queryset.filter(municipioprefeitura__contains=municipioprefeitura)
+
+        if ufrgprefeito:
+            queryset = queryset.filter(ufrgprefeito__contains=ufrgprefeito)
+
         if ibge:
             queryset = queryset.filter(ibge__contains=ibge)
-
-        if municipio:
-            queryset = queryset.filter(nomemunicipio__contains=municipio)
-
-        if uf:
-            queryset = queryset.filter(ufrgprefeito__contains=uf)
 
         if situacao:
             queryset = queryset.filter(situacao__contains=situacao)
 
-        if aceito:
-            queryset = queryset.filter(numero__contains=aceito)
 
         return queryset
 
@@ -348,12 +344,6 @@ class TermoAdesaoCreateView(LoginRequiredMixin, CreateView):
     template_name = 'termoadesao_create_update_form.html'
     success_url = '/termoadesao/'
 
-    def post(self, request, *args, **kwargs):
-        form = TermoAdesaoForms(request.POST, request.FILES)
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

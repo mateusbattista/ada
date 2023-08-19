@@ -22,7 +22,7 @@
                     <form method="get" id="portaria_filtro_form">{% csrf_token %}
                         {{ PUBLICO_filtro_form.media.js }}
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
+                            <div class="col-sm-11 mb-6">
                                 <label for="publico">Público</label>
                                 <div class="br-input">
                                     {% render_field publico_filtro_form.nometipopublico  class="campo-select" style="width:100%" %}
@@ -35,6 +35,11 @@
                                    type="button">
                                     <i class="fas fa-arrow-left primary" style="padding-right: 20px;"></i>
                                     Voltar
+                                </a>
+                                  <a class="br-button secondary mr-3"href="{% url 'tipo_publico' %}"
+                                   type="button">
+                                    <i class="fa fa-trash" style="padding-right: 20px;"></i>
+                                    Limpar Busca
                                 </a>
                                 <button class="br-button primary active mr-3" type="submit" formmethod="get">
                                     <i class="fas fa-search primary" style="padding-right: 20px;"></i>

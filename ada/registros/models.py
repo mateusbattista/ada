@@ -36,7 +36,7 @@ class TermoAdesaoADA(models.Model):
     datatermo = models.DateTimeField(null=True, blank=True)
     nome = models.CharField(max_length=100, null=True, blank=True)
     ibge = models.CharField(max_length=20, null=True, blank=True)
-    observacao = models.CharField(max_length=500, null=True, blank=True)
+    observacao = models.TextField()
     cepprefeitura = models.CharField(max_length=10, null=True, blank=True)
     enderecoprefeitura = models.CharField(max_length=100, null=True, blank=True)
     bairroprefeitura = models.CharField(max_length=100, null=True, blank=True)
@@ -67,6 +67,7 @@ class TermoAdesaoADA(models.Model):
     complementoarmazenamento = models.CharField(max_length=100, null=True, blank=True)
     ceparmazenamento = models.CharField(max_length=10, null=True, blank=True)
     nomemunicipioarmazenamento = models.CharField(max_length=100, null=True, blank=True)
+    nomemunicipio = models.CharField(max_length=100, null=True, blank=True)
     municipioarmazenamento_id = models.BigIntegerField(null=True, blank=True)
     nomelocalcontrolesocial = models.CharField(max_length=100, null=True, blank=True)
     bairrocontrolesocial = models.CharField(max_length=100, null=True, blank=True)
@@ -88,9 +89,6 @@ class TermoAdesaoADA(models.Model):
 
     class Meta:
         db_table = 'termoadesao_ada'
-
-
-
 
 class MetaADA(models.Model):
     nomemeta = models.CharField(max_length=50, null=False)

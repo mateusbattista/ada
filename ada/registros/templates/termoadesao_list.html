@@ -14,7 +14,7 @@
                 <div class="card-header">
                     <div class="d-flex">
                         <div class="ml-6">
-                            <div class="text-weight-semi-bold text-up-02">TERMO DE ADESÃO ADA</div>
+                            <div class="text-weight-semi-bold text-up-02">TERMO DE ADESÃO ADA </div>
                         </div>
                     </div>
                 </div>
@@ -22,23 +22,23 @@
                     <form method="get" id="termo_adesao_filtro_form">{% csrf_token %}
                         {{ termo_adesao_filtro_form.media.js }}
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
-                                <label for="numero">Número do termo</label>
+                            <div class="col-sm-11 mb-6">
+                                <label for="numerodotermo">Número do termo</label>
                                 <div class="br-input">
-                                    {% render_field termo_adesao_filtro_form.numero id="numero" type="text" style="width:100%" attr="disabled":attr:"disabled" %}
+                                    {% render_field termo_adesao_filtro_form.numero id="numerodotermo" type="text" style="width:100%" attr="disabled":attr:"disabled" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
+                            <div class="col-sm-11 mb-6">
                                 <label for="ano">Ano do Termo</label>
                                 <div class="br-input">
-                                    {% render_field termo_adesao_filtro_form.ano id="ano" type="text" style="width:100%" %}
+                                    {% render_field termo_adesao_filtro_form.ano id="ano" type="number" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
+                            <div class="col-sm-11 mb-6">
                                 <label for="prefeito">Nome Prefeito</label>
                                 <div class="br-input">
                                     {% render_field termo_adesao_filtro_form.nomeprefeito id="prefeito" type="text" style="width:100%" %}
@@ -46,7 +46,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
+                            <div class="col-sm-11 mb-6">
                                 <label for="cpfprefeito">CPF Prefeito</label>
                                 <div class="br-input">
                                     {% render_field termo_adesao_filtro_form.cpfprefeito id="cpfprefeito" type="text" style="width:100%" %}
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
+                            <div class="col-sm-11 mb-6">
                                 <label for="municipio">Município</label>
                                 <div class="br-input">
                                     {% render_field termo_adesao_filtro_form.municipioprefeitura type="text" style="width:100%" %}
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
+                            <div class="col-sm-11 mb-6">
                                 <label for="uf">UF</label>
                                 <div class="br-input">
                                     {% render_field termo_adesao_filtro_form.ufrgprefeito type="text" style="width:100%" %}
@@ -70,28 +70,32 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
+                            <div class="col-sm-11 mb-6">
                                 <label for="ibge">IBGE</label>
                                 <div class="br-input">
                                     {% render_field termo_adesao_filtro_form.ibge type="text" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
-                        {#                        <div class="form-group row">#}
-                        {#                            <div class="col-sm-6 mb-6">#}
-                        {#                                <label for="situacao">Situação</label>#}
-                        {#                                <div class="br-input">#}
-                        {#                                    {% render_field termo_adesao_filtro_form.situacao class="br-select small" type="select" style="width:100%" %}#}
-                        {#                                </div>#}
-                        {#                            </div>#}
-                        {#                        </div>#}
-
+                        <div class="form-group row">
+                            <div class="col-sm-11 mb-6">
+                                <label for="situacao">Situação</label>
+                                <div class="br-input">
+                                    {% render_field termo_adesao_filtro_form.situacao  type="select" style="width:100%" %}
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <div class="col-sm-12 mt-6">
                                 <a class="br-button mr-3" href="{% url 'dashboard' %}"
                                    type="button">
                                     <i class="fas fa-arrow-left primary" style="padding-right: 20px;"></i>
                                     Voltar
+                                </a>
+                                 <a class="br-button secondary mr-3"href="{% url 'termoadesao' %}"
+                                   type="button">
+                                    <i class="fa fa-trash" style="padding-right: 20px;"></i>
+                                        Limpar Busca
                                 </a>
                                 <button class="br-button primary active mr-3" type="submit" formmethod="get">
                                     <i class="fas fa-search primary" style="padding-right: 20px;"></i>
@@ -104,9 +108,8 @@
                         <div class="br-table">
                             <div class="table-header">
                                 <div class="top-bar">
-                                    <div class="table-title mb-4">TERMOS DE ADESÃO</div>
-                                    <a href="{% url 'termoadesao_add' %}" class="br-button mb-4"><i class="fas fa-plus"
-                                                                                                    style="padding-right: 20px;"></i>Incluir</a>
+                                    <div class="table-title mb-6">TERMOS DE ADESÃO</div>
+                                    <a href="{% url 'termoadesao_add' %}" class="br-button mb-6"><i class="fas fa-plus" style="padding-right: 20px;"></i>Incluir</a>
                                 </div>
                             </div>
                             <table>
@@ -119,9 +122,9 @@
                                     <th scope="col" class="table-head">UF</th>
                                     <th scope="col" class="table-head">Município</th>
                                     <th scope="col" class="table-head">Número</th>
+                                    <th scope="col" class="table-head">Ano</th>
                                     <th scope="col" class="table-head">Nome Prefeito</th>
                                     <th scope="col" class="table-head">Nº Cestas</th>
-                                    <th scope="col" class="table-head">Função</th>
                                     <th scope="col" class="table-head">Solicitado em</th>
                                     <th scope="col" class="table-head">Situação</th>
                                     <th scope="col" class="table-head">Termo de Adesão</th>
@@ -142,11 +145,15 @@
                                                 <td data-th="link">
                                                     <a href="{{ termo.arquivo.url }}" target="_blank" class="br-button"><i class="fas fa-eye" aria-hidden="true"></i></a>
                                                 </td>
+                                             {% else %}
+                                             <td data-th="link">
+                                             </td>
                                              {% endif %}
                                             <td data-th="ibgeprefeitura">{{ termo.ibgeprefeitura }}</td>
                                             <td data-th="ufprefeitura">{{ termo.ufprefeitura }}</td>
                                             <td data-th="municipioprefeitura">{{ termo.municipioprefeitura }}</td>
                                             <td data-th="numero">{{ termo.numero }}</td>
+                                            <td data-th="numero">{{ termo.ano }}</td>
                                             <td data-th="nomeprefreito">{{ termo.nomeprefreito }}</td>
                                             <td data-th="quantidadecestas">{{ termo.quantidadecestas }}</td>
                                             <td data-th="datasolicitacao">{{ termo.datasolicitacao }}</td>
@@ -160,8 +167,6 @@
                                             {#                                                      <span style="display: inline-block; padding: 5px 10px;">{{ atividade }}</span>#}
                                             {#                                                    </span>#}
                                             {#                                                {% endfor %}#}
-
-
                                             {#                                            {% if comunidade.ativo == True %}#}
                                             {#                                                <td data-th="ativo"><span#}
                                             {#                                                        class="br-tag bg-green-cool-vivid-20"><span>Sim</span></span>#}
