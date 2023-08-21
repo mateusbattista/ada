@@ -49,7 +49,7 @@
                             <div class="col-sm-11 mb-6">
                                 <label for="municipio">Município</label>
                                 <div class="br-input">
-                                    {% render_field termo_adesao_filtro_form.municipioprefeitura type="text" style="width:100%" %}
+                                    {% render_field termo_adesao_filtro_form.nomemunicipio type="text" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
@@ -98,6 +98,7 @@
                                     <th scope="col" class="table-head">Nome Prefeito</th>
                                     <th scope="col" class="table-head">Nº Cestas</th>
                                     <th scope="col" class="table-head">Solicitado em</th>
+                                    <th scope="col" class="table-head">Município</th>
                                     <th scope="col" class="table-head">Situação</th>
                                     <th scope="col" class="table-head">Publicação DOU</th>
                                     <th scope="col" class="table-head">Link DOU</th>
@@ -121,10 +122,11 @@
                                              </td>
                                              {% endif %}
                                             <td data-th="numero">{{ termo.numero }}</td>
-                                            <td data-th="numero">{{ termo.ano }}</td>
-                                            <td data-th="nomeprefreito">{{ termo.nomeprefreito }}</td>
+                                            <td data-th="ano">{{ termo.ano }}</td>
+                                            <td data-th="nomeprefreito">{{ termo.nomeprefeito }}</td>
                                             <td data-th="quantidadecestas">{{ termo.quantidadecestas }}</td>
                                             <td data-th="datasolicitacao">{{ termo.datasolicitacao }}</td>
+                                            <td data-th="nomemunicipio">{{ termo.nomemunicipio }}</td>
                                             <td data-th="situacao">{{ termo.situacao }}</td>
                                             <td data-th="data_publicacao_dou">{{ termo.data_publicacao_dou }}</td>
                                             <td data-th="link_publicacao_dou">{{ termo.link_publicacao_dou }}</td>

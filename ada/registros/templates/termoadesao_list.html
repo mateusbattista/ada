@@ -57,7 +57,7 @@
                             <div class="col-sm-11 mb-6">
                                 <label for="municipio">Município</label>
                                 <div class="br-input">
-                                    {% render_field termo_adesao_filtro_form.municipioprefeitura type="text" style="width:100%" %}
+                                    {% render_field termo_adesao_filtro_form.nomemunicipio type="text" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
@@ -149,12 +149,12 @@
                                              <td data-th="link">
                                              </td>
                                              {% endif %}
-                                            <td data-th="ibgeprefeitura">{{ termo.ibgeprefeitura }}</td>
-                                            <td data-th="ufprefeitura">{{ termo.ufprefeitura }}</td>
-                                            <td data-th="municipioprefeitura">{{ termo.municipioprefeitura }}</td>
+                                            <td data-th="ibgeprefeitura">{{ termo.ibge }}</td>
+                                            <td data-th="ufprefeitura">{{ termo.ufrgprefeito }}</td>
+                                            <td data-th="nomemunicipio">{{ termo.nomemunicipio }}</td>
                                             <td data-th="numero">{{ termo.numero }}</td>
-                                            <td data-th="numero">{{ termo.ano }}</td>
-                                            <td data-th="nomeprefreito">{{ termo.nomeprefreito }}</td>
+                                            <td data-th="ano">{{ termo.ano }}</td>
+                                            <td data-th="nomeprefreito">{{ termo.nomeprefeito }}</td>
                                             <td data-th="quantidadecestas">{{ termo.quantidadecestas }}</td>
                                             <td data-th="datasolicitacao">{{ termo.datasolicitacao }}</td>
                                             <td data-th="situacao">{{ termo.situacao }}</td>
