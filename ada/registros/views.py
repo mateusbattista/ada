@@ -191,45 +191,40 @@ class SolicitacaoListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        nome = self.request.GET.get("name")
-        cpf = self.request.GET.get("cpf")
-        prefeito = self.request.GET.get("prefeito")
+        numero = self.request.GET.get("numero")
+        ano = self.request.GET.get("ano")
+        nomeprefeito = self.request.GET.get("nomeprefeito")
         cpfprefeito = self.request.GET.get("cpfprefeito")
+        municipioprefeitura = self.request.GET.get("municipioprefeitura")
+        ufrgprefeito = self.request.GET.get("ufrgprefeito")
         ibge = self.request.GET.get("ibge")
-        municipio = self.request.GET.get("municipio")
-        uf = self.request.GET.get("uf")
-        situacao = self.request.GET.get("uf")
-        aceito = self.request.GET.get("uf")
+        situacao = self.request.GET.get("situacao")
 
-        if nome:
-            queryset = queryset.filter(name__contains=nome)
+        if numero:
+            queryset = queryset.filter(numero__contains=numero)
 
-        if cpf:
-            queryset = queryset.filter(cpfsolicitante__contains=cpf)
+        if ano:
+            queryset = queryset.filter(ano__contains=ano)
 
-        if prefeito:
-            queryset = queryset.filter(nomeprefeito__contains=prefeito)
+        if nomeprefeito:
+            queryset = queryset.filter(nomeprefeito__contains=nomeprefeito)
 
         if cpfprefeito:
             queryset = queryset.filter(cpfprefeito__contains=cpfprefeito)
 
+        if municipioprefeitura:
+            queryset = queryset.filter(municipioprefeitura__contains=municipioprefeitura)
+
+        if ufrgprefeito:
+            queryset = queryset.filter(ufrgprefeito__contains=ufrgprefeito)
+
         if ibge:
             queryset = queryset.filter(ibge__contains=ibge)
-
-        if municipio:
-            queryset = queryset.filter(nomemunicipio__contains=municipio)
-
-        if uf:
-            queryset = queryset.filter(ufrgprefeito__contains=uf)
 
         if situacao:
             queryset = queryset.filter(situacao__contains=situacao)
 
-        if aceito:
-            queryset = queryset.filter(numero__contains=aceito)
-
         return queryset
-
 
 class SolicitacaoUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/autenticacao/login/'
@@ -240,6 +235,21 @@ class SolicitacaoUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        if context['termoadesaoada'].arquivo:
+            substring_filtrada = context['termoadesaoada'].arquivo.url
+
+            padrao = r'(?:[^/]*\/){3}(.*)'
+
+            # Procurar o padrão na string usando re.search()
+            correspondencia = re.search(padrao, substring_filtrada)
+
+            # correspondencia = correspondencia.encode('utf-8')
+            if correspondencia:
+                substring = correspondencia.group(1)
+
+            context['substring_filtrada'] = substring
+            context['extensao'] = substring[-3:]
 
         return context
 
@@ -356,6 +366,11 @@ def delete_termo_adesao(request, pk):
     termo.arquivo.delete()
     return redirect('termoadesao_update', pk=termo.pk)
 
+def delete_solicitacao_termo_adesao(request, pk):
+    termo = get_object_or_404(TermoAdesaoADA, pk=pk)
+    termo.arquivo.delete()
+    return redirect('solicitacao_update', pk=termo.pk)
+
 
 class TermoAdesaoLocalListView(LoginRequiredMixin, ListView):
     login_url = '/autenticacao/login/'
@@ -371,42 +386,26 @@ class TermoAdesaoLocalListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        nome = self.request.GET.get("name")
-        cpf = self.request.GET.get("cpf")
-        prefeito = self.request.GET.get("prefeito")
-        cpfprefeito = self.request.GET.get("cpfprefeito")
-        ibge = self.request.GET.get("ibge")
-        municipio = self.request.GET.get("municipio")
-        uf = self.request.GET.get("uf")
-        situacao = self.request.GET.get("uf")
-        aceito = self.request.GET.get("uf")
+        numero = self.request.GET.get("numero")
+        ano = self.request.GET.get("ano")
+        nomeprefeito = self.request.GET.get("nomeprefeito")
+        municipioprefeitura = self.request.GET.get("municipioprefeitura")
+        situacao = self.request.GET.get("situacao")
 
-        if nome:
-            queryset = queryset.filter(name__contains=nome)
+        if numero:
+            queryset = queryset.filter(numero__contains=numero)
 
-        if cpf:
-            queryset = queryset.filter(cpfsolicitante__contains=cpf)
+        if ano:
+            queryset = queryset.filter(ano__contains=ano)
 
-        if prefeito:
-            queryset = queryset.filter(nomeprefeito__contains=prefeito)
+        if nomeprefeito:
+            queryset = queryset.filter(nomeprefeito__contains=nomeprefeito)
 
-        if cpfprefeito:
-            queryset = queryset.filter(cpfprefeito__contains=cpfprefeito)
-
-        if ibge:
-            queryset = queryset.filter(ibge__contains=ibge)
-
-        if municipio:
-            queryset = queryset.filter(nomemunicipio__contains=municipio)
-
-        if uf:
-            queryset = queryset.filter(ufrgprefeito__contains=uf)
+        if municipioprefeitura:
+            queryset = queryset.filter(municipioprefeitura__contains=municipioprefeitura)
 
         if situacao:
             queryset = queryset.filter(situacao__contains=situacao)
-
-        if aceito:
-            queryset = queryset.filter(numero__contains=aceito)
 
         return queryset
 
@@ -420,5 +419,21 @@ class TermoAdesaoLocalUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        if context['termoadesaoada'].arquivo:
+            substring_filtrada = context['termoadesaoada'].arquivo.url
+
+            padrao = r'(?:[^/]*\/){3}(.*)'
+
+            # Procurar o padrão na string usando re.search()
+            correspondencia = re.search(padrao, substring_filtrada)
+
+            # correspondencia = correspondencia.encode('utf-8')
+
+            if correspondencia:
+                substring = correspondencia.group(1)
+
+            context['substring_filtrada'] = substring
+            context['extensao'] = substring[-3:]
 
         return context

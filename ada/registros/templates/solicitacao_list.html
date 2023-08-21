@@ -22,55 +22,47 @@
                     <form method="get" id="solicitacao_filtro_form">{% csrf_token %}
                         {{ solicitacao_filtro_form.media.js }}
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
-                                <label for="name">Nome Solicitante</label>
+                            <div class="col-sm-11 mb-6">
+                                <label for="numerodotermo">Número do termo</label>
                                 <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.name type="text"  style="width:100%" %}
+                                    {% render_field solicitacao_filtro_form.numero id="numerodotermo" type="text" style="width:100%"%}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
-                                <label for="cpf">CPF Solicitante</label>
+                            <div class="col-sm-11 mb-6">
+                                <label for="ano">Ano do Termo</label>
                                 <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.cpfsolicitante type="text" style="width:100%" %}
+                                    {% render_field solicitacao_filtro_form.ano id="ano" type="number" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
+                            <div class="col-sm-11 mb-6">
                                 <label for="prefeito">Nome Prefeito</label>
                                 <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.nomeprefeito type="text" style="width:100%" %}
+                                    {% render_field solicitacao_filtro_form.nomeprefeito id="prefeito" type="text" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
+                            <div class="col-sm-11 mb-6">
                                 <label for="cpfprefeito">CPF Prefeito</label>
                                 <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.cpfprefeito type="text" style="width:100%" %}
+                                    {% render_field solicitacao_filtro_form.cpfprefeito id="cpfprefeito" type="text" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
-                                <label for="ibge">IBGE</label>
-                                <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.ibge type="text" style="width:100%" %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
+                            <div class="col-sm-11 mb-6">
                                 <label for="municipio">Município</label>
                                 <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.nomemunicipio type="text" style="width:100%" %}
+                                    {% render_field solicitacao_filtro_form.municipioprefeitura type="text" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
+                            <div class="col-sm-11 mb-6">
                                 <label for="uf">UF</label>
                                 <div class="br-input">
                                     {% render_field solicitacao_filtro_form.ufrgprefeito type="text" style="width:100%" %}
@@ -78,18 +70,18 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
-                                <label for="situacao">Situação</label>
+                            <div class="col-sm-11 mb-6">
+                                <label for="ibge">IBGE</label>
                                 <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.situacao  style="width:100%" %}
+                                    {% render_field solicitacao_filtro_form.ibge type="text" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-6">
-                                <label for="aceito">Aceito?</label>
+                            <div class="col-sm-11 mb-6">
+                                <label for="situacao">Situação</label>
                                 <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.ntermo style="width:100%" %}
+                                    {% render_field solicitacao_filtro_form.situacao  type="select" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
@@ -99,6 +91,11 @@
                                    type="button">
                                     <i class="fas fa-arrow-left primary" style="padding-right: 20px;"></i>
                                     Voltar
+                                </a>
+                                 <a class="br-button secondary mr-3"href="{% url 'solicitacao' %}"
+                                   type="button">
+                                    <i class="fa fa-trash" style="padding-right: 20px;"></i>
+                                        Limpar Busca
                                 </a>
                                 <button class="br-button primary active mr-3" type="submit" formmethod="get">
                                     <i class="fas fa-search primary" style="padding-right: 20px;"></i>
@@ -111,30 +108,28 @@
                         <div class="br-table">
                             <div class="table-header">
                                 <div class="top-bar">
-                                    <div class="table-title mb-4">SOLICITAÇÕES</div>
-                                    <a href="{% url 'solicitacao_add' %}" class="br-button mb-4">
-                                        <i class="fas fa-plus" style="padding-right: 20px;"></i>
-                                        Incluir
-                                    </a>
+                                    <div class="table-title mb-6">SOLICITAÇÕES DE ADESÃO</div>
+                                    <a href="{% url 'solicitacao_add' %}" class="br-button mb-6"><i class="fas fa-plus" style="padding-right: 20px;"></i>Incluir</a>
                                 </div>
                             </div>
                             <table>
-                                <caption>SOLICITAÇÕES</caption>
+                                <caption>SOLICITAÇÕES DE ADESÃO</caption>
                                 <thead>
                                 <tr>
+                                    <th scope="col" class="table-head"></th>
                                     <th scope="col" class="table-head"></th>
                                     <th scope="col" class="table-head">IBGE</th>
                                     <th scope="col" class="table-head">UF</th>
                                     <th scope="col" class="table-head">Município</th>
-                                    <th scope="col" class="table-head">CPF(Solicitante)</th>
-                                    <th scope="col" class="table-head">Nome(Solicitante)</th>
+                                    <th scope="col" class="table-head">Número</th>
+                                    <th scope="col" class="table-head">Ano</th>
+                                    <th scope="col" class="table-head">Nome Prefeito</th>
                                     <th scope="col" class="table-head">Nº Cestas</th>
-                                    <th scope="col" class="table-head">Função</th>
                                     <th scope="col" class="table-head">Solicitado em</th>
                                     <th scope="col" class="table-head">Situação</th>
-                                    <th scope="col" class="table-head">Aceito?</th>
-                                    <th scope="col" class="table-head">Solicitações</th>
-                                    <th scope="col" class="table-head">Nome Prefeito</th>
+                                    <th scope="col" class="table-head">Termo de Adesão</th>
+                                    <th scope="col" class="table-head">Publicação DOU</th>
+                                    <th scope="col" class="table-head">Link DOU</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -146,35 +141,41 @@
                                                    class="br-button"><i
                                                         class="fas fa-pen" aria-hidden="true"></i></a>
                                             </td>
-                                            <td data-th="ibgeprefeitura">{{solicitacao.ibgeprefeitura }}</td>
-                                            <td data-th="ufprefeitura">{{solicitacao.ufprefeitura }}</td>
-                                            <td data-th="municipioprefeitura">{{solicitacao.municipioprefeitura }}</td>
-                                            <td data-th="cpf">{{solicitacao.cpf }}</td>
-                                            <td data-th="name">{{solicitacao.name }}</td>
-                                            <td data-th="quantidadecestas">{{solicitacao.quantidadecestas }}</td>
-                                            <td data-th="funcao">{{solicitacao.funcao }}</td>
-                                            <td data-th="datasolicitacao">{{solicitacao.datasolicitacao }}</td>
-                                            <td data-th="situacao">{{solicitacao.situacao }}</td>
-                                            <td data-th="ntermo">{{solicitacao.ntermo }}</td>
-                                            <td data-th="qtdsolicitacoes">{{solicitacao.qtdsolicitacoes }}</td>
-                                            <td data-th="nomeprefeito">{{solicitacao.nomeprefeito }}</td>
-{#                                                {% for atividade in comunidade.principais_atividades_economicas.all %}#}
-{#                                                    <span class="br-tag bg-violet-warm-vivid-70 p-0 m-2"#}
-{#                                                          style="display: inline-block; border: 1px solid black; box-sizing: border-box;">#}
-{#                                                      <span style="display: inline-block; padding: 5px 10px;">{{ atividade }}</span>#}
-{#                                                    </span>#}
-{#                                                {% endfor %}#}
-
-
-{#                                            {% if comunidade.ativo == True %}#}
-{#                                                <td data-th="ativo"><span#}
-{#                                                        class="br-tag bg-green-cool-vivid-20"><span>Sim</span></span>#}
-{#                                                </td>#}
-{#                                            {% else %}#}
-{#                                                <td data-th="ativo"><span#}
-{#                                                        class="br-tag bg-red-50"><span>Não</span></span>#}
-{#                                                </td>#}
-{#                                            {% endif %}#}
+                                             {% if solicitacao.arquivo %}
+                                                <td data-th="link">
+                                                    <a href="{{ solicitacao.arquivo.url }}" target="_blank" class="br-button"><i class="fas fa-eye" aria-hidden="true"></i></a>
+                                                </td>
+                                             {% else %}
+                                             <td data-th="link">
+                                             </td>
+                                             {% endif %}
+                                            <td data-th="ibgeprefeitura">{{ solicitacao.ibgeprefeitura }}</td>
+                                            <td data-th="ufprefeitura">{{ solicitacao.ufprefeitura }}</td>
+                                            <td data-th="municipioprefeitura">{{ solicitacao.municipioprefeitura }}</td>
+                                            <td data-th="numero">{{ solicitacao.numero }}</td>
+                                            <td data-th="numero">{{ solicitacao.ano }}</td>
+                                            <td data-th="nomeprefreito">{{ solicitacao.nomeprefreito }}</td>
+                                            <td data-th="quantidadecestas">{{ solicitacao.quantidadecestas }}</td>
+                                            <td data-th="datasolicitacao">{{ solicitacao.datasolicitacao }}</td>
+                                            <td data-th="situacao">{{ solicitacao.situacao }}</td>
+                                            <td data-th="ntermo">{{ solicitacao.ntermo }}</td>
+                                            <td data-th="data_publicacao_dou">{{ solicitacao.data_publicacao_dou }}</td>
+                                            <td data-th="link_publicacao_dou">{{ solicitacao.link_publicacao_dou }}</td>
+                                            {#                                                {% for atividade in comunidade.principais_atividades_economicas.all %}#}
+                                            {#                                                    <span class="br-tag bg-violet-warm-vivid-70 p-0 m-2"#}
+                                            {#                                                          style="display: inline-block; border: 1px solid black; box-sizing: border-box;">#}
+                                            {#                                                      <span style="display: inline-block; padding: 5px 10px;">{{ atividade }}</span>#}
+                                            {#                                                    </span>#}
+                                            {#                                                {% endfor %}#}
+                                            {#                                            {% if comunidade.ativo == True %}#}
+                                            {#                                                <td data-th="ativo"><span#}
+                                            {#                                                        class="br-tag bg-green-cool-vivid-20"><span>Sim</span></span>#}
+                                            {#                                                </td>#}
+                                            {#                                            {% else %}#}
+                                            {#                                                <td data-th="ativo"><span#}
+                                            {#                                                        class="br-tag bg-red-50"><span>Não</span></span>#}
+                                            {#                                                </td>#}
+                                            {#                                            {% endif %}#}
                                         </tr>
                                     {% endfor %}
                                 {% else %}
@@ -221,19 +222,29 @@
 
 {% endblock %}
 
+
+
 {% block script %}
-    <script src="{% static 'js/jquery.mask.js' %}"></script>
+
+    <script src="{% static '@govbr-ds/core/dist/core.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="{% static 'js/gerenciamento_select2.js' %}"></script>
+    {#    <script src="{% static 'js/gerenciamento_select2.js' %}"></script>#}
     <script>
         $("input[type=text]").keyup(function () {
             $(this).val($(this).val().toUpperCase());
         });
-        $(document).ready(function () {
-            $('.cpf').mask('000.000.000-00', {reverse: true});
-        });
-        document.getElementById("id_estado").required = false;
-        document.getElementById("id_municipio").required = false;
-        document.getElementById("id_qualificacao").required = false;
     </script>
 {% endblock %}
+
+{#{% block script %}#}
+{#    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>#}
+{#    <script src="{% static 'js/gerenciamento_select2.js' %}"></script>#}
+{#    <script>#}
+{#        $("input[type=text]").keyup(function () {#}
+{#            $(this).val($(this).val().toUpperCase());#}
+{#        });#}
+{#        document.getElementById("id_estado").required = false;#}
+{#        document.getElementById("id_municipio").required = false;#}
+{#        document.getElementById("id_qualificacao").required = false;#}
+{#    </script>#}
+{#{% endblock %}#}
