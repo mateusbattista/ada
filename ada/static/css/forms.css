@@ -16,7 +16,7 @@
     padding-top: 0;
     width: 100%;
 }
-#id_uf, #id_situacao, #id_ntermo, #situacao {
+#id_uf, #id_situacao, #id_ntermo, #situacao, #portaria, #evento, #publico {
     background-color: var(--background-light);
     border-color: var(--border-color-alternative);
     border-radius: var(--surface-rounder-sm);
