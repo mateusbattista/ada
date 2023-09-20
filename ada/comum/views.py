@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 
 
 class IndexView(TemplateView):
-    template_name = 'index.html'
+    template_name = 'login.html'
 
 
 class IndexInternoView(LoginRequiredMixin, TemplateView):
