@@ -95,6 +95,22 @@
                                     <div class="form-group row">
                                         <div class="col-sm-4 col-lg-11 mb-3">
                                             <div class="br-input small">
+                                                 <label for="estado">Estado</label>
+                                                {% render_field form.estado_solicitante class="campo-select" style="width:100%" disabled="disabled" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                            <div class="br-input small">
+                                                <label for="municipio">Município (UF)</label>
+                                                {% render_field form.municipio_solicitante type="text" class="campo-select" style="width:100%" disabled="disabled" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                            <div class="br-input small">
                                                 <label for="cepsolicitante">CEP</label>
                                                 {% render_field form.cepsolicitante id="cepsolicitante" type="text" disabled="disabled" %}
                                             </div>
@@ -132,14 +148,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
-                                            <div class="br-input small">
-                                                <label for="municipiosolicitante_id">Município (UF)</label>
-                                                {% render_field form.nomemunicipio id="municipiosolicitante_id" type="text" disabled="disabled" %}
-                                            </div>
-                                        </div>
-                                    </div>
                                     <br>
                                     <div class="header-subtitle"><strong>Informações Gerais do Ente Federativo</strong>
                                     </div>
@@ -147,15 +155,23 @@
                                     <div class="form-group row">
                                         <div class="col-sm-4 col-lg-11 mb-3">
                                             <div class="br-input small">
-                                                <label for="municipioprefeitura">Nome do Município ou Estado/DF:</label>
-                                                {% render_field form.municipioprefeitura id="municipioprefeitura" type="text" disabled="disabled" %}
+                                                 <label for="estado">Estado</label>
+                                                {% render_field form.estado_prefeitura class="campo-select" style="width:100%" disabled="disabled" %}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-4 col-lg-11 mb-3">
                                             <div class="br-input small">
-                                                <label for="cnpjprefeitura">CNPJ do Município ou Estado/DF:</label>
+                                                <label for="municipio">Município (UF)</label>
+                                                {% render_field form.municipio_prefeitura type="text" class="campo-select" style="width:100%" disabled="disabled" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                            <div class="br-input small">
+                                                <label for="cnpjprefeitura">CNPJ da Prefeitura:</label>
                                                 {% render_field form.cnpjprefeitura id="cnpjprefeitura" type="text" disabled="disabled"  %}
                                             </div>
                                         </div>
@@ -197,14 +213,6 @@
                                             <div class="br-input small">
                                                 <label for="complementoprefeitura">Complemento</label>
                                                 {% render_field form.complementoprefeitura id="complementoprefeitura" type="text" disabled="disabled" %}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
-                                            <div class="br-input small">
-                                                <label for="municipioprefeitura">Município</label>
-                                                {% render_field form.municipioprefeitura id="municipioprefeitura" type="text" disabled="disabled" %}
                                             </div>
                                         </div>
                                     </div>
@@ -305,9 +313,16 @@
                                     <div class="form-group row">
                                         <div class="col-sm-4 col-lg-11 mb-3">
                                             <div class="br-input small">
-                                                <label for="nomemunicipioarmazenamento">Nome do Município ou
-                                                    Estado/DF<s>*</s></label>
-                                                {% render_field form.nomemunicipioarmazenamento id="nomemunicipioarmazenamento" type="text" disabled="disabled" %}
+                                                 <label for="estado">Estado</label>
+                                                {% render_field form.estado_local_armazenamento class="campo-select" style="width:100%" disabled="disabled" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                            <div class="br-input small">
+                                                <label for="municipio">Município (UF)</label>
+                                                {% render_field form.municipio_local_armazenamento type="text" class="campo-select" style="width:100%" disabled="disabled" %}
                                             </div>
                                         </div>
                                     </div>
@@ -351,14 +366,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
-                                            <div class="br-input small">
-                                                <label for="nomemunicipioarmazenamento">Município<s>*</s></label>
-                                                {% render_field form.nomemunicipioarmazenamento id="nomemunicipioarmazenamento" type="text" disabled="disabled" %}
-                                            </div>
-                                        </div>
-                                    </div>
                                     <br>
                                     <div class="header-subtitle"><strong>Dados do Órgão de Controle Social</strong>
                                     </div>
@@ -374,17 +381,16 @@
                                     <div class="form-group row">
                                         <div class="col-sm-4 col-lg-11 mb-3">
                                             <div class="br-input small">
-                                                <label for="nomemunicipiocontrolesocial">Nome do Município ou
-                                                    Estado/DF<s>*</s></label>
-                                                {% render_field form.nomemunicipiocontrolesocial id="nomemunicipiocontrolesocial" type="text" disabled="disabled" %}
+                                                 <label for="estado">Estado</label>
+                                                {% render_field form.estado_controle_social class="campo-select" style="width:100%" disabled="disabled" %}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-4 col-lg-11 mb-3">
                                             <div class="br-input small">
-                                                <label for="cepcontrolesocial">CEP<s>*</s></label>
-                                                {% render_field form.cepcontrolesocial id="cepcontrolesocial" type="text" disabled="disabled" %}
+                                                <label for="municipio">Município (UF)</label>
+                                                {% render_field form.municipio_controle_social type="text" class="campo-select" style="width:100%" disabled="disabled" %}
                                             </div>
                                         </div>
                                     </div>
@@ -417,14 +423,6 @@
                                             <div class="br-input small">
                                                 <label for="bairrocontrolesocial">Bairro<s>*</s></label>
                                                 {% render_field form.bairrocontrolesocial id="bairrocontrolesocial" type="text"  disabled="disabled"%}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
-                                            <div class="br-input small">
-                                                <label for="nomemunicipiocontrolesocial">Município</label>
-                                                {% render_field form.nomemunicipiocontrolesocial id="nomemunicipiocontrolesocial" type="text"  disabled="disabled" %}
                                             </div>
                                         </div>
                                     </div>

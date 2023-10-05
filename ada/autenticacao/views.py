@@ -6,10 +6,11 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, CreateView, UpdateView
 from django.contrib.auth.models import Group
 from django.urls import reverse_lazy
-from autenticacao.forms import AddUserGroupForm, GrupoFiltroForm, LoginForm
+from autenticacao.forms import AddUserGroupForm, GrupoFiltroForm, LoginForm, UsuarioForm, UsuarioFiltroForm, \
+    UsuarioUpdateForm
 from .models import Usuario
 
 # Create your views here.
@@ -62,6 +63,11 @@ class GroupListView(LoginRequiredMixin, ListView):
 
         return queryset
 
+    def dispatch(self, request, *args, **kwargs):
+
+        if not request.user.has_perm("auth.view_group"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
 
 class AddUserGroupView(FormView):
     template_name = 'add_user_group.html'
@@ -106,3 +112,96 @@ class RemoverUsuarioDoGrupoView(View):
             grupo.user_set.remove(usuario)
 
         return redirect('grupo_add_user', pk=grupo_id)
+
+class UserCreateView(LoginRequiredMixin,CreateView):
+    login_url = '/autenticacao/login/'
+    model = Usuario
+    form_class = UsuarioForm
+    template_name = 'user_create_update.html'
+    success_url = '/autenticacao/usuarios/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("autenticacao.add_usuario"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
+
+class UserListView(LoginRequiredMixin, ListView):
+    login_url = '/autenticacao/login/'
+    model = Usuario
+    context_object_name = 'usuarios'
+    template_name = 'user_list.html'
+    paginate_by = 20
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        if self.request.GET:
+            nome_filtro = self.request.GET.get("nome")
+            cpf_filtro = self.request.GET.get("cpf")
+            email_filtro = self.request.GET.get("email")
+            is_active_filtro = self.request.GET.get("is_active")
+            if is_active_filtro == 'on':
+                is_active_filtro = True
+            else:
+                is_active_filtro = False
+
+            if nome_filtro:
+                queryset = queryset.filter(nome__icontains=nome_filtro)
+
+            if email_filtro:
+                queryset = queryset.filter(email__icontains=email_filtro)
+
+
+            queryset = queryset.filter(is_active=is_active_filtro)
+
+            if cpf_filtro:
+                queryset = queryset.filter(cpf__icontains=cpf_filtro)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["usuario_filtro_form"] = UsuarioFiltroForm()
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("autenticacao.view_usuario"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
+
+class UserUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/autenticacao/login/'
+    form_class = UsuarioUpdateForm
+    model = Usuario
+    template_name = 'user_create_update.html'
+    success_url = '/autenticacao/usuarios/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("autenticacao.change_usuario"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
+
+def usuario_delete(request, pk):
+    usuario = Usuario.objects.get(pk=pk)
+    usuario.delete()
+    return redirect('usuarios')
+
+
+def usuario_desativar(request, pk):
+    usuario = Usuario.objects.get(pk=pk)
+    if usuario.is_active:
+        usuario.is_active = False
+    else:
+        usuario.is_active = True
+
+    usuario.save()
+    return redirect('usuarios')
+

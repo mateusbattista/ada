@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'comum',
     'autenticacao',
     'widget_tweaks',
+    'smart_selects',
+
 ]
 
 MIDDLEWARE = [

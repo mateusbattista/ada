@@ -65,16 +65,56 @@ class TermoAdesaoADA(models.Model):
     processosei = models.CharField(verbose_name="PROCESSO SEI", max_length=100, null=True, blank=True)
     system_unit_id = models.IntegerField(null=True, blank=True)
     tipo = models.CharField(verbose_name="TIPO", max_length=50, null=True, blank=True)
-    estado = models.ForeignKey(Estado, on_delete=models.CASCADE, null=True, blank=True)
-    municipio = ChainedForeignKey(Municipio,
-                                  on_delete=models.CASCADE,
-                                  chained_field='estado',
-                                  chained_model_field='estado',
-                                  show_all=False,
-                                  auto_choose=False,
-                                  null=True,
-                                  blank=True
-                                  )
+    estado_solicitante = models.ForeignKey(Estado, on_delete=models.CASCADE, null=True, blank=True,
+                                           related_name='termoadesaoada_solicitante')
+    municipio_solicitante = ChainedForeignKey(
+        Municipio,
+        chained_field="estado_solicitante",
+        chained_model_field="estado",
+        show_all=False,
+        auto_choose=False,
+        null=True,
+        blank=True,
+        related_name='termoadesaoada_municipio_solicitante'
+    )
+
+    estado_local_armazenamento = models.ForeignKey(Estado, on_delete=models.CASCADE, null=True, blank=True,
+                                                   related_name='termoadesaoada_local_armazenamento')
+    municipio_local_armazenamento = ChainedForeignKey(
+        Municipio,
+        chained_field="estado_local_armazenamento",
+        chained_model_field="estado",
+        show_all=False,
+        auto_choose=False,
+        null=True,
+        blank=True,
+        related_name='termoadesaoada_municipio_local_armazenamento'
+    )
+
+    estado_controle_social = models.ForeignKey(Estado, on_delete=models.CASCADE, null=True, blank=True,
+                                               related_name='termoadesaoada_controle_social')
+    municipio_controle_social = ChainedForeignKey(
+        Municipio,
+        chained_field="estado_controle_social",
+        chained_model_field="estado",
+        show_all=False,
+        auto_choose=False,
+        null=True,
+        blank=True,
+        related_name='termoadesaoada_municipio_controle_social'
+    )
+    estado_prefeitura = models.ForeignKey(Estado, on_delete=models.CASCADE, null=True, blank=True,
+                                          related_name='termoadesaoada_prefeitura')
+    municipio_prefeitura = ChainedForeignKey(
+        Municipio,
+        chained_field="estado_prefeitura",
+        chained_model_field="estado",
+        show_all=False,
+        auto_choose=False,
+        null=True,
+        blank=True,
+        related_name='termoadesaoada_municipio_prefeitura'
+    )
     nomeprefeito = models.CharField(verbose_name="NOME DO PREFEITO", max_length=100, null=True, blank=True)
     telefoneprefeito = models.CharField(verbose_name="TELEFONE DO PREFEITO", max_length=50, null=True, blank=True)
     cpfprefeito = models.CharField(verbose_name="CPF DO PREFEITO", max_length=20, null=True, blank=True)

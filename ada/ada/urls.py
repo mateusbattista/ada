@@ -19,9 +19,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 from ada import settings
+from comum.views import Custom404View
+
+handler404 = Custom404View.as_view()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('chaining/', include('smart_selects.urls')),
     path('', include('comum.urls')),
     path('', include('registros.urls')),
     path('autenticacao/', include('autenticacao.urls')),
