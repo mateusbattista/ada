@@ -80,6 +80,22 @@
                                 </div>
                             </div>
                             <nav class="menu-body">
+                                      <div class="menu-folder"><a class="menu-item" href="javascript: void(0)"><span
+                                                class="icon"><i class="fas fa-user-check" aria-hidden="true"></i></span><span
+                                                class="content">Autenticação</span></a>
+                                            <ul>
+                                                <li><a class="menu-item" href="{% url 'grupo_list' %}"><span
+                                                        class="icon"><i
+                                                        class="fas fa-users" aria-hidden="true"></i></span><span
+                                                        class="content">Grupos</span></a>
+                                                </li>
+                                                <li><a class="menu-item" href="{% url 'usuarios' %}"><span
+                                                        class="icon"><i
+                                                        class="fas fa-user" aria-hidden="true"></i></span><span
+                                                        class="content">Usuários</span></a>
+                                                </li>
+                                            </ul>
+                                      </div>
                                 <a class="menu-item" href="{% url 'solicitacao' %}"><span
                                         class="icon"><i class="fas fa-bell" aria-hidden="true"></i></span><span
                                         class="content">Solicitação</span></a>

@@ -36,6 +36,13 @@ class PortariaListView(LoginRequiredMixin, ListView):
 
         return queryset
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("registros.view_tipoportariaada"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
+
+
+
 
 class PortariaUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/autenticacao/login/'
@@ -49,6 +56,11 @@ class PortariaUpdateView(LoginRequiredMixin, UpdateView):
 
         return context
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("registros.change_tipoportariaada"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
+
 
 class PortariaCreateView(LoginRequiredMixin, CreateView):
     login_url = '/autenticacao/login/'
@@ -61,6 +73,11 @@ class PortariaCreateView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
 
         return context
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("registros.add_tipoportariaada"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
 
 
 def Portaria_delete(request, pk):
@@ -90,6 +107,11 @@ class EventoListView(LoginRequiredMixin, ListView):
 
         return queryset
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("registros.view_tipoeventoada"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
+
 
 class EventoUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/autenticacao/login/'
@@ -104,6 +126,12 @@ class EventoUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("registros.change_tipoeventoada"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
+
+
 class EventoCreateView(LoginRequiredMixin, CreateView):
     login_url = '/autenticacao/login/'
     form_class = TipoEventoForms
@@ -115,6 +143,11 @@ class EventoCreateView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
 
         return context
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("registros.add_tipoeventoada"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
 
 
 def Evento_delete(request, pk):
@@ -144,6 +177,11 @@ class PublicoListView(LoginRequiredMixin, ListView):
 
         return queryset
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("registros.view_tipopublicoada"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
+
 
 class PublicoUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/autenticacao/login/'
@@ -157,6 +195,11 @@ class PublicoUpdateView(LoginRequiredMixin, UpdateView):
 
         return context
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("registros.change_tipopublicoada"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
+
 
 class PublicoCreateView(LoginRequiredMixin, CreateView):
     login_url = '/autenticacao/login/'
@@ -169,6 +212,11 @@ class PublicoCreateView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
 
         return context
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("registros.add_tipopublicoada"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
 
 
 def Publico_delete(request, pk):
@@ -226,6 +274,11 @@ class SolicitacaoListView(LoginRequiredMixin, ListView):
 
         return queryset
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("registros.view_termoadesaoada"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
+
 class SolicitacaoUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/autenticacao/login/'
     form_class = SolicitacaoForms
@@ -253,6 +306,11 @@ class SolicitacaoUpdateView(LoginRequiredMixin, UpdateView):
 
         return context
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("registros.change_termoadesaoada"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
+
 
 class SolicitacaoCreateView(LoginRequiredMixin, CreateView):
     login_url = '/autenticacao/login/'
@@ -265,6 +323,11 @@ class SolicitacaoCreateView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
 
         return context
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("registros.add_termoadesaoada"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
 
 
 class TermoAdesaoListView(LoginRequiredMixin, ListView):
@@ -317,6 +380,11 @@ class TermoAdesaoListView(LoginRequiredMixin, ListView):
 
         return queryset
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("registros.view_termoadesaoada"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
+
 
 class TermoAdesaoUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/autenticacao/login/'
@@ -346,6 +414,11 @@ class TermoAdesaoUpdateView(LoginRequiredMixin, UpdateView):
 
         return context
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("registros.change_termoadesaoada"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
+
 
 class TermoAdesaoCreateView(LoginRequiredMixin, CreateView):
     login_url = '/autenticacao/login/'
@@ -357,8 +430,15 @@ class TermoAdesaoCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['estados'] = Estado.objects.all()
+        context['municipios'] = Municipio.objects.all()
 
         return context
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("registros.add_termoadesaoada"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
 
 
 def delete_termo_adesao(request, pk):
@@ -409,6 +489,11 @@ class TermoAdesaoLocalListView(LoginRequiredMixin, ListView):
 
         return queryset
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("registros.view_termoadesaoada"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
+
 
 class TermoAdesaoLocalUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/autenticacao/login/'
@@ -437,3 +522,8 @@ class TermoAdesaoLocalUpdateView(LoginRequiredMixin, UpdateView):
             context['extensao'] = substring[-3:]
 
         return context
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.has_perm("registros.change_termoadesaoada"):
+            return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
+        return super().dispatch(request, *args, **kwargs)
