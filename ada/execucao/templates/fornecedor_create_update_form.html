@@ -1,0 +1,419 @@
+{% extends 'base-interno.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block css %}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'css/table.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="row">
+            <div class="col-lg-12 mb-4 order-0">
+                <div class="br-card">
+                    <div class="card-content ml-6 mr-6">
+                         <form method="post" id="fornecedor_form" enctype="multipart/form-data">{% csrf_token %}
+                                {{ form.media.js }}
+                                <div class='f"card-header d-flex align-items-center justify-content-between mb-2 '>
+                                    <h5 class="card-title d-sm-inline-block ml-6">CADASTRO DE FORNECEDORES</h5>
+                                </div>
+                                <div class="card-body">
+                                            <br>
+                                            <div class="header-subtitle"><strong>Dados da Instituição</strong>
+                                            </div>
+                                            <span class="br-divider sm my-3"></span>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="cnpjinstuicao">CNPJ:</label>
+                                                        {% render_field form.cnpjinstituicao id="cnpjinstituicao" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="razaosocial">Razão Social:</label>
+                                                        {% render_field form.razaosocial id="razaosocial" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="tipo">Tipo de Entidade:</label>
+                                                        {% render_field form.tipo id="tipo" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="nomefantasia">Nome Fantasia:</label>
+                                                        {% render_field form.nomefantasia id="nomefantasia" type="text"  %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="sigla">Sigla:</label>
+                                                        {% render_field form.sigla id="sigla" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="inscricaoestadual">Nº da Inscrição Estadual:</label>
+                                                        {% render_field form.inscricaoestadual  id="inscricaoestadual" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="dataconst">Data da Constituição:</label>
+                                                        {% render_field form.dataconst id="dataconst" type="date" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="ufinstituicao">UF:</label>
+                                                        {% render_field form.ufinstituicao  id="ufinstituicao" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="enderecoinstituicao">Endereço:</label>
+                                                        {% render_field form.enderecoinstituicao  id="enderecoinstituicao" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="cepinstituicao">CEP:</label>
+                                                        {% render_field form.cepinstituicao class="cep" id="cepinstituicao" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="telefoneinstituicao">Telefone:</label>
+                                                        {% render_field form.telefoneinstituicao class="telefone" id="telefoneinstituicao" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="faxinstituicao">Fax:</label>
+                                                        {% render_field form.faxinstituicao id="faxinstituicao" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="emailinstituicao">E-mail:</label>
+                                                        {% render_field form.emailinstituicao id="emailinstituicao" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                         <label for="siteinstituicao">Site:</label>
+                                                        {% render_field form.siteinstituicao id="siteinstituicao" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="header-subtitle"><strong>Dados do Responsável</strong>
+                                            </div>
+                                            <span class="br-divider sm my-3"></span>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="cargoresponsavel">Cargo: </label>
+                                                        {% render_field form.cargoresponsavel id="cargoresponsavel" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="nomeresponsavel">Nome:</label>
+                                                        {% render_field form.nomeresponsavel id="nomeresponsavel" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="emailresponsavel">E-mail:</label>
+                                                        {% render_field form.emailresponsavel  class="cep" id="emailresponsavel"  maxlength="10" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="telefoneresponsavel">Telefone:</label>
+                                                        {% render_field form.telefoneresponsavel id="telefoneresponsavel" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-group row">
+                                            <div class="col-sm-12 my-6">
+                                                <div class="br-upload">
+                                                    <label class="upload-label"
+                                                        for="multiple-files">
+                                                        <span>Arquivos Comprobatórios</span></label>
+                                                        <input class="upload-input" id="multiple-files"
+                                                        name='documentos' type="file"
+                                                        multiple="multiple"/>
+                                                    <div class="upload-list"></div>
+                                                </div>
+                                                <p class="text-base mt-1">Clique ou arraste os arquivos para
+                                                    cima do
+                                                    componente
+                                                    Upload.</p>
+                                            </div>
+                                        </div>
+                                            {% if  documentos %}
+                                                <div class="br-table" >
+                                                    <div class="table-header">
+                                                        <div class="top-bar">
+                                                            <div class="table-title mb-4"></div>
+                                                        </div>
+                                                    </div>
+                                                    <table>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col" class="table-head"></th>
+                                                                    <th scope="col" class="table-head"></th>
+                                                                    <th scope="col" class="table-head">Nome do Arquivo</th>
+                                                                    <th scope="col" class="table-head">Tipo do Documento</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {% for documento in documentos.all %}
+                                                                {% if  documento.arquivo %}
+                                                                    <tr>
+                                                                        <td data-th="Ações">
+                                                                            <a href="{{ documento.arquivo.url }}"  target="_blank" class="br-button" > <i  class="fas fa-eye" aria-hidden="true"></i></a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a class="br-button circle" data-toggle="modal" data-target="#documento{{ documento.id }}"><i class="fas fa-trash-alt" aria-hidden="true"></i></a>
+                                                                            <div class="br-scrim-util foco" id="documento{{ documento.id }}"
+                                                                                    data-scrim="true">
+                                                                                <div class="br-modal">
+                                                                                    <div class="br-modal-header">
+                                                                                        <strong>Excluir</strong>
+                                                                                    </div>
+                                                                                    <div class="br-modal-body">
+                                                                                        <p>Deseja realmente excluir
+                                                                                            <strong>{{ documento.filename }}</strong>
+                                                                                            ?</p>
+                                                                                    </div>
+                                                                                    <div class="br-modal-footer justify-content-center">
+                                                                                        <a class="br-button mr-3" href="{% url 'delete_documento' pk=documento.pk %}"
+                                                                                            type="button">
+                                                                                            Não
+                                                                                        </a>
+                                                                                        <a class="br-button primary mr-3" href="{% url 'delete_documento' pk=documento.pk  %}"
+                                                                                            type="button">
+                                                                                            Sim
+
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td data-th="{{ documento.filename }}">{{ documento.filename }}</td>
+                                                                        <td data-th="">Documento comprobatório</td>
+                                                                    </tr>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                            </tbody>
+                                                    </table>
+                                                </div>
+                                            {% endif %}
+                                            <br>
+                                            <br>
+                                            <div class="header-subtitle"><strong>Situação / Avaliação</strong>
+                                            </div>
+                                            <span class="br-divider sm my-3"></span>
+                                             <div class="form-group row">
+                                                <div class="col-sm-3 mb-6">
+                                                    <div class="br-input small">
+                                                        <label for="nomeavaliador">Nome do Avaliador: {{ fornecedorada.nomeavaliador}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3 mb-6"> </div>
+                                                <div class="col-sm-2 mb-6"> </div>
+                                                <div class="col-sm-3 mb-6">
+                                                    <div class="br-input small">
+                                                        <label for="dataavaliacao">{{ fornecedorada.dataavaliacao}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                    <label for="situacaofornecedor">Situação do Fornecedor:</label>
+                                                     {% render_field form.situacaofornecedor  type="select" style="width:100%" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                    <div class="br-textarea">
+                                                        <label for="justificativa">Justificativa:</label>
+                                                        {% render_field form.justificativa id="justificativa" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-12 my-6">
+                                                    <div class="br-upload">
+                                                        <label class="upload-label" for="single-file"><span>Nota Técnica</span></label>
+                                                        <input class="upload-input" id="single-file"   name="notatecnica" type="file"/>
+                                                        <div class="upload-list"></div>
+                                                    </div>
+                                                    <p class="text-base mt-1">Clique ou arraste os arquivos para cima do componente Upload.</p>
+                                                </div>
+                                            </div>
+                                            {% if  fornecedorada.notatecnica %}
+                                            <div class="br-table">
+                                                    <div class="table-header">
+                                                        <div class="top-bar">
+                                                            <div class="table-title mb-4"></div>
+                                                        </div>
+                                                    </div>
+                                                    <table>
+                                                        <thead>
+                                                        <tr>
+                                                            <th scope="col"></th>
+                                                            <th scope="col" class="table-head">Nome do Arquivo</th>
+                                                            <th scope="col" class="table-head">Tipo do Documento</th>
+                                                            <th scope="col"></th>
+                                                            <th scope="col"></th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {#                                                                                {% for termo in form.all %}#}
+                                                        <tr>
+
+                                                            <td data-th="Ações">
+                                                                <a href="{{ fornecedorada.notatecnica.url }}" target="_blank"
+                                                                   class="br-button"> <i class="fas fa-eye" aria-hidden="true"></i></a>
+                                                            </td>
+                                                            <td data-th="">{{ substring_filtrada }}</td>
+                                                            <td data-th="">{{ extensao }}</td>
+                                                            <td data-th="">Nota Técnica do Avaliador</td>
+                                                            <td>
+                                                                <a class="br-button circle" data-toggle="modal" data-target="#fornecedorada{{ fornecedorada.id }}"><i class="fas fa-trash-alt" aria-hidden="true"></i></a>
+                                                                <div class="br-scrim-util foco" id="fornecedorada{{ fornecedorada.id }}" data-scrim="true">
+                                                                    <div class="br-modal">
+                                                                        <div class="br-modal-header">
+                                                                            <strong>Excluir</strong>
+                                                                        </div>
+                                                                        <div class="br-modal-body">
+                                                                            <p>Deseja realmente excluir
+                                                                                <strong>{{ substring_filtrada }}</strong>
+                                                                                ?</p>
+                                                                        </div>
+                                                                        <div class="br-modal-footer justify-content-center">
+                                                                            <a class="br-button mr-3"
+                                                                               href="{% url 'delete_nota' pk=fornecedorada.id %}"
+                                                                               type="button">
+                                                                                Não
+                                                                            </a>
+                                                                            <a class="br-button primary mr-3"
+                                                                               href="{% url 'delete_nota' pk=fornecedorada.pk %}"
+                                                                               type="button">
+                                                                                Sim
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        {#                                                                        {% endfor %}#}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                <div class="card-footer mt-3">
+                                    <div class="card-footer mt-3">
+                                        <div class="card-footer mt-3">
+                                            {% if form.errors %}
+                                                {% for field in form %}
+                                                    {% for error in field.errors %}
+                                                        <div class="br-message danger" role="alert">
+                                                            <div class="icon"><i class="fas fa-times-circle fa-lg"
+                                                                                 aria-hidden="true"></i>
+                                                            </div>
+                                                            <div class="content"><span
+                                                                    class="message-title">Erro no campo {{ field.label }}.</span><span
+                                                                    class="message-body"> {{ error }}</span>
+                                                            </div>
+                                                            <div class="close">
+                                                                <button class="br-button circle small" type="button"
+                                                                        aria-label="content"><i
+                                                                        class="fas fa-times" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            {% endif %}
+                                            <button type="submit" class="br-button primary mr-3"><i class="fas fa-save"
+                                                                                                    style="padding-right: 20px;"></i>
+                                                Salvar
+                                            </button>
+                                            <a href="{% url 'fornecedor' %}" class="br-button">Cancelar</a>
+                                        </div>                  <!-- /.card-footer -->
+                                    </div>
+                                </div>                  <!-- /.card-footer -->
+                         </form>
+                    </div>
+                </div>
+            </div><!-- /.card-footer -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="/static/smart-selects/admin/js/chainedfk.js"></script>
+    <script src="/static/smart-selects/admin/js/bindfields.js"></script>
+    <script src="{% static '@govbr-ds/core/dist/core.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{% static 'js/gerenciamento_select2.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.telefone').mask('(00) 0000-0000');
+        $('.cep').mask('00000-000');
+        $('.cpf').mask('000.000.000-00');
+    });
+    </script>
+    <script>
+        $("input[type=text]").keyup(function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+    </script>
+{% endblock %}
