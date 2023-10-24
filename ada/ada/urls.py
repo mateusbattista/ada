@@ -28,6 +28,7 @@ urlpatterns = [
     path('chaining/', include('smart_selects.urls')),
     path('', include('comum.urls')),
     path('', include('registros.urls')),
+    path('', include('execucao.urls')),
     path('autenticacao/', include('autenticacao.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

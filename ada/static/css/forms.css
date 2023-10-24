@@ -16,7 +16,9 @@
     padding-top: 0;
     width: 100%;
 }
-#id_uf, #id_situacao, #id_ntermo, #situacao, #portaria, #evento, #publico {
+#id_uf, #id_situacao, #id_ntermo, #id_situacao, #id_portaria_id, #id_evento_id, #id_publico_id, #id_situacaofornecedor, #id_estado_solicitante,
+#id_municipio_solicitante, #id_estado_prefeitura, #id_municipio_prefeitura, #id_estado_local_armazenamento,
+#id_municipio_local_armazenamento, #id_estado_controle_social, #id_municipio_controle_social, #id_situacaofornecedor{
     background-color: var(--background-light);
     border-color: var(--border-color-alternative);
     border-radius: var(--surface-rounder-sm);
