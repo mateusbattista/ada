@@ -14,50 +14,52 @@
                 <div class="card-header">
                     <div class="d-flex">
                         <div class="ml-6">
-                            <div class="text-weight-semi-bold text-up-02" style="color:#5992ED;">FORNECEDORES </div>
+                            <div class="text-weight-semi-bold text-up-02" style="color:#5992ED;">SOLICITAÇÕES DE CESTAS EMERGENCIAIS </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="card-content ml-6 mr-6">
-                    <form method="get" id="fornecedor_filtro_form">{% csrf_token %}
-                        {{ fornecedor_filtro_form.media.js }}
+                    <form method="get" id="solicitacao_cestas_filtro_form">{% csrf_token %}
+                        {{ solicitacao_cestas_filtro_form.media.js }}
+                        <span class="br-divider sm my-3"></span>
                         <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
-                                <label for="cnpjinstituicao">CNPJ:</label>
+                            <div class="col-sm-11 mb-3">
+                                <label for="cnpjentefederativo">CNPJ:</label>
                                 <div class="br-input">
-                                    {% render_field fornecedor_filtro_form.cnpjinstituicao id="cnpjinstituicao" type="text" style="width:100%"  %}
+                                    {% render_field solicitacao_cestas_filtro_form.cnpjentefederativo  type="text" style="width:100%"  %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                              <div class="col-sm-11 col-lg-11 mb-3">
+                                  <div class="br-input small">
+                                      <label for="estado_local_armazenamento">UF:</label>
+                                      {% render_field solicitacao_cestas_filtro_form.estado_local_armazenamento   class="campo-select" type="select" %}
+                                  </div>
+                              </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-sm-11 col-lg-11 mb-3">
+                              <div class="br-input small">
+                                  <label for="municipio_local_armazenamento">Município:</label>
+                                  {% render_field solicitacao_cestas_filtro_form.municipio_local_armazenamento class="campo-select" type="select" %}
+                              </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-11  mb-3">
+                                <label for="ibge">Código IBGE:</label>
+                                <div class="br-input">
+                                    {% render_field solicitacao_cestas_filtro_form.ibge  type="text" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-11 mb-6">
-                                <label for="razaosocial">Razão Social:</label>
+                                <label for="situacaocestas">Situação</label>
                                 <div class="br-input">
-                                    {% render_field fornecedor_filtro_form.razaosocial id="razaosocial" type="text" style="width:100%" %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
-                                <label for="tipo">Tipo de Entidade:</label>
-                                <div class="br-input">
-                                    {% render_field fornecedor_filtro_form.tipo id="tipo" type="text" style="width:100%" %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
-                                <label for="ufinstituicao">UF:</label>
-                                <div class="br-input">
-                                    {% render_field fornecedor_filtro_form.ufinstituicao   id="ufinstituicao" type="text" style="width:100%" %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
-                                <label for="situacaofornecedor">Situação</label>
-                                <div class="br-input">
-                                    {% render_field fornecedor_filtro_form.situacaofornecedor class="campo-select" type="select" style="width:100%" %}
+                                    {% render_field solicitacao_cestas_filtro_form.situacaocestas class="campo-select" type="select" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
@@ -68,7 +70,7 @@
                                     <i class="fas fa-arrow-left primary" style="padding-right: 20px;"></i>
                                     Voltar
                                 </a>
-                                 <a class="br-button secondary mr-3"href="{% url 'fornecedor' %}"
+                                 <a class="br-button secondary mr-3"href="{% url 'solicitacaocestas' %}"
                                    type="button">
                                     <i class="fa fa-trash" style="padding-right: 20px;"></i>
                                         Limpar Busca
@@ -85,29 +87,28 @@
                             <div class="table-header">
                                 <div class="top-bar">
                                     <div class="table-title mb-6"></div>
-                                    <a href="{% url 'fornecedor_add' %}" class="br-button mb-6"><i class="fas fa-plus" style="padding-right: 20px;"></i>Incluir</a>
                                 </div>
                             </div>
                             <table>
-                                <caption>FORNECEDOR</caption>
+                                <caption>Solicitações</caption>
                                 <thead>
                                 <tr>
                                     <th scope="col" class="table-head"></th>
                                     <th scope="col" class="table-head"></th>
                                     <th scope="col" class="table-head">CNPJ</th>
                                     <th scope="col" class="table-head">UF</th>
-                                    <th scope="col" class="table-head">Nome Fantasia</th>
-                                    <th scope="col" class="table-head">Razão Social</th>
+                                    <th scope="col" class="table-head">Município</th>
+                                    <th scope="col" class="table-head">Nome Responsável</th>
                                     <th scope="col" class="table-head">Data Solicitação</th>
                                     <th scope="col" class="table-head">Situação</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% if fornecedores %}
-                                    {% for fornecedor in fornecedores %}
+                                {% if solicitacoescestas %}
+                                    {% for solicitacao in solicitacoescestas %}
                                         <tr>
                                             <td data-th="Ações">
-                                                <a href="{% url 'fornecedor_update' pk=fornecedor.id %}"
+                                                <a href="{% url 'solicitacaocestas_update' pk=solicitacao.id %}"
                                                    class="br-button"><i
                                                         class="fas fa-pen" aria-hidden="true"></i></a>
                                             </td>
@@ -119,12 +120,12 @@
                                              <td data-th="link">
                                              </td>
                                              {% endif %}
-                                            <td data-th="cnpjinstituicao">{{ fornecedor.cnpjinstituicao }}</td>
-                                            <td data-th="ufinstituicao">{{ fornecedor.ufinstituicao }}</td>
-                                            <td data-th="nomefantasia">{{ fornecedor.nomefantasia }}</td>
-                                            <td data-th="razaosocial">{{ fornecedor.razaosocial }}</td>
-                                            <td data-th="tipo">{{ fornecedor.dataavaliacao }}</td>
-                                                {% if fornecedor.situacaofornecedor == 'ATIVO'%}
+                                            <td data-th="cnpjentefederativo">{{ solicitacao.cnpjentefederativo }}</td>
+                                            <td data-th="uf">{{ solicitacao.uf }}</td>
+                                            <td data-th="municipioentefederativo">{{ solicitacao.municipio_local_armazenamento }}</td>
+                                            <td data-th="razaosocial">{{ solicitacao.nomeresponsavel }}</td>
+                                            <td data-th="tipo">{{ solicitacao.dataavaliacao }}</td>
+                                                {% if solicitacao.situacaocestas == 'ATIVO'%}
                                                     <td data-th="ativo"><span class="br-tag bg-green-cool-vivid-20"><span>Ativo</span></span></td>
                                                 {% else %}
                                                     <td data-th="ativo"><span class="br-tag bg-red-50"><span>Inativo</span></span></td>

@@ -7,7 +7,7 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView
 from django.views.generic.edit import FormView, CreateView, UpdateView
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, Permission
 from django.urls import reverse_lazy
 from autenticacao.forms import AddUserGroupForm, GrupoFiltroForm, LoginForm, UsuarioForm, UsuarioFiltroForm, \
     UsuarioUpdateForm
@@ -205,3 +205,10 @@ def usuario_desativar(request, pk):
     usuario.save()
     return redirect('usuarios')
 
+class EditButtonPermission(Permission):
+    """
+    Permissão para visualizar o botão de editar
+    """
+
+    name = 'can_edit_button'
+    codename = 'edit_button'

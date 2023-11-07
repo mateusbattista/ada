@@ -14,7 +14,7 @@
                 <div class="card-header">
                     <div class="d-flex">
                         <div class="ml-6">
-                            <div class="text-weight-semi-bold text-up-02">SOLICITAÇÃO DE ADESÃO AO ADA</div>
+                            <div class="text-weight-semi-bold text-up-02" style="color:#5992ED;">SOLICITAÇÃO DE ADESÃO AO ADA</div>
                         </div>
                     </div>
                 </div>
@@ -62,18 +62,18 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
-                                <label for="nomemunicipio">Município</label>
-                                <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.nomemunicipio type="text" style="width:100%" %}
+                            <div class="col-sm-11 col-lg-11 mb-6">
+                                <div class="br-input ">
+                                     <label for="estado">Estado</label>
+                                    {% render_field solicitacao_filtro_form.estado_solicitante class="campo-select" type="select" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
-                                <label for="ufrgprefeito">UF</label>
-                                <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.ufrgprefeito type="text" style="width:100%" %}
+                            <div class="col-sm-11 col-lg-11 mb-6">
+                                <div class="br-input ">
+                                    <label for="municipio">Município (UF)</label>
+                                    {% render_field solicitacao_filtro_form.municipio_solicitante class="campo-select" type="select" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                             <div class="col-sm-11 mb-6">
                                 <label for="situacao">Situação</label>
                                 <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.situacao  type="select" style="width:100%" %}
+                                    {% render_field solicitacao_filtro_form.situacao class="campo-select"  type="select" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                             <div class="col-sm-11 mb-6">
                                 <label for="ntermo">Aceito?</label>
                                 <div class="br-input">
-                                    {% render_field solicitacao_filtro_form.ntermo  type="select" style="width:100%" %}
+                                    {% render_field solicitacao_filtro_form.ntermo  class="campo-select" type="select" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
@@ -150,7 +150,7 @@
                                             </td>
                                             <td data-th="ibgeprefeitura">{{ solicitacao.ibgeprefeitura }}</td>
                                             <td data-th="ufprefeitura">{{ solicitacao.ufrgprefeito }}</td>
-                                            <td data-th="nomemunicipio">{{ solicitacao.nomemunicipio }}</td>
+                                            <td data-th="nomemunicipio">{{ solicitacao.municipio_solicitante }}</td>
                                             <td data-th="cpfsolicitante">{{ solicitacao.cpfsolicitante }}</td>
                                             <td data-th="name">{{ solicitacao.name }}</td>
                                             <td data-th="quantidadecestas">{{ solicitacao.quantidadecestas }}</td>

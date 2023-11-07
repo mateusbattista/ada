@@ -1,0 +1,501 @@
+{% extends 'base-interno.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block css %}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'css/table.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="row">
+            <div class="col-lg-12 mb-4 order-0">
+                <div class="br-card">
+                    <div class="card-content ml-6 mr-6">
+                         <form method="post" id="solicitacaocestas_form" enctype="multipart/form-data">{% csrf_token %}
+                                {{ form.media.js }}
+                                <div class='f"card-header d-flex align-items-center justify-content-between mb-2 '>
+                                    <h5 class="card-title d-sm-inline-block ml-6">SOLICITAÇÃO DE CESTAS EMERGENCIAIS</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="wizard-sample-1">
+                                      <div class="br-wizard" collapsed="collapsed" step="1">
+                                        <div class="wizard-progress">
+                                          <button class="wizard-progress-btn" type="button" title="Informações do Demandante"><span class="info">Informações do Demandante</span></button>
+                                          <button class="wizard-progress-btn" type="button" title="Inserir os Arquivos Comprobatórios" active="d"><span class="info">Inserir os Arquivos Comprobatórios</span></button>
+                                          <button class="wizard-progress-btn" type="button" title="Informação da Ação de Distribuição de Cestas" active="active"><span class="info">Informação da Ação de Distribuição de Cestas</span></button>
+                                        </div>
+                                        <br>
+                                        <div class="wizard-form">
+                                          <div class="wizard-panel" active="active">
+                                            <div class="wizard-panel-content">
+                                                <br>
+                                                <div class="header-subtitle"><strong style="color:#1351B4;">Informações Gerais</strong>
+                                                </div>
+                                                <span class="br-divider sm my-3"></span>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="municipioentefederativo">Nome do Município ou Estado/DF:</label>
+                                                            {% render_field form.municipioentefederativo id="municipioentefederativo" type="text" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="ibge">IBGE:</label>
+                                                            {% render_field form.ibge id="ibge" type="text" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="cnpjentefederativo">CNPJ do Município ou Estado/DF:</label>
+                                                            {% render_field form.cnpjentefederativo id="cnpjentefederativo" type="text" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="header-subtitle"><strong style="color:#1351B4;">Informações Gerais do Demandante</strong>
+                                                </div>
+                                                <span class="br-divider sm my-3"></span>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="cepentefederativo">CEP::</label>
+                                                            {% render_field form.cepentefederativo class="cep" id="cepentefederativo" type="text"  %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="enderecoentefederativo">Endereço:</label>
+                                                            {% render_field form.enderecoentefederativo id="enderecoentefederativo" type="text" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="numeroentefederativo">Número:</label>
+                                                            {% render_field form.numeroentefederativo  id="numeroentefederativo" type="text" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                      <div class="col-sm-11 col-lg-11 mb-3">
+                                                          <div class="br-input small">
+                                                              <label for="estado_local_armazenamento">UF:</label>
+                                                              {% render_field form.estado_entefederativo   class="campo-select" type="select" %}
+                                                          </div>
+                                                       </div>
+                                                  </div>
+                                                <div class="form-group row">
+                                                      <div class="col-sm-11 col-lg-11 mb-3">
+                                                          <div class="br-input small">
+                                                              <label for="municipio_local_armazenamento">Município:</label>
+                                                              {% render_field form.municipio_entefederativo  class="campo-select" type="select" %}
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="nomeprefeito">Nome Prefeito(a) ou Governador(a):</label>
+                                                            {% render_field form.nomeprefeito  id="nomeprefeito" type="text" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="telefone1entefederativo">Telefone(1):</label>
+                                                            {% render_field form.telefone1entefederativo class="telefone" id="telefone1entefederativo" type="text" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="telefone2entefederativo">Telefone(2):</label>
+                                                            {% render_field form.telefone2entefederativo class="telefone" id="telefoneinstituicao" type="text" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="emailentefederativo">E-mail:</label>
+                                                            {% render_field form.emailentefederativo id="emailentefederativo" type="text" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="header-subtitle"><strong style="color:#1351B4;">Dados do Responsável pela Demanda</strong>
+                                                </div>
+                                                <span class="br-divider sm my-3"></span>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="nomeresponsavel">Nome:</label>
+                                                            {% render_field form.nomeresponsavel id="nomeresponsavel" type="text" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="rgresponsavel">RG:</label>
+                                                            {% render_field form.rgresponsavel id="rgresponsavel" type="text" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="orgaoresponsavel">Órgão Expedidor:</label>
+                                                            {% render_field form.orgaoresponsavel id="orgaoresponsavel" type="text" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="cpfresponsavel">CPF:</label>
+                                                            {% render_field form.cpfresponsavel class="cpf" id="cpfresponsavel" type="text" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="cargoresponsavel">Cargo:</label>
+                                                            {% render_field form.cargoresponsavel id="cargoresponsavel" type="text" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="emailresponsavel">E-mail:</label>
+                                                            {% render_field form.emailresponsavel id="emailresponsavel" type="text" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="telefone1responsavel">Telefone:</label>
+                                                            {% render_field form.telefone1responsavel id="telefone1responsavel" class="telefone" type="text" %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="wizard-panel-btn">
+                                              <button class="br-button primary wizard-btn-next" type="button">Avançar
+                                              </button>
+                                            </div>
+                                          </div>
+                                          <div class="wizard-panel">
+                                            <div class="wizard-panel-content">
+                                                    <div class="header-subtitle"><strong style="color:#1351B4;">Documento de Reconhecimento da Emergência de Calamidade Pública</strong>
+                                                    </div>
+                                                    <span class="br-divider sm my-3"></span>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-11 col-lg-11 mb-3">
+                                                            <div class="br-input small">
+                                                                <label for="tipo">Tipo:</label>
+                                                                {% render_field form.tipo  id="tipo" type="text" %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-12 my-6">
+                                                            <div class="br-upload">
+                                                                <label class="upload-label"
+                                                                    for="multiple-files">
+                                                                    <span>Arquivo</span></label>
+                                                                    <input class="upload-input" id="multiple-files"
+                                                                    name='documentos' type="file"
+                                                                    multiple="multiple"/>
+                                                                <div class="upload-list"></div>
+                                                            </div>
+                                                            <p class="text-base mt-1">Clique ou arraste os arquivos para
+                                                                cima do
+                                                                componente
+                                                                Upload.</p>
+                                                        </div>
+                                                    </div>
+                                                    {% if  documentos %}
+                                                        <div class="br-table" >
+                                                            <div class="table-header">
+                                                                <div class="top-bar">
+                                                                    <div class="table-title mb-4" style="color:#1351B4;">Arquivos Anexados</div>
+                                                                </div>
+                                                            </div>
+                                                            <table>
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col" class="table-head"></th>
+                                                                            <th scope="col" class="table-head"></th>
+                                                                            <th scope="col" class="table-head">Nome do Arquivo</th>
+                                                                            <th scope="col" class="table-head">Tipo do Documento</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    {% for documento in documentos.all %}
+                                                                        {% if  documento.arquivo %}
+                                                                            <tr>
+                                                                                <td data-th="Ações">
+                                                                                    <a href="{{ documento.arquivo.url }}"  target="_blank" class="br-button" > <i  class="fas fa-eye" aria-hidden="true"></i></a>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <a class="br-button circle" data-toggle="modal" data-target="#documento{{ documento.id }}"><i class="fas fa-trash-alt" aria-hidden="true"></i></a>
+                                                                                    <div class="br-scrim-util foco" id="documento{{ documento.id }}"
+                                                                                            data-scrim="true">
+                                                                                        <div class="br-modal">
+                                                                                            <div class="br-modal-header">
+                                                                                                <strong>Excluir</strong>
+                                                                                            </div>
+                                                                                            <div class="br-modal-body">
+                                                                                                <p>Deseja realmente excluir
+                                                                                                    <strong>{{ documento.filename }}</strong>
+                                                                                                    ?</p>
+                                                                                            </div>
+                                                                                            <div class="br-modal-footer justify-content-center">
+                                                                                                <a class="br-button mr-3" href="{% url 'delete_documento_cestas' pk=documento.pk %}"
+                                                                                                    type="button">
+                                                                                                    Não
+                                                                                                </a>
+                                                                                                <a class="br-button primary mr-3" href="{% url 'delete_documento_cestas' pk=documento.pk  %}"
+                                                                                                    type="button">
+                                                                                                    Sim
+
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td data-th="{{ documento.filename }}">{{ documento.filename }}</td>
+                                                                                <td data-th="">Documento comprobatório</td>
+                                                                            </tr>
+                                                                        {% endif %}
+                                                                    {% endfor %}
+                                                                    </tbody>
+                                                            </table>
+                                                        </div>
+                                                    {% endif %}
+                                            </div>
+                                            <div class="wizard-panel-btn">
+                                              <button class="br-button primary wizard-btn-next" type="button">Avançar
+                                              </button>
+                                            </div>
+                                          </div>
+                                          <div class="wizard-panel">
+                                            <div class="wizard-panel-content">
+                                              <div class="header-subtitle"><strong style="color:#1351B4;">Setor Responsável pela Ação de Distribuição de Cestas Emergenciais</strong>
+                                              </div>
+                                              <span class="br-divider sm my-3"></span>
+                                              <div class="form-group row">
+                                                  <div class="col-sm-11 col-lg-11 mb-3">
+                                                      <div class="br-input small">
+                                                          <label for="setor">Setor: </label>
+                                                          {% render_field form.setor id="setor" type="text" %}
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                               <br>
+                                              <div class="header-subtitle"><strong style="color:#1351B4;">Coordenador(a) Geral da Ação de Distribuição de Cestas Emergenciais</strong>
+                                              </div>
+                                              <span class="br-divider sm my-3"></span>
+                                              <div class="form-group row">
+                                                  <div class="col-sm-11 col-lg-11 mb-3">
+                                                      <div class="br-input small">
+                                                          <label for="nomecoordenador">Nome:</label>
+                                                          {% render_field form.nomecoordenador id="nomecoordenador" type="text" %}
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group row">
+                                                  <div class="col-sm-11 col-lg-11 mb-3">
+                                                      <div class="br-input small">
+                                                          <label for="cpfcoordenador">CPF:</label>
+                                                          {% render_field form.cpfcoordenador  class="cpf" id="cpfcoordenador"  maxlength="10" type="text" %}
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group row">
+                                                  <div class="col-sm-11 col-lg-11 mb-3">
+                                                      <div class="br-input small">
+                                                          <label for="cargocoordenador">Cargo/Função:</label>
+                                                          {% render_field form.cargocoordenador id="cargocoordenador" type="text" %}
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group row">
+                                                  <div class="col-sm-11 col-lg-11 mb-3">
+                                                      <div class="br-input small">
+                                                          <label for="emailcoordenador">E-mail:</label>
+                                                          {% render_field form.emailcoordenador id="emailcoordenador" type="text" %}
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group row">
+                                                  <div class="col-sm-11 col-lg-11 mb-3">
+                                                      <div class="br-input small">
+                                                          <label for="telefone1coordenador">Telefone(1):</label>
+                                                          {% render_field form.telefone1coordenador class="telefone" id="telefone1coordenador" type="text" %}
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group row">
+                                                  <div class="col-sm-11 col-lg-11 mb-3">
+                                                      <div class="br-input small">
+                                                          <label for="telefone2coordenador">Telefone(2):</label>
+                                                          {% render_field form.telefone2coordenador class="telefone" id="telefone2coordenador" type="text" %}
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <br>
+                                              <div class="header-subtitle"><strong style="color:#1351B4;">Quantiade de Cestas Emergenciais Pleiteadas</strong>
+                                              </div>
+                                              <span class="br-divider sm my-3"></span>
+                                              <div class="form-group row">
+                                                  <div class="col-sm-11 col-lg-11 mb-3">
+                                                      <div class="br-input small">
+                                                      <label for="quantidadecestas">Número de Cestas:</label>
+                                                          {% render_field form.quantidadecestas id="quantidadecestas" type="text" %}
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <br>
+                                              <div class="header-subtitle"><strong style="color:#1351B4;">Local de Armazenamento de Cestas</strong></div>
+                                              <span class="br-divider sm my-3"></span>
+                                              <div class="form-group row">
+                                                  <div class="col-sm-11 col-lg-11 mb-3">
+                                                      <div class="br-input small">
+                                                          <label for="nomelocalarmazenamento">Nome do Local:</label>
+                                                          {% render_field form.nomelocalarmazenamento id="nomelocalarmazenamento" type="text" %}
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group row">
+                                                  <div class="col-sm-11 col-lg-11 mb-3">
+                                                      <div class="br-input small">
+                                                          <label for="estado_local_armazenamento">UF:</label>
+                                                          {% render_field form.estado_local_armazenamento   class="campo-select" type="select" %}
+                                                      </div>
+                                                   </div>
+                                              </div>
+                                              <div class="form-group row">
+                                                  <div class="col-sm-11 col-lg-11 mb-3">
+                                                      <div class="br-input small">
+                                                          <label for="municipio_local_armazenamento">Município:</label>
+                                                          {% render_field form.municipio_local_armazenamento class="campo-select" type="select" %}
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group row">
+                                                  <div class="col-sm-11 col-lg-11 mb-3">
+                                                      <div class="br-input small">
+                                                          <label for="ceparmazenamento">CEP:</label>
+                                                          {% render_field form.ceparmazenamento class="cep" id="ceparmazenamento" type="text" %}
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group row">
+                                                  <div class="col-sm-11 col-lg-11 mb-3">
+                                                      <div class="br-input small">
+                                                          <label for="enderecoarmazenamento">Endereço:</label>
+                                                          {% render_field form.enderecoarmazenamento id="enderecoarmazenamento" type="text" %}
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                               <div class="form-group row">
+                                                  <div class="col-sm-11 col-lg-11 mb-3">
+                                                      <div class="br-input small">
+                                                          <label for="bairroarmazenamento">Bairro:</label>
+                                                          {% render_field form.bairroarmazenamento  id="bairroarmazenamento" type="text" %}
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group row">
+                                                  <div class="col-sm-11 col-lg-11 mb-3">
+                                                      <div class="br-input small">
+                                                          <label for="complementoarmazenamento">Complemento:</label>
+                                                          {% render_field form.complementoarmazenamento id="complementoarmazenamento" type="text" %}
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                            <div class="wizard-panel-btn">
+                                                <button class="br-button primary wizard-btn" type="submit">Enviar
+                                                </button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="card-footer mt-3">
+                                        <div class="card-footer mt-3">
+                                            <div class="card-footer mt-3">
+                                                {% if form.errors %}
+                                                    {% for field in form %}
+                                                        {% for error in field.errors %}
+
+                                                            <div class="br-message danger" role="alert">
+                                                                <div class="icon"><i class="fas fa-times-circle fa-lg"
+                                                                                     aria-hidden="true"></i>
+                                                                </div>
+                                                                <div class="content"><span
+                                                                        class="message-title">Erro no campo {{ field.label }}.</span><span
+                                                                        class="message-body"> {{ error }}</span>
+                                                                </div>
+                                                                <div class="close">
+                                                                    <button class="br-button circle small" type="button"
+                                                                            aria-label="content"><i
+                                                                            class="fas fa-times" aria-hidden="true"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+                                                    {% endfor %}
+                                                {% endif %}
+<!--                                               -->
+                                            </div>                  <!-- /.card-footer -->
+                                        </div>
+                                    </div>                  <!-- /.card-footer -->
+                                </div>
+                         </form>
+                    </div>
+                </div>
+            </div><!-- /.card-footer -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="/static/smart-selects/admin/js/chainedfk.js"></script>
+    <script src="/static/smart-selects/admin/js/bindfields.js"></script>
+    <script src="{% static '@govbr-ds/core/dist/core.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{% static 'js/gerenciamento_select2.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.telefone').mask('(00) 0000-0000');
+        $('.cep').mask('00000-000');
+        $('.cpf').mask('000.000.000-00');
+    });
+    </script>
+    <script>
+        $("input[type=text]").keyup(function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+    </script>
+{% endblock %}

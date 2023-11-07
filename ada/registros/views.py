@@ -239,20 +239,21 @@ class SolicitacaoListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        numero = self.request.GET.get("numero")
-        ano = self.request.GET.get("ano")
+        name = self.request.GET.get("name")
+        cpfsolicitante = self.request.GET.get("cpfsolicitante")
         nomeprefeito = self.request.GET.get("nomeprefeito")
         cpfprefeito = self.request.GET.get("cpfprefeito")
-        municipioprefeitura = self.request.GET.get("municipioprefeitura")
-        ufrgprefeito = self.request.GET.get("ufrgprefeito")
+        municipio_solicitante = self.request.GET.get("municipio_solicitante")
+        estado_solicitante = self.request.GET.get("estado_solicitante")
         ibge = self.request.GET.get("ibge")
         situacao = self.request.GET.get("situacao")
+        ntermo = self.request.GET.get("ntermo")
 
-        if numero:
-            queryset = queryset.filter(numero__contains=numero)
+        if name:
+            queryset = queryset.filter(name__contains=name)
 
-        if ano:
-            queryset = queryset.filter(ano__contains=ano)
+        if cpfsolicitante:
+            queryset = queryset.filter(cpfsolicitante__contains=cpfsolicitante)
 
         if nomeprefeito:
             queryset = queryset.filter(nomeprefeito__contains=nomeprefeito)
@@ -260,17 +261,20 @@ class SolicitacaoListView(LoginRequiredMixin, ListView):
         if cpfprefeito:
             queryset = queryset.filter(cpfprefeito__contains=cpfprefeito)
 
-        if municipioprefeitura:
-            queryset = queryset.filter(municipioprefeitura__contains=municipioprefeitura)
+        if municipio_solicitante:
+            queryset = queryset.filter(municipio_solicitante__ibge__contains=municipio_solicitante)
 
-        if ufrgprefeito:
-            queryset = queryset.filter(ufrgprefeito__contains=ufrgprefeito)
+        if estado_solicitante:
+            queryset = queryset.filter(estado_solicitante=estado_solicitante)
 
         if ibge:
             queryset = queryset.filter(ibge__contains=ibge)
 
         if situacao:
             queryset = queryset.filter(situacao__contains=situacao)
+
+        if ntermo:
+            queryset = queryset.filter(ntermo__contains=ntermo)
 
         return queryset
 

@@ -60,7 +60,11 @@ class ArquivoFornecedores(models.Model):
 
 
 
-class SolicitacaoCestaADA(models.Model):
+class SolicitacaoCestasADA(models.Model):
+    SITUACAO = [
+        ("ATIVO", "ATIVO"),
+        ("INATIVO", "INATIVO"),
+    ]
     municipioentefederativo= models.CharField(verbose_name="MUNICIPIO ENTE FEDERATIVO", max_length=100, null=True, blank=True)
     ibge = models.CharField(verbose_name="IBGE ENTE FEDERATIVO", max_length=20, null=True, blank=True)
     cnpjentefederativo = models.CharField(verbose_name="CNPJ ENTEFEDERATIVO", max_length=20, null=True, blank=True, validators=[valida_cnpj])
@@ -83,6 +87,7 @@ class SolicitacaoCestaADA(models.Model):
     nomecoordenador = models.CharField(verbose_name="NOME DO COORDENADOR", max_length=100, null=True, blank=True)
     cpfcoordenador = models.CharField(verbose_name="CPF DO COORDENADOR", max_length=20, null=True, blank=True, validators=[valida_cpf])
     cargocoordenador = models.CharField(verbose_name="CARGO DO COORDENADOR", max_length=100, null=True, blank=True)
+    emailcoordenador = models.CharField(verbose_name="EMAIL DO COORDENADOR", max_length=100, null=True, blank=True)
     telefone1coordenador = models.CharField(verbose_name="TELEFONE 1 COORDENADOR", max_length=20, null=True, blank=True)
     telefone2coordenador = models.CharField(verbose_name="TELEFONE 2 COORDENADOR", max_length=20, null=True, blank=True)
     quantidadecestas = models.BigIntegerField(verbose_name="QUANTIDADE DE CESTAS", null=True, blank=True)
@@ -96,7 +101,7 @@ class SolicitacaoCestaADA(models.Model):
                                                    related_name='solicitacao_cesta_local_armazenamento')
     municipio_local_armazenamento = ChainedForeignKey(
         Municipio,
-        chained_field="estado_local_armazenamento",
+        chained_field="estado_local_armazenamento   ",
         chained_model_field="estado",
         show_all=False,
         auto_choose=False,
@@ -112,7 +117,7 @@ class SolicitacaoCestaADA(models.Model):
                                                    related_name='solicitacao_cesta_controle_social')
     municipio_controlesocial = ChainedForeignKey(
         Municipio,
-        chained_field="estado_controle_social",
+        chained_field="estado_controlesocial",
         chained_model_field="estado",
         show_all=False,
         auto_choose=False,
@@ -120,18 +125,36 @@ class SolicitacaoCestaADA(models.Model):
         blank=True,
         related_name='solicitacao_cesta_municipio_controle_social'
     )
+    estado_entefederativo = models.ForeignKey(Estado, on_delete=models.CASCADE, null=True, blank=True,
+                                              related_name='solicitacao_cesta_entefederativo')
+    municipio_entefederativo = ChainedForeignKey(
+        Municipio,
+        chained_field="estado_entefederativo",
+        chained_model_field="estado",
+        show_all=False,
+        auto_choose=False,
+        null=True,
+        blank=True,
+        related_name='solicitacao_cesta_municipioentefederativo'
+    )
     telefone1controlesocial = models.CharField(verbose_name="TELEFONE 1 CONTROLE SOCIAL", max_length=20, null=True, blank=True)
     telefone2controlesocial = models.CharField(verbose_name="TELEFONE 2 CONTROLE SOCIAL", max_length=20, null=True, blank=True)
     emailcontrolesocial  = models.CharField(verbose_name="E-MAIL DO CONTROLE SOCIAL", max_length=150, null=True, blank=True)
     nomerepresentante = models.CharField(verbose_name="NOME DO REPRESENTANTE", max_length=100, null=True, blank=True)
     cargorepresentante = models.CharField(verbose_name="CARGO DO REPRESENTANTE", max_length=100, null=True, blank=True)
+    dataavaliacao = models.DateTimeField(verbose_name="DATA DA AVALIAÇÃO", auto_now_add=True, null=True, blank=True)
+    nomeavaliador = models.CharField(verbose_name="NOME DO AVALIADOR", max_length=100, null=True, blank=True)
+    notatecnica = models.FileField(verbose_name="NOTA TECNICA", upload_to='notatecnica_solicitacao_cestas', blank=True)
+    justificativa = models.TextField(blank=True)
+    situacaocestas = models.CharField(verbose_name="SITUAÇÃO", max_length=60, null=True, default='ATIVO', choices=SITUACAO,blank=True)
+    sei = models.CharField(verbose_name="NUMERO DO PROCESSO SEI", max_length=100, null=True, blank=True)
 
 
     class Meta:
         db_table = 'solicitacao_cestas_ada'
 
 class ArquivosCestas(models.Model):
-    solicitacaocestas = models.ForeignKey(SolicitacaoCestaADA, on_delete=models.CASCADE, related_name="solicitacaocestas")
+    solicitacaocestas = models.ForeignKey(SolicitacaoCestasADA, on_delete=models.CASCADE, related_name="solicitacaocestas")
     arquivo = models.FileField(upload_to='documentos_fornecedores', blank=True)
     tipo = models.CharField(verbose_name="TIPO DO ARQUIVO", max_length=100, null=True, blank=True)
 

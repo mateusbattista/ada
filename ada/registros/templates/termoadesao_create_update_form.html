@@ -13,18 +13,18 @@
             <div class="col-lg-12 mb-4 order-0">
                 <div class="br-card">
                     <div class='f"card-header d-flex align-items-center justify-content-between mb-2 '>
-                    <h5 class="card-title d-sm-inline-block ml-6">TERMO DE ADESÃO ADA</h5>
+                    <h5 class="card-title d-sm-inline-block ml-6" style="color:#5992ED;">TERMO DE ADESÃO ADA</h5>
                     </div>
                             <span class="br-divider sm my-3"></span>
                         <div class="card-content ml-6 mr-6">
                              <form method="post" id="termoadesao_form" enctype="multipart/form-data">{% csrf_token %}
                                     {{ form.media.js }}
                                 <div class="card-body">
-                                    <div class="header-subtitle"><strong>SOLICITAÇÃO DE CESTAS</strong>
+                                    <div class="header-subtitle"><strong style="color:#1351B4;">SOLICITAÇÃO DE CESTAS</strong>
                                     </div>
                                     <span class="br-divider sm my-3"></span>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="numero">Número</label>
                                                 {% render_field form.numero id="numero" type="text" %}
@@ -32,7 +32,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="ano">Ano</label>
                                                 {% render_field form.ano id="ano" type="number" %}
@@ -40,7 +40,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="processosei">SEI</label>
                                                 {% render_field form.processosei id="processosei" type="text" %}
@@ -48,12 +48,12 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="header-subtitle"><strong>Dados do Solicitante da Ação de Distribuição de Cestas
+                                    <div class="header-subtitle"><strong style="color:#1351B4;">Dados do Solicitante da Ação de Distribuição de Cestas
                                         Emergenciais</strong>
                                     </div>
                                     <span class="br-divider sm my-3"></span>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="name">Nome Completo</label>
                                                 {% render_field form.name id="name" type="text"  %}
@@ -61,7 +61,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="funcao">Função <s>*</s></label>
                                                 {% render_field form.funcao id="funcao" type="text" required="true" %}
@@ -69,7 +69,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="cpf">CPF</label>
                                                 {% render_field form.cpfsolicitante class="cpf" id="cpf" type="text" %}
@@ -77,7 +77,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="emailsolicitante">E-email</label>
                                                 {% render_field form.emailsolicitante id="emailsolicitante" type="text" %}
@@ -85,7 +85,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="telefone1solicitante">Telefone</label>
                                                 {% render_field form.telefone1solicitante class="telefone" class="telefone" id="telefone1solicitante" type="text" %}
@@ -93,23 +93,23 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                  <label for="estado">Estado</label>
-                                                {% render_field form.estado_solicitante class="campo-select" style="width:100%" %}
+                                                {% render_field form.estado_solicitante class="campo-select" type="select" style="width:100%" %}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="municipio">Município (UF)</label>
-                                                {% render_field form.municipio_solicitante type="text" class="campo-select" style="width:100%" %}
+                                                {% render_field form.municipio_solicitante class="campo-select" type="select" style="width:100%" %}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="cepsolicitante">CEP</label>
                                                 {% render_field form.cepsolicitante class="cep" id="cepsolicitante" type="text" %}
@@ -117,7 +117,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="enderecosolicitante">Endereço</label>
                                                 {% render_field form.enderecosolicitante id="enderecosolicitante" type="text" %}
@@ -125,7 +125,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="numerosolicitante">Número</label>
                                                 {% render_field form.numerosolicitante id="numerosolicitante" type="text" %}
@@ -133,7 +133,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="complementosolicitante">Complemento</label>
                                                 {% render_field form.complementosolicitante id="complementosolicitante" type="text" %}
@@ -141,7 +141,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="bairrosolicitante">Bairro</label>
                                                 {% render_field form.bairrosolicitante id="bairrosolicitante" type="text" %}
@@ -149,27 +149,27 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="header-subtitle"><strong>Informações Gerais do Ente Federativo</strong>
+                                    <div class="header-subtitle"><strong style="color:#1351B4;">Informações Gerais do Ente Federativo</strong>
                                     </div>
                                     <span class="br-divider sm my-3"></span>
                                         <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                  <label for="estado">Estado</label>
-                                                {% render_field form.estado_prefeitura class="campo-select" style="width:100%" %}
+                                                {% render_field form.estado_prefeitura class="campo-select" type="select" style="width:100%" %}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="municipio">Município (UF)</label>
-                                                {% render_field form.municipio_prefeitura type="text" class="campo-select" style="width:100%" %}
+                                                {% render_field form.municipio_prefeitura class="campo-select" type="select" style="width:100%" %}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="cnpjprefeitura">CNPJ da Prefeitura: </label>
                                                 {% render_field form.cnpjprefeitura id="cnpjprefeitura" type="text" %}
@@ -177,7 +177,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="emailprefeitura">E-mail</label>
                                                 {% render_field form.emailprefeitura id="emailprefeitura" type="text" %}
@@ -185,7 +185,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="cepprefeitura">CEP</label>
                                                 {% render_field form.cepprefeitura  class="cep" id="cepprefeitura"  maxlength="10" type="text" %}
@@ -193,7 +193,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="enderecoprefeitura">Endereço</label>
                                                 {% render_field form.enderecoprefeitura id="enderecoprefeitura" type="text" %}
@@ -201,7 +201,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="numeroprefeitura">Número</label>
                                                 {% render_field form.numeroprefeitura id="numeroprefeitura" type="text" %}
@@ -209,7 +209,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="complementoprefeitura">Complemento</label>
                                                 {% render_field form.complementoprefeitura id="complementoprefeitura" type="text" %}
@@ -217,7 +217,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="bairroprefeitura">Bairro</label>
                                                 {% render_field form.bairroprefeitura id="bairroprefeitura" type="text" %}
@@ -225,12 +225,12 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="header-subtitle"><strong>Informações do Prefeito(a) ou
+                                    <div class="header-subtitle"><strong style="color:#1351B4;">Informações do Prefeito(a) ou
                                         Governador(a)</strong>
                                     </div>
                                     <span class="br-divider sm my-3"></span>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="nomeprefeito">Nome Completo</label>
                                                 {% render_field form.nomeprefeito id="nomeprefeito" type="text" %}
@@ -238,7 +238,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="telefoneprefeito">Telefone</label>
                                                 {% render_field form.telefoneprefeito  class="telefone" id="telefoneprefeito" type="text" %}
@@ -246,7 +246,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="cpfprefeito">CPF</label>
                                                 {% render_field form.cpfprefeito class="cpf" id="cpfprefeito" type="text" %}
@@ -254,7 +254,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="rgprefeito">RG</label>
                                                 {% render_field form.rgprefeito id="rgprefeito" type="text" %}
@@ -262,7 +262,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="orgaorgprefeito">Órgão Emissor do RG</label>
                                                 {% render_field form.orgaorgprefeito id="orgaorgprefeito" type="text" %}
@@ -270,7 +270,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="ufrgprefeito">UF Emissora do RG</label>
                                                 {% render_field form.ufrgprefeito id="ufrgprefeito" type="text" %}
@@ -278,7 +278,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="emailprefeito">E-mail</label>
                                                 {% render_field form.emailprefeito id="emailprefeito" type="text" %}
@@ -286,12 +286,12 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="header-subtitle"><strong>Quantidade de Cestas Emergenciais
+                                    <div class="header-subtitle"><strong style="color:#1351B4;">Quantidade de Cestas Emergenciais
                                         Pleiteadas</strong>
                                     </div>
                                     <span class="br-divider sm my-3"></span>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="quantidadecestas">Número de Cestas <s>*</s></label>
                                                 {% render_field form.quantidadecestas id="quantidadecestas" type="number" required="true" %}
@@ -299,11 +299,11 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="header-subtitle"><strong>Local de Armazenamento das Cestas</strong>
+                                    <div class="header-subtitle"><strong style="color:#1351B4;">Local de Armazenamento das Cestas</strong>
                                     </div>
                                     <span class="br-divider sm my-3"></span>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="nomelocalarmazenamento">Nome do Local<s>*</s></label>
                                                 {% render_field form.nomelocalarmazenamento id="nomelocalarmazenamento" type="text" required="true" %}
@@ -311,23 +311,23 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                  <label for="estado">Estado</label>
-                                                {% render_field form.estado_local_armazenamento class="campo-select" style="width:100%" %}
+                                                {% render_field form.estado_local_armazenamento  class="campo-select" type="select" style="width:100%" %}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="municipio">Município (UF)</label>
-                                                {% render_field form.municipio_local_armazenamento type="text" class="campo-select" style="width:100%" %}
+                                                {% render_field form.municipio_local_armazenamento class="campo-select" type="select" style="width:100%" %}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="ceparmazenamento">CEP<s>*</s></label>
                                                 {% render_field form.ceparmazenamento  class="cep" id="ceparmazenamento" maxlength="10" type="text" required="true" %}
@@ -335,7 +335,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="enderecoarmazenamento">Endereço<s>*</s></label>
                                                 {% render_field form.enderecoarmazenamento id="enderecoarmazenamento" type="text" required="true" %}
@@ -343,7 +343,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="numeroarmazenamento">Número<s>*</s></label>
                                                 {% render_field form.numeroarmazenamento id="numeroarmazenamento" type="text" required="true"%}
@@ -351,7 +351,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="complementoarmazenamento">Complemento</label>
                                                 {% render_field form.complementoarmazenamento id="complementoarmazenamento" type="text" required="true" %}
@@ -359,7 +359,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="bairroarmazenamento">Bairro<s>*</s></label>
                                                 {% render_field form.bairroarmazenamento id="bairroarmazenamento" type="text" required="true"%}
@@ -367,11 +367,11 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="header-subtitle"><strong>Dados do Órgão de Controle Social</strong>
+                                    <div class="header-subtitle"><strong style="color:#1351B4;">Dados do Órgão de Controle Social</strong>
                                     </div>
                                     <span class="br-divider sm my-3"></span>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="nomelocalcontrolesocial">Nome do Local<s>*</s></label>
                                                 {% render_field form.nomelocalcontrolesocial id="nomelocalcontrolesocial" type="text" required="true" %}
@@ -379,23 +379,23 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                  <label for="estado">Estado</label>
-                                                {% render_field form.estado_controle_social class="campo-select" style="width:100%" %}
+                                                {% render_field form.estado_controle_social class="campo-select" type="select" style="width:100%" %}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="municipio">Município (UF)</label>
-                                                {% render_field form.municipio_controle_social type="text" class="campo-select" style="width:100%" %}
+                                                {% render_field form.municipio_controle_social class="campo-select" type="select" style="width:100%" %}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="cepcontrolesocial">CEP<s>*</s></label>
                                                 {% render_field form.cepcontrolesocial class="cep" id="cepcontrolesocial" type="text" required="true" %}
@@ -403,7 +403,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="enderecocontrolesocial">Endereço<s>*</s></label>
                                                 {% render_field form.enderecocontrolesocial id="enderecocontrolesocial" type="text" required="true"%}
@@ -411,7 +411,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="numerocontrolesocial">Número<s>*</s></label>
                                                 {% render_field form.numerocontrolesocial id="numerocontrolesocial" type="text" required="true" %}
@@ -419,7 +419,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="complementocontrolesocial">Complemento</label>
                                                 {% render_field form.complementocontrolesocial id="complementocontrolesocial" type="text" required="true"%}
@@ -427,7 +427,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="bairrocontrolesocial">Bairro<s>*</s></label>
                                                 {% render_field form.bairrocontrolesocial id="bairrocontrolesocial" type="text" required="true" %}
@@ -435,7 +435,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="telefone1controlesocial">Telefone<s>*</s></label>
                                                 {% render_field form.telefone1controlesocial class="telefone" id="telefone1controlesocial" type="text" required="true" %}
@@ -443,7 +443,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="telefone2controlesocial">Telefone<s>*</s></label>
                                                 {% render_field form.telefone2controlesocial class="telefone" class="telefone"  id="telefone2controlesocial" type="text" required="true" %}
@@ -451,7 +451,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="emailcontrolesocial">E-mail<s>*</s></label>
                                                 {% render_field form.emailcontrolesocial id="emailcontrolesocial" type="text" required="true" %}
@@ -459,7 +459,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="dirigentecontrolesocial">Diretor/representante<s>*</s></label>
                                                 {% render_field form.dirigentecontrolesocial id="dirigentecontrolesocial" type="text" required="true" %}
@@ -548,45 +548,52 @@
                                     {% endif %}
                                     </div>
                                     <br>
-                                    <div class="header-subtitle"><strong>Portaria</strong>
+                                    <div class="header-subtitle"><strong style="color:#1351B4;">Portaria</strong>
                                     </div>
                                     <span class="br-divider sm my-3"></span>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                                 <label for="portaria"></label>
-                                                {% render_field form.portaria_id   type="select" %}
+                                                {% render_field form.portaria_id  class="campo-select" type="select" %}
                                         </div>
                                     </div>
-                                    <div class="header-subtitle"><strong>Evento</strong>
+                                    <div class="header-subtitle"><strong style="color:#1351B4;">Evento</strong>
                                     </div>
                                     <span class="br-divider sm my-3"></span>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                                 <label for="evento"></label>
-                                                {% render_field form.evento_id   type="select" %}
+                                                {% render_field form.evento_id  class="campo-select" type="select" %}
                                         </div>
                                     </div>
-                                    <div class="header-subtitle"><strong>Público</strong>
+                                    <div class="header-subtitle"><strong style="color:#1351B4;">Público</strong>
                                     </div>
                                     <span class="br-divider sm my-3"></span>
                                    <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                                 <label for="publico"></label>
-                                                {% render_field form.publico_id  type="select" %}
+                                                {% render_field form.publico_id  class="campo-select" type="select" %}
                                         </div>
                                     </div>
-                                    <div class="header-subtitle"><strong>Publicação no DOU</strong></div>
+                                    <div class="header-subtitle"><strong style="color:#1351B4;">Publicação no DOU</strong></div>
                                     <span class="br-divider sm my-3"></span>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
-                                            <div class="br-input small">
-                                                <label for="data_publicacao_dou">Data da Publicação</label>
-                                                {% render_field form.data_publicacao_dou id="data_publicacao_dou" type="date" %}
+                                        <div class="col-sm-11 col-lg-11 mb-3">
+                                           <div class="br-datetimepicker" data-mode="single" data-type="text">
+                                                <div class="br-input small has-icon">
+                                                    <label for="id_data_inicio">Data Publicação DOU</label>
+                                                    {% render_field form.data_publicacao_dou data-input="data-input" %}
+                                                    <button class="br-button circle small" type="button"
+                                                            aria-label="Abrir Timepicker" data-toggle="data-toggle"
+                                                            id="simples-input-btn"><i class="fas fa-calendar-alt"
+                                                                                      aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-input small">
                                                 <label for="link_publicacao_dou">Link da Publicação</label>
                                                 {% render_field form.link_publicacao_dou id="link_publicacao_dou" type="text" %}
@@ -594,17 +601,17 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="header-subtitle"><strong>Parecer</strong>
+                                    <div class="header-subtitle"><strong style="color:#1351B4;">Parecer</strong>
                                     </div>
                                     <span class="br-divider sm my-3"></span>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                                 <label for="situacao">Situação do Parecer</label>
-                                                {% render_field form.situacao   type="select" %}
+                                                {% render_field form.situacao  class="campo-select" type="select" %}
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-sm-4 col-lg-11 mb-3">
+                                        <div class="col-sm-11 col-lg-11 mb-3">
                                             <div class="br-textarea">
                                                 <label for="observacao">Descrição do Parecer</label>
                                                 {% render_field form.observacao id="observacao" type="text" %}

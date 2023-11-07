@@ -10,5 +10,14 @@ class FornecedorForms(forms.ModelForm):
         fields = '__all__'
 
 
+class SolicitacaoCestasForms(forms.ModelForm):
+    tipo = forms.CharField()  # Ou outro tipo de campo adequado ao seu caso
+    notatecnica = forms.FileField(required=False)
+    class Meta:
+        model = SolicitacaoCestasADA
+        fields = '__all__'
+
+
+
 
 

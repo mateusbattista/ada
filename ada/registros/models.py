@@ -115,6 +115,18 @@ class TermoAdesaoADA(models.Model):
         blank=True,
         related_name='termoadesaoada_municipio_prefeitura'
     )
+    estado_entefederativo = models.ForeignKey(Estado, on_delete=models.CASCADE, null=True, blank=True,
+                                          related_name='termoadesaoada_entefederativo')
+    municipio_entefederativo = ChainedForeignKey(
+        Municipio,
+        chained_field="estado_entefederativo",
+        chained_model_field="estado",
+        show_all=False,
+        auto_choose=False,
+        null=True,
+        blank=True,
+        related_name='termoadesaoada_municipio_entefederativo'
+    )
     nomeprefeito = models.CharField(verbose_name="NOME DO PREFEITO", max_length=100, null=True, blank=True)
     telefoneprefeito = models.CharField(verbose_name="TELEFONE DO PREFEITO", max_length=50, null=True, blank=True)
     cpfprefeito = models.CharField(verbose_name="CPF DO PREFEITO", max_length=20, null=True, blank=True, validators=[valida_cpf])
@@ -138,7 +150,6 @@ class TermoAdesaoADA(models.Model):
     data_publicacao_dou = models.DateField(verbose_name="DATA DA PUBLICAÇÃO DOU", null=True, blank=True)
     link_publicacao_dou = models.CharField(verbose_name="LINK DA PUBLICAÇÃO DOU", max_length=200, null=True, blank=True)
     arquivoextrato = models.CharField(max_length=100, null=True, blank=True)
-    municipioprefeitura = models.CharField( max_length=100, null=True, blank=True)
     quantidadecestas = models.BigIntegerField(verbose_name="QUANTIDADE DE CESTAS", null=True, blank=True)
     name = models.CharField(verbose_name="NOME DO SOLICITANTE", max_length=100, null=True, blank=True)
     emailsolicitante = models.CharField( verbose_name="E-MAIL DO SOLICITANTE", max_length=100, null=True, blank=True)
@@ -147,9 +158,7 @@ class TermoAdesaoADA(models.Model):
     cepsolicitante = models.CharField(verbose_name="CEP DO SOLICITANTE", max_length=10, null=True, blank=True)
     enderecosolicitante = models.CharField( verbose_name="ENDEREÇO DO SOLICITANTE", max_length=100, null=True, blank=True)
     bairrosolicitante = models.CharField( verbose_name="BAIRRO DO SOLICITANTE", max_length=100, null=True, blank=True)
-    municipiosolicitante_id = models.BigIntegerField(verbose_name="MUNICÍPIO", null=True, blank=True)
     funcao_gestor = models.CharField(verbose_name="FUNÇÃO", max_length=100, null=True, blank=True)
-    municipiounidade_id = models.BigIntegerField(verbose_name="MUNICÍPIO", null=True, blank=True)
     numerosolicitante = models.CharField(verbose_name="NÚMERO DO SOLICITANTE", max_length=20, null=True, blank=True)
     complementosolicitante = models.CharField(verbose_name="COMPLEMENTO SOLICITANTE", max_length=50, null=True, blank=True)
     nomelocalarmazenamento = models.CharField(verbose_name="NOME DO LOCAL DE ARMAZENAMENTO", max_length=100, null=True, blank=True)
@@ -157,16 +166,11 @@ class TermoAdesaoADA(models.Model):
     numeroarmazenamento = models.CharField(verbose_name="NÚMERO DO LOCAL DE ARMAZENAMENTO", max_length=100, null=True, blank=True)
     complementoarmazenamento = models.CharField(verbose_name="COMPLEMENTO DO LOCAL DE ARMAZENAMENTO", max_length=100, null=True, blank=True)
     ceparmazenamento = models.CharField(verbose_name="CEP DO LOCAL DE ARMAZENAMENTO", max_length=10, null=True, blank=True)
-    nomemunicipioarmazenamento = models.CharField(verbose_name="NOME DO MUNICÍPIO DO LOCAL DE ARMAZENAMENTO", max_length=100, null=True, blank=True)
-    nomemunicipio = models.CharField(verbose_name="NOME DO MUNICÍPIO", max_length=100, null=True, blank=True)
-    municipioarmazenamento_id = models.BigIntegerField(null=True, blank=True)
     nomelocalcontrolesocial = models.CharField(verbose_name="NOME DO LOCAL DE CONTROLE SOCIAL", max_length=100, null=True, blank=True)
     bairrocontrolesocial = models.CharField(verbose_name="BAIRRO DO CONTROLE SOCIAL", max_length=100, null=True, blank=True)
     numerocontrolesocial = models.CharField(verbose_name="NÚMERO DO CONTROLE SOCIAL", max_length=100, null=True, blank=True)
     complementocontrolesocial = models.CharField(verbose_name="COMPLEMENTO DO CONTROLE SOCIAL", max_length=100, null=True, blank=True)
     cepcontrolesocial = models.CharField(verbose_name="CEP DO CONTROLE SOCIAL", max_length=10, null=True, blank=True)
-    nomemunicipiocontrolesocial = models.CharField(verbose_name="NOME DO MUNICÍPIO DO CONTROLE SOCIAL", max_length=100, null=True, blank=True)
-    municipiocontrolesocial_id = models.BigIntegerField(null=True, blank=True)
     telefone1controlesocial = models.CharField(verbose_name="TELEFONE 1", max_length=20, null=True, blank=True)
     telefone2controlesocial = models.CharField(verbose_name="TELEFONE 2", max_length=20, null=True, blank=True)
     emailcontrolesocial = models.CharField(verbose_name="E-MAIL DO CONTROLE SOCIAL", max_length=150, null=True, blank=True)

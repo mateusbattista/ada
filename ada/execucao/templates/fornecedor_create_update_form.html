@@ -16,23 +16,36 @@
                          <form method="post" id="fornecedor_form" enctype="multipart/form-data">{% csrf_token %}
                                 {{ form.media.js }}
                                 <div class='f"card-header d-flex align-items-center justify-content-between mb-2 '>
-                                    <h5 class="card-title d-sm-inline-block ml-6">CADASTRO DE FORNECEDORES</h5>
+                                    <h5 class="card-title d-sm-inline-block ml-6" style="color:#5992ED;">CADASTRO DE FORNECEDORES</h5>
                                 </div>
                                 <div class="card-body">
-                                            <br>
-                                            <div class="header-subtitle"><strong>Dados da Instituição</strong>
-                                            </div>
-                                            <span class="br-divider sm my-3"></span>
+                                    <div class="br-tab">
+                                      <nav class="tab-nav">
+                                        <ul>
+                                          <li class="tab-item active">
+                                            <button type="button" data-panel="panel-1"><span style="color:#1351B4;" class="name">Dados da Instituição</span></button>
+                                          </li>
+                                          <li class="tab-item">
+                                            <button type="button" data-panel="panel-2"><span style="color:#1351B4;" class="name">Informações Complementares</span></button>
+                                          </li>
+                                          <li class="tab-item ">
+                                            <button type="button" data-panel="panel-3"><span style="color:#1351B4;" class="name">Arquivos Comprobatórios</span></button>
+                                          </li>
+                                        </ul>
+                                      </nav>
+                                        <br>
+                                      <div class="tab-content">
+                                        <div class="tab-panel active" id="panel-1">
                                             <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
-                                                    <div class="br-input small">
-                                                        <label for="cnpjinstuicao">CNPJ:</label>
-                                                        {% render_field form.cnpjinstituicao id="cnpjinstituicao" type="text" %}
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-input small">
+                                                            <label for="cnpjinstuicao">CNPJ:</label>
+                                                            {% render_field form.cnpjinstituicao id="cnpjinstituicao" type="text" %}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                <div class="col-sm-11 col-lg-11 mb-3">
                                                     <div class="br-input small">
                                                         <label for="razaosocial">Razão Social:</label>
                                                         {% render_field form.razaosocial id="razaosocial" type="text" %}
@@ -40,47 +53,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
-                                                    <div class="br-input small">
-                                                        <label for="tipo">Tipo de Entidade:</label>
-                                                        {% render_field form.tipo id="tipo" type="text" %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
-                                                    <div class="br-input small">
-                                                        <label for="nomefantasia">Nome Fantasia:</label>
-                                                        {% render_field form.nomefantasia id="nomefantasia" type="text"  %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
-                                                    <div class="br-input small">
-                                                        <label for="sigla">Sigla:</label>
-                                                        {% render_field form.sigla id="sigla" type="text" %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
-                                                    <div class="br-input small">
-                                                        <label for="inscricaoestadual">Nº da Inscrição Estadual:</label>
-                                                        {% render_field form.inscricaoestadual  id="inscricaoestadual" type="text" %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
-                                                    <div class="br-input small">
-                                                        <label for="dataconst">Data da Constituição:</label>
-                                                        {% render_field form.dataconst id="dataconst" type="date" %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                <div class="col-sm-11 col-lg-11 mb-3">
                                                     <div class="br-input small">
                                                         <label for="ufinstituicao">UF:</label>
                                                         {% render_field form.ufinstituicao  id="ufinstituicao" type="text" %}
@@ -88,15 +61,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
-                                                    <div class="br-input small">
-                                                        <label for="enderecoinstituicao">Endereço:</label>
-                                                        {% render_field form.enderecoinstituicao  id="enderecoinstituicao" type="text" %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                <div class="col-sm-11 col-lg-11 mb-3">
                                                     <div class="br-input small">
                                                         <label for="cepinstituicao">CEP:</label>
                                                         {% render_field form.cepinstituicao class="cep" id="cepinstituicao" type="text" %}
@@ -104,7 +69,15 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                <div class="col-sm-11 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="enderecoinstituicao">Endereço:</label>
+                                                        {% render_field form.enderecoinstituicao  id="enderecoinstituicao" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-11 col-lg-11 mb-3">
                                                     <div class="br-input small">
                                                         <label for="telefoneinstituicao">Telefone:</label>
                                                         {% render_field form.telefoneinstituicao class="telefone" id="telefoneinstituicao" type="text" %}
@@ -112,35 +85,18 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
-                                                    <div class="br-input small">
-                                                        <label for="faxinstituicao">Fax:</label>
-                                                        {% render_field form.faxinstituicao id="faxinstituicao" type="text" %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                <div class="col-sm-11 col-lg-11 mb-3">
                                                     <div class="br-input small">
                                                         <label for="emailinstituicao">E-mail:</label>
                                                         {% render_field form.emailinstituicao id="emailinstituicao" type="text" %}
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
-                                                    <div class="br-input small">
-                                                         <label for="siteinstituicao">Site:</label>
-                                                        {% render_field form.siteinstituicao id="siteinstituicao" type="text" %}
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <br>
-                                            <div class="header-subtitle"><strong>Dados do Responsável</strong>
-                                            </div>
+                                            <div class="header-subtitle"><strong style="color:#1351B4;">Dados do Preposto</strong></div>
                                             <span class="br-divider sm my-3"></span>
                                             <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                <div class="col-sm-11 col-lg-11 mb-3">
                                                     <div class="br-input small">
                                                         <label for="cargoresponsavel">Cargo: </label>
                                                         {% render_field form.cargoresponsavel id="cargoresponsavel" type="text" %}
@@ -148,7 +104,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                <div class="col-sm-11 col-lg-11 mb-3">
                                                     <div class="br-input small">
                                                         <label for="nomeresponsavel">Nome:</label>
                                                         {% render_field form.nomeresponsavel id="nomeresponsavel" type="text" %}
@@ -156,206 +112,284 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                <div class="col-sm-11 col-lg-11 mb-3">
                                                     <div class="br-input small">
                                                         <label for="emailresponsavel">E-mail:</label>
-                                                        {% render_field form.emailresponsavel  class="cep" id="emailresponsavel"  maxlength="10" type="text" %}
+                                                        {% render_field form.emailresponsavel   id="emailresponsavel"  type="text" %}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                <div class="col-sm-11 col-lg-11 mb-3">
                                                     <div class="br-input small">
                                                         <label for="telefoneresponsavel">Telefone:</label>
-                                                        {% render_field form.telefoneresponsavel id="telefoneresponsavel" type="text" %}
+                                                        {% render_field form.telefoneresponsavel class="telefone" id="telefoneresponsavel" type="text" %}
                                                     </div>
                                                 </div>
                                             </div>
                                             <br>
-
-                                            <div class="form-group row">
-                                            <div class="col-sm-12 my-6">
-                                                <div class="br-upload">
-                                                    <label class="upload-label"
-                                                        for="multiple-files">
-                                                        <span>Arquivos Comprobatórios</span></label>
-                                                        <input class="upload-input" id="multiple-files"
-                                                        name='documentos' type="file"
-                                                        multiple="multiple"/>
-                                                    <div class="upload-list"></div>
-                                                </div>
-                                                <p class="text-base mt-1">Clique ou arraste os arquivos para
-                                                    cima do
-                                                    componente
-                                                    Upload.</p>
+                                            <br>
+                                            <div class="header-subtitle"><strong style="color:#1351B4;">Situação / Avaliação</strong>
                                             </div>
-                                        </div>
-                                            {% if  documentos %}
-                                                <div class="br-table" >
-                                                    <div class="table-header">
-                                                        <div class="top-bar">
-                                                            <div class="table-title mb-4"></div>
+                                            <span class="br-divider sm my-3"></span>
+                                            <div class="p-3xh " style="background-color:#C5D4EB;">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-3 mb-6">
+                                                        <div class="br-input small">
+                                                            <label for="nomeavaliador">Nome do Avaliador: {{ fornecedorada.nomeavaliador}}</label>
                                                         </div>
                                                     </div>
-                                                    <table>
+                                                    <div class="col-sm-3 mb-6"> </div>
+                                                    <div class="col-sm-2 mb-6"> </div>
+                                                    <div class="col-sm-3 mb-6">
+                                                        <div class="br-input small">
+                                                            <label for="dataavaliacao">Data Avaliação:{{ fornecedorada.dataavaliacao}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% if perms.can_edit_button %}
+                                                    <div class="form-group row">
+                                                                <div class="col-sm-8 mb-6">
+                                                                    <div class="br-input small">
+                                                                    <label for="situacaofornecedor">Situação do Fornecedor:</label>
+                                                                     {% render_field form.situacaofornecedor id="situacaofornecedor"  class="campo-select" type="select" disabled="disabled"  %}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3 mb-6" >
+                                                                     <button class="br-button  secondary mr-3" id="editSituacaoFornecedorButton" style="margin-top:20px" type="button" >  <i aria-hidden class="fas fa-edit"></i>Editar</button>
+                                                                </div>
+                                                    </div>
+                                               {%else%}
+                                                    <div class="form-group row">
+                                                                <div class="col-sm-11 col-lg-11 mb-3">
+                                                                    <div class="br-input small">
+                                                                    <label for="situacaofornecedor">Situação do Fornecedor:</label>
+                                                                     {% render_field form.situacaofornecedor class="campo-select" type="select" style="width:100%" disabled="disabled" %}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                               {% endif %}
+                                                <div class="form-group row">
+                                                    <div class="col-sm-11 col-lg-11 mb-3">
+                                                        <div class="br-textarea">
+                                                            <label for="justificativa">Justificativa:</label>
+                                                            {% render_field form.justificativa id="justificativa" type="text" disabled="disabled"%}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% if perms.can_edit_button %}
+                                                <div class="form-group row">
+                                                    <div class="col-sm-12 my-6">
+                                                        <div class="br-upload">
+                                                            <label class="upload-label" for="single-file"><span>Nota Técnica</span></label>
+                                                            <input class="upload-input" id="single-file"   name="notatecnica" type="file"/>
+                                                            <div class="upload-list"></div>
+                                                        </div>
+                                                        <p class="text-base mt-1">Clique ou arraste os arquivos para cima do componente Upload.</p>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                                {% if  fornecedorada.notatecnica %}
+                                                <div class="br-table">
+                                                        <div class="table-header">
+                                                            <div class="top-bar">
+                                                                <div class="table-title mb-4"></div>
+                                                            </div>
+                                                        </div>
+                                                        <table>
                                                             <thead>
                                                                 <tr>
-                                                                    <th scope="col" class="table-head"></th>
-                                                                    <th scope="col" class="table-head"></th>
+                                                                    <th scope="col"></th>
                                                                     <th scope="col" class="table-head">Nome do Arquivo</th>
                                                                     <th scope="col" class="table-head">Tipo do Documento</th>
+                                                                    <th scope="col"></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                            {% for documento in documentos.all %}
-                                                                {% if  documento.arquivo %}
-                                                                    <tr>
-                                                                        <td data-th="Ações">
-                                                                            <a href="{{ documento.arquivo.url }}"  target="_blank" class="br-button" > <i  class="fas fa-eye" aria-hidden="true"></i></a>
-                                                                        </td>
-                                                                        <td>
-                                                                            <a class="br-button circle" data-toggle="modal" data-target="#documento{{ documento.id }}"><i class="fas fa-trash-alt" aria-hidden="true"></i></a>
-                                                                            <div class="br-scrim-util foco" id="documento{{ documento.id }}"
-                                                                                    data-scrim="true">
-                                                                                <div class="br-modal">
-                                                                                    <div class="br-modal-header">
-                                                                                        <strong>Excluir</strong>
-                                                                                    </div>
-                                                                                    <div class="br-modal-body">
-                                                                                        <p>Deseja realmente excluir
-                                                                                            <strong>{{ documento.filename }}</strong>
-                                                                                            ?</p>
-                                                                                    </div>
-                                                                                    <div class="br-modal-footer justify-content-center">
-                                                                                        <a class="br-button mr-3" href="{% url 'delete_documento' pk=documento.pk %}"
-                                                                                            type="button">
-                                                                                            Não
-                                                                                        </a>
-                                                                                        <a class="br-button primary mr-3" href="{% url 'delete_documento' pk=documento.pk  %}"
-                                                                                            type="button">
-                                                                                            Sim
-
-                                                                                        </a>
-                                                                                    </div>
+                                                                <tr>
+                                                                    <td data-th="Ações">
+                                                                        <a href="{{ fornecedorada.notatecnica.url }}" target="_blank"
+                                                                           class="br-button"> <i class="fas fa-eye" aria-hidden="true"></i></a>
+                                                                         {% if perms.can_edit_button %}
+                                                                        <a class="br-button circle" data-toggle="modal" data-target="#fornecedorada{{ fornecedorada.id }}"><i class="fas fa-trash-alt" aria-hidden="true"></i></a>
+                                                                        <div class="br-scrim-util foco" id="fornecedorada{{ fornecedorada.id }}" data-scrim="true">
+                                                                            <div class="br-modal">
+                                                                                <div class="br-modal-header">
+                                                                                    <strong>Excluir</strong>
+                                                                                </div>
+                                                                                <div class="br-modal-body">
+                                                                                    <p>Deseja realmente excluir
+                                                                                        <strong>{{ substring_filtrada }}</strong>
+                                                                                        ?</p>
+                                                                                </div>
+                                                                                <div class="br-modal-footer justify-content-center">
+                                                                                    <a class="br-button mr-3"
+                                                                                       href="{% url 'delete_nota' pk=fornecedorada.id %}"
+                                                                                       type="button">
+                                                                                        Não
+                                                                                    </a>
+                                                                                    <a class="br-button primary mr-3"
+                                                                                       href="{% url 'delete_nota' pk=fornecedorada.pk %}"
+                                                                                       type="button">
+                                                                                        Sim
+                                                                                    </a>
                                                                                 </div>
                                                                             </div>
-                                                                        </td>
-                                                                        <td data-th="{{ documento.filename }}">{{ documento.filename }}</td>
-                                                                        <td data-th="">Documento comprobatório</td>
-                                                                    </tr>
-                                                                {% endif %}
-                                                            {% endfor %}
+                                                                        </div>
+                                                                    {% endif %}
+                                                                    </td>
+                                                                    <td data-th="">{{ substring_filtrada }}</td>
+                                                                    <td data-th="">{{ extensao }}</td>
+                                                                    <td data-th="">Nota Técnica do Avaliador</td>
+                                                                </tr>
                                                             </tbody>
-                                                    </table>
-                                                </div>
-                                            {% endif %}
-                                            <br>
-                                            <br>
-                                            <div class="header-subtitle"><strong>Situação / Avaliação</strong>
-                                            </div>
-                                            <span class="br-divider sm my-3"></span>
-                                             <div class="form-group row">
-                                                <div class="col-sm-3 mb-6">
-                                                    <div class="br-input small">
-                                                        <label for="nomeavaliador">Nome do Avaliador: {{ fornecedorada.nomeavaliador}}</label>
+                                                        </table>
                                                     </div>
-                                                </div>
-                                                <div class="col-sm-3 mb-6"> </div>
-                                                <div class="col-sm-2 mb-6"> </div>
-                                                <div class="col-sm-3 mb-6">
+                                                {% endif %}
+                                            </div>
+                                               <div class="form-group row">
+                                                    <div class="col-sm-12 my-6">
+                                                        <button type="submit"  style="display:flex; justify-content:flex-end;" class="br-button primary mr-3"><i class="fas fa-save" style="display: flex; justify-content:flex-end; padding-right: 20px;"></i>
+                                                            Salvar
+                                                        </button>
+                                                    </div>
+                                               </div>
+                                        </div>
+                                        <div class="tab-panel" id="panel-2">
+                                            <div class="form-group row">
+                                                <div class="col-sm-11 col-lg-11 mb-3">
                                                     <div class="br-input small">
-                                                        <label for="dataavaliacao">{{ fornecedorada.dataavaliacao}}</label>
+                                                        <label for="tipo">Tipo de Entidade:</label>
+                                                        {% render_field form.tipo id="tipo" type="text" %}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
+                                                <div class="col-sm-11 col-lg-11 mb-3">
                                                     <div class="br-input small">
-                                                    <label for="situacaofornecedor">Situação do Fornecedor:</label>
-                                                     {% render_field form.situacaofornecedor  type="select" style="width:100%" %}
+                                                        <label for="nomefantasia">Nome Fantasia:</label>
+                                                        {% render_field form.nomefantasia id="nomefantasia" type="text"  %}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-sm-4 col-lg-11 mb-3">
-                                                    <div class="br-textarea">
-                                                        <label for="justificativa">Justificativa:</label>
-                                                        {% render_field form.justificativa id="justificativa" type="text" %}
+                                                <div class="col-sm-11 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="sigla">Sigla:</label>
+                                                        {% render_field form.sigla id="sigla" type="text" %}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-sm-12 my-6">
-                                                    <div class="br-upload">
-                                                        <label class="upload-label" for="single-file"><span>Nota Técnica</span></label>
-                                                        <input class="upload-input" id="single-file"   name="notatecnica" type="file"/>
-                                                        <div class="upload-list"></div>
+                                                <div class="col-sm-11 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                        <label for="inscricaoestadual">Nº da Inscrição Estadual:</label>
+                                                        {% render_field form.inscricaoestadual  id="inscricaoestadual" type="text" %}
                                                     </div>
-                                                    <p class="text-base mt-1">Clique ou arraste os arquivos para cima do componente Upload.</p>
                                                 </div>
                                             </div>
-                                            {% if  fornecedorada.notatecnica %}
-                                            <div class="br-table">
-                                                    <div class="table-header">
-                                                        <div class="top-bar">
-                                                            <div class="table-title mb-4"></div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-11 col-lg-11 mb-3">
+                                                    <div class="br-datetimepicker" data-mode="single" data-type="text">
+                                                        <div class="br-input small has-icon">
+                                                            <label for="id_data_inicio">Data da Constituição</label>
+                                                            {% render_field form.dataconst data-input="data-input" %}
+                                                            <button class="br-button circle small" type="button"
+                                                                    aria-label="Abrir Timepicker" data-toggle="data-toggle"
+                                                                    id="simples-input-btn"><i class="fas fa-calendar-alt"
+                                                                                              aria-hidden="true"></i>
+                                                            </button>
                                                         </div>
                                                     </div>
-                                                    <table>
-                                                        <thead>
-                                                        <tr>
-                                                            <th scope="col"></th>
-                                                            <th scope="col" class="table-head">Nome do Arquivo</th>
-                                                            <th scope="col" class="table-head">Tipo do Documento</th>
-                                                            <th scope="col"></th>
-                                                            <th scope="col"></th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        {#                                                                                {% for termo in form.all %}#}
-                                                        <tr>
-
-                                                            <td data-th="Ações">
-                                                                <a href="{{ fornecedorada.notatecnica.url }}" target="_blank"
-                                                                   class="br-button"> <i class="fas fa-eye" aria-hidden="true"></i></a>
-                                                            </td>
-                                                            <td data-th="">{{ substring_filtrada }}</td>
-                                                            <td data-th="">{{ extensao }}</td>
-                                                            <td data-th="">Nota Técnica do Avaliador</td>
-                                                            <td>
-                                                                <a class="br-button circle" data-toggle="modal" data-target="#fornecedorada{{ fornecedorada.id }}"><i class="fas fa-trash-alt" aria-hidden="true"></i></a>
-                                                                <div class="br-scrim-util foco" id="fornecedorada{{ fornecedorada.id }}" data-scrim="true">
-                                                                    <div class="br-modal">
-                                                                        <div class="br-modal-header">
-                                                                            <strong>Excluir</strong>
-                                                                        </div>
-                                                                        <div class="br-modal-body">
-                                                                            <p>Deseja realmente excluir
-                                                                                <strong>{{ substring_filtrada }}</strong>
-                                                                                ?</p>
-                                                                        </div>
-                                                                        <div class="br-modal-footer justify-content-center">
-                                                                            <a class="br-button mr-3"
-                                                                               href="{% url 'delete_nota' pk=fornecedorada.id %}"
-                                                                               type="button">
-                                                                                Não
-                                                                            </a>
-                                                                            <a class="br-button primary mr-3"
-                                                                               href="{% url 'delete_nota' pk=fornecedorada.pk %}"
-                                                                               type="button">
-                                                                                Sim
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        {#                                                                        {% endfor %}#}
-                                                        </tbody>
-                                                    </table>
                                                 </div>
-                                            {% endif %}
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-11 col-lg-11 mb-3">
+                                                    <div class="br-input small">
+                                                         <label for="siteinstituicao">Site:</label>
+                                                        {% render_field form.siteinstituicao id="siteinstituicao" type="text" %}
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+                                        <div class="tab-panel " id="panel-3">
+                                              <div class="form-group row">
+                                                <div class="col-sm-12 my-6">
+                                                    <div class="br-upload">
+                                                        <label class="upload-label"
+                                                            for="multiple-files">
+                                                            <span>Arquivos Comprobatórios</span></label>
+                                                            <input class="upload-input" id="multiple-files"
+                                                            name='documentos' type="file"
+                                                            multiple="multiple"/>
+                                                        <div class="upload-list"></div>
+                                                    </div>
+                                                    <p class="text-base mt-1">Clique ou arraste os arquivos para
+                                                        cima do
+                                                        componente
+                                                        Upload.</p>
+                                                </div>
+                                              </div>
+                                                {% if  documentos %}
+                                                    <div class="br-table" >
+                                                        <div class="table-header">
+                                                            <div class="top-bar">
+                                                                <div class="table-title mb-4"></div>
+                                                            </div>
+                                                        </div>
+                                                        <table>
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col" class="table-head"></th>
+                                                                        <th scope="col" class="table-head">Nome do Arquivo</th>
+                                                                        <th scope="col" class="table-head">Tipo do Documento</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                {% for documento in documentos.all %}
+                                                                    {% if  documento.arquivo %}
+                                                                        <tr>
+                                                                            <td data-th="Ações">
+                                                                                <a href="{{ documento.arquivo.url }}"  target="_blank" class="br-button" > <i  class="fas fa-eye" aria-hidden="true"></i></a>
+                                                                                <a class="br-button circle" data-toggle="modal" data-target="#documento{{ documento.id }}"><i class="fas fa-trash-alt" aria-hidden="true"></i></a>
+                                                                                <div class="br-scrim-util foco" id="documento{{ documento.id }}"
+                                                                                        data-scrim="true">
+                                                                                    <div class="br-modal">
+                                                                                        <div class="br-modal-header">
+                                                                                            <strong>Excluir</strong>
+                                                                                        </div>
+                                                                                        <div class="br-modal-body">
+                                                                                            <p>Deseja realmente excluir
+                                                                                                <strong>{{ documento.filename }}</strong>
+                                                                                                ?</p>
+                                                                                        </div>
+                                                                                        <div class="br-modal-footer justify-content-center">
+                                                                                            <a class="br-button mr-3" href="{% url 'delete_documento' pk=documento.pk %}"
+                                                                                                type="button">
+                                                                                                Não
+                                                                                            </a>
+                                                                                            <a class="br-button primary mr-3" href="{% url 'delete_documento' pk=documento.pk  %}"
+                                                                                                type="button">
+                                                                                                Sim
+
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td data-th="{{ documento.filename }}">{{ documento.filename }}</td>
+                                                                            <td data-th="">Documento comprobatório</td>
+                                                                        </tr>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                                </tbody>
+                                                        </table>
+                                                    </div>
+                                                {% endif %}
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
                                 <div class="card-footer mt-3">
                                     <div class="card-footer mt-3">
                                         <div class="card-footer mt-3">
@@ -380,18 +414,14 @@
                                                     {% endfor %}
                                                 {% endfor %}
                                             {% endif %}
-                                            <button type="submit" class="br-button primary mr-3"><i class="fas fa-save"
-                                                                                                    style="padding-right: 20px;"></i>
-                                                Salvar
-                                            </button>
-                                            <a href="{% url 'fornecedor' %}" class="br-button">Cancelar</a>
+<!--                                            <a href="{% url 'fornecedor' %}" class="br-button">Cancelar</a>-->
                                         </div>                  <!-- /.card-footer -->
                                     </div>
                                 </div>                  <!-- /.card-footer -->
                          </form>
                     </div>
                 </div>
-            </div><!-- /.card-footer -->
+            </div>
         </div>
     </div>
 {% endblock %}
@@ -415,5 +445,26 @@
         $("input[type=text]").keyup(function () {
             $(this).val($(this).val().toUpperCase());
         });
+    </script>
+    <script>
+      const editSituacaoFornecedorButton = document.getElementById('editSituacaoFornecedorButton');
+
+      editSituacaoFornecedorButton.addEventListener('click', () => {
+        const situacaofornecedorInput = document.getElementById('situacaofornecedor');
+        const justificativaInput = document.getElementById('justificativa');
+        situacaofornecedorInput.removeAttribute('disabled');
+        justificativaInput.removeAttribute('disabled');
+        situacaofornecedorInput.focus();
+         // Envia uma solicitação POST para o URL de destino
+            fetch('/fornecedor/salvar_avaliador/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                }),
+            });
+      });
     </script>
 {% endblock %}
