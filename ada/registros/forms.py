@@ -22,7 +22,7 @@ class TipoPublicoForms(forms.ModelForm):
 
 class SolicitacaoForms(forms.ModelForm):
     class Meta:
-        model = TermoAdesaoADA
+        model = SolicitacaoADA
         fields = '__all__'
 
 

@@ -27,5 +27,5 @@ class Municipio(models.Model):
         verbose_name = 'Município'
 
     def __str__(self):
-        return f'{self.nome}/{self.estado.sigla} - [{self.ibge}]'
+        return f'{self.nome}/{self.estado.sigla} '
 

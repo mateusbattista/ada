@@ -12,6 +12,7 @@ from django.shortcuts import redirect
 from registros.models import *
 from registros.forms import *
 from pprint import pprint
+from django.db.models import Q
 
 
 # Create your views here.
@@ -227,7 +228,7 @@ def Publico_delete(request, pk):
 
 class SolicitacaoListView(LoginRequiredMixin, ListView):
     login_url = '/autenticacao/login/'
-    model = TermoAdesaoADA
+    model = SolicitacaoADA
     context_object_name = 'solicitacoes'
     template_name = 'solicitacao_list.html'
     paginate_by = 20
@@ -239,58 +240,62 @@ class SolicitacaoListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        numero = self.request.GET.get("numero")
-        ano = self.request.GET.get("ano")
+        name = self.request.GET.get("name")
+        cpfsolicitante = self.request.GET.get("cpfsolicitante")
         nomeprefeito = self.request.GET.get("nomeprefeito")
         cpfprefeito = self.request.GET.get("cpfprefeito")
-        municipioprefeitura = self.request.GET.get("municipioprefeitura")
-        ufrgprefeito = self.request.GET.get("ufrgprefeito")
+        municipio_solicitante = self.request.GET.get("municipio_solicitante")
+        estado_solicitante = self.request.GET.get("estado_solicitante")
         ibge = self.request.GET.get("ibge")
         situacao = self.request.GET.get("situacao")
+        ntermo = self.request.GET.get("ntermo")
 
-        if numero:
-            queryset = queryset.filter(numero__contains=numero)
+        if name:
+            queryset = queryset.filter(name__icontains=name)
 
-        if ano:
-            queryset = queryset.filter(ano__contains=ano)
+        if cpfsolicitante:
+            queryset = queryset.filter(cpfsolicitante__icontains=cpfsolicitante)
 
         if nomeprefeito:
-            queryset = queryset.filter(nomeprefeito__contains=nomeprefeito)
+            queryset = queryset.filter(nomeprefeito__icontains=nomeprefeito)
 
         if cpfprefeito:
-            queryset = queryset.filter(cpfprefeito__contains=cpfprefeito)
+            queryset = queryset.filter(cpfprefeito__icontains=cpfprefeito)
 
-        if municipioprefeitura:
-            queryset = queryset.filter(municipioprefeitura__contains=municipioprefeitura)
+        if municipio_solicitante:
+            queryset = queryset.filter(municipio_solicitante=municipio_solicitante)
 
-        if ufrgprefeito:
-            queryset = queryset.filter(ufrgprefeito__contains=ufrgprefeito)
+        if estado_solicitante:
+            queryset = queryset.filter(estado_solicitante=estado_solicitante)
 
         if ibge:
-            queryset = queryset.filter(ibge__contains=ibge)
+            queryset = queryset.filter(ibge__icontains=ibge)
 
         if situacao:
-            queryset = queryset.filter(situacao__contains=situacao)
+            queryset = queryset.filter(situacao__icontains=situacao)
+
+        if ntermo:
+            queryset = queryset.filter(ntermo__icontains=ntermo)
 
         return queryset
 
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.has_perm("registros.view_termoadesaoada"):
+        if not request.user.has_perm("registros.view_solicitacaoada"):
             return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
         return super().dispatch(request, *args, **kwargs)
 
 class SolicitacaoUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/autenticacao/login/'
     form_class = SolicitacaoForms
-    model = TermoAdesaoADA
+    model = SolicitacaoADA
     template_name = 'solicitacao_create_update_form.html'
     success_url = '/solicitacao/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        if context['termoadesaoada'].arquivo:
-            substring_filtrada = context['termoadesaoada'].arquivo.url
+        if context['solicitacaoada'].arquivo:
+            substring_filtrada = context['solicitacaoada'].arquivo.url
 
             padrao = r'(?:[^/]*\/){3}(.*)'
 
@@ -307,7 +312,7 @@ class SolicitacaoUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.has_perm("registros.change_termoadesaoada"):
+        if not request.user.has_perm("registros.change_solicitacaoada"):
             return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
         return super().dispatch(request, *args, **kwargs)
 
@@ -315,7 +320,7 @@ class SolicitacaoUpdateView(LoginRequiredMixin, UpdateView):
 class SolicitacaoCreateView(LoginRequiredMixin, CreateView):
     login_url = '/autenticacao/login/'
     form_class = SolicitacaoForms
-    model = TermoAdesaoADA
+    model = SolicitacaoADA
     template_name = 'solicitacao_create_update_form.html'
     success_url = '/solicitacao/'
 
@@ -325,7 +330,7 @@ class SolicitacaoCreateView(LoginRequiredMixin, CreateView):
         return context
 
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.has_perm("registros.add_termoadesaoada"):
+        if not request.user.has_perm("registros.add_solicitacaoada"):
             return render(request, "pagina_erro_permissao.html")  # Redirecionar para página de erro de permissão
         return super().dispatch(request, *args, **kwargs)
 
@@ -348,7 +353,8 @@ class TermoAdesaoListView(LoginRequiredMixin, ListView):
         ano = self.request.GET.get("ano")
         nomeprefeito = self.request.GET.get("nomeprefeito")
         cpfprefeito = self.request.GET.get("cpfprefeito")
-        municipioprefeitura = self.request.GET.get("municipioprefeitura")
+        municipio_solicitante = self.request.GET.get("municipio_solicitante")
+        estado_solicitante = self.request.GET.get("estado_solicitante")
         ufrgprefeito = self.request.GET.get("ufrgprefeito")
         ibge = self.request.GET.get("ibge")
         situacao = self.request.GET.get("situacao")
@@ -365,8 +371,11 @@ class TermoAdesaoListView(LoginRequiredMixin, ListView):
         if cpfprefeito:
             queryset = queryset.filter(cpfprefeito__contains=cpfprefeito)
 
-        if municipioprefeitura:
-            queryset = queryset.filter(municipioprefeitura__contains=municipioprefeitura)
+        if municipio_solicitante:
+            queryset = queryset.filter(municipio_solicitante=municipio_solicitante)
+
+        if estado_solicitante:
+            queryset = queryset.filter(estado_solicitante=estado_solicitante)
 
         if ufrgprefeito:
             queryset = queryset.filter(ufrgprefeito__contains=ufrgprefeito)
@@ -447,7 +456,7 @@ def delete_termo_adesao(request, pk):
     return redirect('termoadesao_update', pk=termo.pk)
 
 def delete_solicitacao_termo_adesao(request, pk):
-    termo = get_object_or_404(TermoAdesaoADA, pk=pk)
+    termo = get_object_or_404(SolicitacaoADA, pk=pk)
     termo.arquivo.delete()
     return redirect('solicitacao_update', pk=termo.pk)
 
@@ -469,7 +478,8 @@ class TermoAdesaoLocalListView(LoginRequiredMixin, ListView):
         numero = self.request.GET.get("numero")
         ano = self.request.GET.get("ano")
         nomeprefeito = self.request.GET.get("nomeprefeito")
-        municipioprefeitura = self.request.GET.get("municipioprefeitura")
+        municipio_solicitante = self.request.GET.get("municipio_solicitante")
+        estado_solicitante = self.request.GET.get("estado_solicitante")
         situacao = self.request.GET.get("situacao")
 
         if numero:
@@ -481,8 +491,11 @@ class TermoAdesaoLocalListView(LoginRequiredMixin, ListView):
         if nomeprefeito:
             queryset = queryset.filter(nomeprefeito__contains=nomeprefeito)
 
-        if municipioprefeitura:
-            queryset = queryset.filter(municipioprefeitura__contains=municipioprefeitura)
+        if municipio_solicitante:
+            queryset = queryset.filter(municipio_solicitante=municipio_solicitante)
+
+        if estado_solicitante:
+            queryset = queryset.filter(estado_solicitante=estado_solicitante)
 
         if situacao:
             queryset = queryset.filter(situacao__contains=situacao)

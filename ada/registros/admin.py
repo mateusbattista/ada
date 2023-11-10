@@ -8,9 +8,11 @@ from .models import MetaADA
 from .models import TipoPublicoADA
 from .models import TipoEventoADA
 from .models import TipoPortariaADA
+from .models import SolicitacaoADA
 
 admin.site.register(TermoAdesaoADA)
 admin.site.register(MetaADA)
 admin.site.register(TipoPublicoADA)
 admin.site.register(TipoEventoADA)
 admin.site.register(TipoPortariaADA)
+admin.site.register(SolicitacaoADA)
