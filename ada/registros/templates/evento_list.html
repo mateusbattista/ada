@@ -22,9 +22,9 @@
                     <form method="get" id="evento_filtro_form">{% csrf_token %}
                         {{ evento_filtro_form.media.js }}
                         <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
+                            <div class="col-sm-11 mb-3">
                                 <label for="evento">Evento</label>
-                                <div class="br-input">
+                                <div class="br-input small">
                                     {% render_field evento_filtro_form.nometipoevento class="campo-select" style="width:100%" %}
                                 </div>
                             </div>

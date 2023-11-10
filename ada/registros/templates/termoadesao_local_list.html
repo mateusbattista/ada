@@ -22,49 +22,49 @@
                     <form method="get" id="termo_adesao_filtro_form">{% csrf_token %}
                         {{ termo_adesao_filtro_form.media.js }}
                         <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
+                            <div class="col-sm-11 mb-3">
                                 <label for="numerodotermo">Número do termo</label>
-                                <div class="br-input">
+                                <div class="br-input small">
                                     {% render_field termo_adesao_filtro_form.numero id="numerodotermo" type="text" style="width:100%" attr="disabled":attr:"disabled" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
+                            <div class="col-sm-11 mb-3">
                                 <label for="ano">Ano do Termo</label>
-                                <div class="br-input">
+                                <div class="br-input small">
                                     {% render_field termo_adesao_filtro_form.ano id="ano" type="number" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
+                            <div class="col-sm-11 mb-3">
                                 <label for="prefeito">Nome Prefeito</label>
-                                <div class="br-input">
+                                <div class="br-input small">
                                     {% render_field termo_adesao_filtro_form.nomeprefeito id="prefeito" type="text" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
+                            <div class="col-sm-11 mb-3">
                                 <label for="estado">Estado</label>
-                                <div class="br-input">
+                                <div class="br-input small">
                                     {% render_field termo_adesao_filtro_form.estado_solicitante class="campo-select" type="text" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
+                            <div class="col-sm-11 mb-3">
                                 <label for="municipio">Município</label>
-                                <div class="br-input">
+                                <div class="br-input small">
                                     {% render_field termo_adesao_filtro_form.municipio_solicitante class="campo-select" type="text" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
+                            <div class="col-sm-11 mb-3">
                                 <label for="situacao">Situação</label>
-                                <div class="br-input">
+                                <div class="br-input small">
                                     {% render_field termo_adesao_filtro_form.situacao class="campo-select" type="select" style="width:100%" %}
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
                         <div class="br-table">
                             <div class="table-header">
                                 <div class="top-bar">
-                                    <div class="table-title mb-6">TERMOS DE ADESÃO</div>
+                                    <div class="table-title mb-3">TERMOS DE ADESÃO</div>
                                 </div>
                             </div>
                             <table>

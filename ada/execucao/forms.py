@@ -2,8 +2,6 @@ from django import forms
 from .models import *
 
 class FornecedorForms(forms.ModelForm):
-
-    
     notatecnica = forms.FileField(required=False)
     class Meta:
         model = FornecedorADA
@@ -11,7 +9,7 @@ class FornecedorForms(forms.ModelForm):
 
 
 class SolicitacaoCestasForms(forms.ModelForm):
-    tipo = forms.CharField()  # Ou outro tipo de campo adequado ao seu caso
+    tipo = forms.CharField(required=False)  # Ou outro tipo de campo adequado ao seu caso
     notatecnica = forms.FileField(required=False)
     class Meta:
         model = SolicitacaoCestasADA

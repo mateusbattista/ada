@@ -134,14 +134,14 @@
                                             <span class="br-divider sm my-3"></span>
                                             <div class="p-3xh " style="background-color:#C5D4EB;">
                                                 <div class="form-group row">
-                                                    <div class="col-sm-3 mb-6">
+                                                    <div class="col-sm-3 mb-3">
                                                         <div class="br-input small">
                                                             <label for="nomeavaliador">Nome do Avaliador: {{ fornecedorada.nomeavaliador}}</label>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-3 mb-6"> </div>
-                                                    <div class="col-sm-2 mb-6"> </div>
-                                                    <div class="col-sm-3 mb-6">
+                                                    <div class="col-sm-3 mb-3"> </div>
+                                                    <div class="col-sm-2 mb-3"> </div>
+                                                    <div class="col-sm-3 mb-3">
                                                         <div class="br-input small">
                                                             <label for="dataavaliacao">Data Avaliação:{{ fornecedorada.dataavaliacao}}</label>
                                                         </div>
@@ -149,13 +149,13 @@
                                                 </div>
                                                 {% if perms.can_edit_button %}
                                                     <div class="form-group row">
-                                                                <div class="col-sm-8 mb-6">
+                                                                <div class="col-sm-8 mb-3">
                                                                     <div class="br-input small">
                                                                     <label for="situacaofornecedor">Situação do Fornecedor:</label>
                                                                      {% render_field form.situacaofornecedor id="situacaofornecedor"  class="campo-select" type="select" disabled="disabled"  %}
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-sm-3 mb-6" >
+                                                                <div class="col-sm-3 mb-3" >
                                                                      <button class="br-button  secondary mr-3" id="editSituacaoFornecedorButton" style="margin-top:20px" type="button" >  <i aria-hidden class="fas fa-edit"></i>Editar</button>
                                                                 </div>
                                                     </div>
@@ -446,25 +446,42 @@
             $(this).val($(this).val().toUpperCase());
         });
     </script>
-    <script>
-      const editSituacaoFornecedorButton = document.getElementById('editSituacaoFornecedorButton');
+<script>
+  const editSituacaoFornecedorButton = document.getElementById('editSituacaoFornecedorButton');
+  const situacaofornecedorInput = document.getElementById('situacaofornecedor');
+  const justificativaInput = document.getElementById('justificativa');
 
-      editSituacaoFornecedorButton.addEventListener('click', () => {
-        const situacaofornecedorInput = document.getElementById('situacaofornecedor');
-        const justificativaInput = document.getElementById('justificativa');
-        situacaofornecedorInput.removeAttribute('disabled');
-        justificativaInput.removeAttribute('disabled');
-        situacaofornecedorInput.focus();
-         // Envia uma solicitação POST para o URL de destino
-            fetch('/fornecedor/salvar_avaliador/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: name,
-                }),
-            });
-      });
-    </script>
+  editSituacaoFornecedorButton.addEventListener('click', () => {
+    situacaofornecedorInput.removeAttribute('disabled');
+    justificativaInput.removeAttribute('disabled');
+    situacaofornecedorInput.focus();
+
+    // Aqui, você pode usar o AJAX para chamar a função salvar_avaliador
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value; // Obtenha o token CSRF
+
+    // Crie um objeto FormData com os valores dos campos que deseja enviar
+    const formData = new FormData();
+    formData.append('url', window.location.href);
+
+
+    // Use o fetch API para enviar a solicitação POST
+        fetch('/fornecedor/salvar_avaliador/', {
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': csrfToken,
+          },
+          body: formData,
+        })
+        .then(response => {
+          if (response.ok) {
+            // location.reload(); // Recarrega a página após o salvamento bem-sucedido
+          }
+        })
+        .catch(error => {
+          console.error('Erro:', error);
+        });
+
+  });
+</script>
+
 {% endblock %}

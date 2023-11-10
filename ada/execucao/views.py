@@ -12,6 +12,11 @@ from execucao.models import *
 from execucao.forms import *
 from autenticacao.models import *
 from pprint import pprint
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.utils import timezone
+
+
 
 
 class FornecedorListView(LoginRequiredMixin, ListView):
@@ -170,11 +175,19 @@ def delete_documento(request, pk):
     documento.delete()
     return redirect('fornecedor_update', pk=fornecedor)
 def salvar_avaliador(request):
-    # Salva os dados
-    data = request.POST
-    form = FornecedorForms(data)
-    form.nomeavaliador = self.request.user.nome
-    form.save()
+    if request.method == 'POST':
+        data = request.POST.get('url')
+        partes = data.split("/")
+        data = partes[-1]
+        form = get_object_or_404(FornecedorADA,pk=data)
+        form.nomeavaliador = request.user.nome
+        form.dataavaliacao = timezone.now()
+        form.save()
+
+        # Após salvar com sucesso, redirecione para uma página de sucesso ou outra página desejada.
+        return HttpResponseRedirect(reverse('fornecedor'))
+    else:
+        return HttpResponse('Método não permitido', status=405)
 
 
 class SolicitacaoCestasCreateView(LoginRequiredMixin, CreateView):
@@ -330,3 +343,18 @@ def solicitacao_cestas_delete_nota(request, pk):
     solicitacaocesta = get_object_or_404(SolicitacaoCestasADA, pk=pk)
     solicitacaocesta.notatecnica.delete()
     return redirect('solicitacaocestas_update', pk=solicitacaocesta.pk)
+
+def salvar_avaliador_cestas(request):
+    if request.method == 'POST':
+        data = request.POST.get('url')
+        partes = data.split("/")
+        data = partes[-1]
+        form = get_object_or_404(SolicitacaoCestasADA,pk=data)
+        form.nomeavaliador = request.user.nome
+        form.dataavaliacao = timezone.now()
+        form.save()
+
+        # Após salvar com sucesso, redirecione para uma página de sucesso ou outra página desejada.
+        return HttpResponseRedirect(reverse('solicitacaocestas'))
+    else:
+        return HttpResponse('Método não permitido', status=405)

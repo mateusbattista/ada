@@ -179,7 +179,7 @@ class TermoAdesaoADA(models.Model):
     enderecocontrolesocial = models.CharField(verbose_name="ENDEREÇO DO LOCAL DO CONTROLE SOCIAL", max_length=100, null=True, blank=True)
     funcao = models.CharField(verbose_name="FUNÇÃO", max_length=100, null=True, blank=True)
     ntermo = models.CharField(max_length=10, null=True, choices=ACEITO_TERMO, blank=True)
-    arquivo = models.FileField(verbose_name="ARQUIVO", upload_to='registros', blank=True)
+    arquivo = models.FileField(verbose_name="ARQUIVO", upload_to='registro_termodesao', blank=True)
     publico_id = models.ForeignKey(TipoPublicoADA, on_delete=models.CASCADE, null=True,  blank=True, verbose_name="PÚBLICO")
     evento_id = models.ForeignKey(TipoEventoADA, on_delete=models.CASCADE, null=True, blank=True, verbose_name="EVENTO")
     portaria_id = models.ForeignKey(TipoPortariaADA, on_delete=models.CASCADE, null=True,  blank=True, verbose_name="PORTARIA",)
@@ -188,4 +188,124 @@ class TermoAdesaoADA(models.Model):
     class Meta:
         db_table = 'termoadesao_ada'
 
+
+
+class SolicitacaoADA(models.Model):
+    SITUACAO_TERMO_CHOICE = [
+        ("SOLICITADO", "SOLICITADO"),
+        ("ACEITO (AGUARDANDO ASSINATURA SEI)", "ACEITO (AGUARDANDO ASSINATURA SEI)"),
+        ("ACEITO (AGUARDANDO PUBLICACAO NO D.O.U)", "ACEITO (AGUARDANDO PUBLICACAO NO D.O.U)"),
+        ("ADERIDO", "ADERIDO"),
+        ("NEGADO","NEGADO"),
+    ]
+
+    ACEITO_TERMO = [
+        ("SIM", "SIM"),
+        ("NAO", "NAO" ),
+    ]
+    ibge = models.CharField(verbose_name="IBGE", max_length=20, null=True, blank=True)
+    name = models.CharField(verbose_name="NOME DO SOLICITANTE", max_length=100, null=True, blank=True)
+    funcao_gestor = models.CharField(verbose_name="FUNÇÃO", max_length=100, null=True, blank=True)
+    cpfsolicitante = models.CharField(verbose_name="CPF DO SOLICITANTE", max_length=20, null=True, blank=True, validators=[valida_cpf])
+    emailsolicitante = models.CharField( verbose_name="E-MAIL DO SOLICITANTE", max_length=100, null=True, blank=True)
+    telefone1solicitante = models.CharField( verbose_name="TELEFONE 1 DO SOLICITANTE ", max_length=20, null=True, blank=True)
+    estado_solicitante = models.ForeignKey(Estado, on_delete=models.CASCADE, null=True, blank=True,
+                                           related_name='solicitacao_solicitante')
+    municipio_solicitante = ChainedForeignKey(
+        Municipio,
+        chained_field="estado_solicitante",
+        chained_model_field="estado",
+        show_all=False,
+        auto_choose=False,
+        null=True,
+        blank=True,
+        related_name='solicitacao_municipio_solicitante'
+    )
+    tipo = models.CharField(verbose_name="TIPO", max_length=50, null=True, blank=True)
+    cepsolicitante = models.CharField(verbose_name="CEP DO SOLICITANTE", max_length=10, null=True, blank=True)
+    enderecosolicitante = models.CharField( verbose_name="ENDEREÇO DO SOLICITANTE", max_length=100, null=True, blank=True)
+    numerosolicitante = models.CharField(verbose_name="NÚMERO DO SOLICITANTE", max_length=20, null=True, blank=True)
+    complementosolicitante = models.CharField(verbose_name="COMPLEMENTO SOLICITANTE", max_length=50, null=True, blank=True)
+    bairrosolicitante = models.CharField( verbose_name="BAIRRO DO SOLICITANTE", max_length=100, null=True, blank=True)
+    estado_prefeitura = models.ForeignKey(Estado, on_delete=models.CASCADE, null=True, blank=True,
+                                          related_name='solicitacao_prefeitura')
+    municipio_prefeitura = ChainedForeignKey(
+        Municipio,
+        chained_field="estado_prefeitura",
+        chained_model_field="estado",
+        show_all=False,
+        auto_choose=False,
+        null=True,
+        blank=True,
+        related_name='solicitacao_municipio_prefeitura'
+    )
+    cnpjprefeitura = models.CharField(verbose_name="CNPJ", max_length=20, null=True, blank=True, validators=[valida_cnpj])
+    emailprefeitura = models.CharField(verbose_name="E-MAIL DA PREFEITURA", max_length=150, null=True, blank=True)
+    cepprefeitura = models.CharField(verbose_name="CEP DA PREFEITURA", max_length=10, null=True, blank=True)
+    enderecoprefeitura = models.CharField(verbose_name="ENDEREÇO DA PREFEITURA", max_length=100, null=True, blank=True)
+    numeroprefeitura = models.CharField(verbose_name="NÚMERO DA PREFEITURA",  max_length=100, null=True, blank=True)
+    complementoprefeitura = models.CharField(verbose_name="COMPLEMENTO DA PREFEITURA", max_length=100, null=True, blank=True)
+    bairroprefeitura = models.CharField(verbose_name="BAIRRO DA PREFEITURA", max_length=100, null=True, blank=True)
+    nomeprefeito = models.CharField(verbose_name="NOME DO PREFEITO", max_length=100, null=True, blank=True)
+    telefoneprefeito = models.CharField(verbose_name="TELEFONE DO PREFEITO", max_length=50, null=True, blank=True)
+    cpfprefeito = models.CharField(verbose_name="CPF DO PREFEITO", max_length=20, null=True, blank=True, validators=[valida_cpf])
+    rgprefeito = models.CharField(verbose_name="RG DO PREFEITO",  max_length=50, null=True, blank=True)
+    orgaorgprefeito = models.CharField(verbose_name="ORGÃO DO RG", max_length=50, null=True, blank=True)
+    ufrgprefeito = models.CharField(verbose_name="UF", max_length=2, null=True, blank=True)
+    emailprefeito = models.CharField(verbose_name="E-MAIL DO PREFEITO", max_length=150, null=True, blank=True)
+    quantidadecestas = models.BigIntegerField(verbose_name="QUANTIDADE DE CESTAS", null=True, blank=True)
+    nomelocalarmazenamento = models.CharField(verbose_name="NOME DO LOCAL DE ARMAZENAMENTO", max_length=100, null=True, blank=True)
+    estado_local_armazenamento = models.ForeignKey(Estado, on_delete=models.CASCADE, null=True, blank=True,
+                                                   related_name='solicitacao_local_armazenamento')
+    municipio_local_armazenamento = ChainedForeignKey(
+        Municipio,
+        chained_field="estado_local_armazenamento",
+        chained_model_field="estado",
+        show_all=False,
+        auto_choose=False,
+        null=True,
+        blank=True,
+        related_name='solicitacao_municipio_local_armazenamento'
+    )
+    ceparmazenamento = models.CharField(verbose_name="CEP DO LOCAL DE ARMAZENAMENTO", max_length=10, null=True, blank=True)
+    enderecoarmazenamento = models.CharField(verbose_name="ENDEREÇO DO LOCAL DE ARMAZENAMENTO", max_length=100, null=True, blank=True)
+    numeroarmazenamento = models.CharField(verbose_name="NÚMERO DO LOCAL DE ARMAZENAMENTO", max_length=100, null=True, blank=True)
+    complementoarmazenamento = models.CharField(verbose_name="COMPLEMENTO DO LOCAL DE ARMAZENAMENTO", max_length=100, null=True, blank=True)
+    bairroarmazenamento = models.CharField(verbose_name="BAIRRO DO LOCAL DE ARMAZENAMENTO", max_length=100, null=True, blank=True)
+    nomelocalcontrolesocial = models.CharField(verbose_name="NOME DO LOCAL DE CONTROLE SOCIAL", max_length=100, null=True, blank=True)
+    estado_controle_social = models.ForeignKey(Estado, on_delete=models.CASCADE, null=True, blank=True,
+                                               related_name='solicitacao_controle_social')
+    municipio_controle_social = ChainedForeignKey(
+        Municipio,
+        chained_field="estado_controle_social",
+        chained_model_field="estado",
+        show_all=False,
+        auto_choose=False,
+        null=True,
+        blank=True,
+        related_name='solicitacao_municipio_controle_social'
+    )
+    bairrocontrolesocial = models.CharField(verbose_name="BAIRRO DO CONTROLE SOCIAL", max_length=100, null=True, blank=True)
+    numerocontrolesocial = models.CharField(verbose_name="NÚMERO DO CONTROLE SOCIAL", max_length=100, null=True, blank=True)
+    complementocontrolesocial = models.CharField(verbose_name="COMPLEMENTO DO CONTROLE SOCIAL", max_length=100, null=True, blank=True)
+    cepcontrolesocial = models.CharField(verbose_name="CEP DO CONTROLE SOCIAL", max_length=10, null=True, blank=True)
+    enderecocontrolesocial = models.CharField(verbose_name="ENDEREÇO DO LOCAL DO CONTROLE SOCIAL", max_length=100, null=True, blank=True)
+    telefone1controlesocial = models.CharField(verbose_name="TELEFONE 1", max_length=20, null=True, blank=True)
+    telefone2controlesocial = models.CharField(verbose_name="TELEFONE 2", max_length=20, null=True, blank=True)
+    emailcontrolesocial = models.CharField(verbose_name="E-MAIL DO CONTROLE SOCIAL", max_length=150, null=True, blank=True)
+    dirigentecontrolesocial = models.CharField(verbose_name="DIRETOR DO CONTROLE SOCIAL", max_length=150, null=True, blank=True)
+    arquivo = models.FileField(verbose_name="ARQUIVO", upload_to='registro_solicitacao', blank=True)
+    publico_id = models.ForeignKey(TipoPublicoADA, on_delete=models.CASCADE, null=True,  blank=True, verbose_name="PÚBLICO")
+    evento_id = models.ForeignKey(TipoEventoADA, on_delete=models.CASCADE, null=True, blank=True, verbose_name="EVENTO")
+    portaria_id = models.ForeignKey(TipoPortariaADA, on_delete=models.CASCADE, null=True,  blank=True, verbose_name="PORTARIA",)
+    situacao = models.CharField(verbose_name="SITUAÇÃO", max_length=60, null=True, default='SOLICITADO', choices=SITUACAO_TERMO_CHOICE,blank=True)
+    observacao = models.TextField()
+    data_publicacao_dou = models.DateField(verbose_name="DATA DA PUBLICAÇÃO DOU", null=True, blank=True)
+    link_publicacao_dou = models.CharField(verbose_name="LINK DA PUBLICAÇÃO DOU", max_length=200, null=True, blank=True)
+    funcao = models.CharField(verbose_name="FUNÇÃO", max_length=100, null=True, blank=True)
+    ntermo = models.CharField(max_length=10, null=True, choices=ACEITO_TERMO, blank=True)
+    datasolicitacao = models.DateTimeField(verbose_name="DATA DA SOLICITAÇÃO", auto_now_add=True, null=True, blank=True)
+
+    class Meta:
+        db_table = 'solicitacao_ada'
 

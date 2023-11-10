@@ -11,7 +11,8 @@ class Custom404View(View):
 
 
 class IndexView(TemplateView):
-    template_name = 'login.html'
+    template_name = 'index.html'
+
 
 
 class IndexInternoView(LoginRequiredMixin, TemplateView):

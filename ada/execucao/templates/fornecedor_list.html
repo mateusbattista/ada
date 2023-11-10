@@ -22,41 +22,41 @@
                     <form method="get" id="fornecedor_filtro_form">{% csrf_token %}
                         {{ fornecedor_filtro_form.media.js }}
                         <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
+                            <div class="col-sm-11 mb-3">
                                 <label for="cnpjinstituicao">CNPJ:</label>
-                                <div class="br-input">
+                                <div class="br-input small">
                                     {% render_field fornecedor_filtro_form.cnpjinstituicao id="cnpjinstituicao" type="text" style="width:100%"  %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
+                            <div class="col-sm-11 mb-3">
                                 <label for="razaosocial">Razão Social:</label>
-                                <div class="br-input">
+                                <div class="br-input small">
                                     {% render_field fornecedor_filtro_form.razaosocial id="razaosocial" type="text" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
+                            <div class="col-sm-11 mb-3">
                                 <label for="tipo">Tipo de Entidade:</label>
-                                <div class="br-input">
+                                <div class="br-input small">
                                     {% render_field fornecedor_filtro_form.tipo id="tipo" type="text" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
+                            <div class="col-sm-11 mb-3">
                                 <label for="ufinstituicao">UF:</label>
-                                <div class="br-input">
+                                <div class="br-input small">
                                     {% render_field fornecedor_filtro_form.ufinstituicao   id="ufinstituicao" type="text" style="width:100%" %}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-11 mb-6">
+                            <div class="col-sm-11 mb-3">
                                 <label for="situacaofornecedor">Situação</label>
-                                <div class="br-input">
+                                <div class="br-input small">
                                     {% render_field fornecedor_filtro_form.situacaofornecedor class="campo-select" type="select" style="width:100%" %}
                                 </div>
                             </div>
@@ -84,8 +84,8 @@
                         <div class="br-table">
                             <div class="table-header">
                                 <div class="top-bar">
-                                    <div class="table-title mb-6"></div>
-                                    <a href="{% url 'fornecedor_add' %}" class="br-button mb-6"><i class="fas fa-plus" style="padding-right: 20px;"></i>Incluir</a>
+                                    <div class="table-title mb-3"></div>
+                                    <a href="{% url 'fornecedor_add' %}" class="br-button mb-3"><i class="fas fa-plus" style="padding-right: 20px;"></i>Incluir</a>
                                 </div>
                             </div>
                             <table>
