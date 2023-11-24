@@ -97,6 +97,7 @@
                                     <th scope="col" class="table-head"></th>
                                     <th scope="col" class="table-head">CNPJ</th>
                                     <th scope="col" class="table-head">UF</th>
+                                    <th scope="col" class="table-head">Quantidade de Cestas solicitadas</th>
                                     <th scope="col" class="table-head">Município</th>
                                     <th scope="col" class="table-head">Nome Responsável</th>
                                     <th scope="col" class="table-head">Data Solicitação</th>
@@ -122,6 +123,7 @@
                                              {% endif %}
                                             <td data-th="cnpjentefederativo">{{ solicitacao.cnpjentefederativo }}</td>
                                             <td data-th="uf">{{ solicitacao.uf }}</td>
+                                            <td data-th="quantidadecestas">{{ solicitacao.quantidadecestas }}</td>
                                             <td data-th="municipioentefederativo">{{ solicitacao.municipio_local_armazenamento }}</td>
                                             <td data-th="razaosocial">{{ solicitacao.nomeresponsavel }}</td>
                                             <td data-th="tipo">{{ solicitacao.dataavaliacao }}</td>

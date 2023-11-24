@@ -91,6 +91,7 @@ class SolicitacaoCestasADA(models.Model):
     telefone1coordenador = models.CharField(verbose_name="TELEFONE 1 COORDENADOR", max_length=20, null=True, blank=True)
     telefone2coordenador = models.CharField(verbose_name="TELEFONE 2 COORDENADOR", max_length=20, null=True, blank=True)
     quantidadecestas = models.BigIntegerField(verbose_name="QUANTIDADE DE CESTAS", null=True, blank=True)
+    cnpjarmazenamento = models.CharField(verbose_name="CNPJ LOCAL ARMAZENAMENTO", max_length=20, null=True, blank=True, validators=[valida_cnpj])
     nomelocalarmazenamento = models.CharField(verbose_name="NOME DO LOCAL DE ARMAZENAMENTO", max_length=100, null=True, blank=True)
     bairroarmazenamento = models.CharField(verbose_name="BAIRRO DO LOCAL DE ARMAZENAMENTO", max_length=100, null=True, blank=True)
     numeroarmazenamento = models.CharField(verbose_name="NÚMERO DO LOCAL DE ARMAZENAMENTO", max_length=100, null=True, blank=True)
